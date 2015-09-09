@@ -28,7 +28,7 @@ import com.google.android.mms.pdu_alt.EncodedStringValue;
 import com.google.android.mms.pdu_alt.PduComposer;
 import com.google.android.mms.pdu_alt.PduPersister;
 import com.google.android.mms.pdu_alt.ReadRecInd;
-import com.moez.QKSMS.mmssms.Utils;
+import com.adeebnqo.Thula.mmssms.Utils;
 
 /**
  * The ReadRecTransaction is responsible for sending read report

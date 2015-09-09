@@ -7,19 +7,19 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <com.moez.QKSMS.ui.view.QKTextView
+    <com.adeebnqo.Thula.ui.view.QKTextView
         android:id="@+id/list_item_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:type="primary" />
 
-    <com.moez.QKSMS.ui.view.QKTextView
+    <com.adeebnqo.Thula.ui.view.QKTextView
         android:id="@+id/list_item_subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:type="secondary" />
 
-    <com.moez.QKSMS.ui.view.QKTextView
+    <com.adeebnqo.Thula.ui.view.QKTextView
         android:id="@+id/list_item_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -24,8 +24,8 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.mms.MmsConfig;
-import com.moez.QKSMS.mmssms.Transaction;
-import com.moez.QKSMS.mmssms.Utils;
+import com.adeebnqo.Thula.mmssms.Transaction;
+import com.adeebnqo.Thula.mmssms.Utils;
 
 /**
  * Container of transaction settings. Instances of this class are contained

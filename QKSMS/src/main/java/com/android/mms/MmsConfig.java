@@ -20,7 +20,9 @@ package com.android.mms;
 import android.content.Context;
 import android.content.res.XmlResourceParser;
 import android.util.Log;
-import com.moez.QKSMS.R;
+
+import com.adeebnqo.Thula.R;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 

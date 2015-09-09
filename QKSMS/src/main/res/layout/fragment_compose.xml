@@ -7,7 +7,7 @@
     android:focusableInTouchMode="true"
     android:orientation="vertical">
 
-    <com.moez.QKSMS.ui.view.AutoCompleteContactView
+    <com.adeebnqo.Thula.ui.view.AutoCompleteContactView
         android:id="@+id/compose_recipients"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

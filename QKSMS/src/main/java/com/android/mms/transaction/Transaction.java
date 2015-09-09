@@ -22,7 +22,7 @@ import android.content.Context;
 
 import com.android.mms.util.SendingProgressTokenManager;
 import com.google.android.mms.MmsException;
-import com.moez.QKSMS.mmssms.Utils;
+import com.adeebnqo.Thula.mmssms.Utils;
 
 import java.io.IOException;
 

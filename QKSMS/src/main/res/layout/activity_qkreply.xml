@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.moez.QKSMS.ui.view.QKLinearLayout
+<com.adeebnqo.Thula.ui.view.QKLinearLayout
     android:id="@+id/popup"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -23,7 +23,7 @@
         android:clipToPadding="false"
         android:foreground="@drawable/ab_shadow">
 
-        <com.moez.QKSMS.ui.view.MessageListRecyclerView
+        <com.adeebnqo.Thula.ui.view.MessageListRecyclerView
             android:id="@+id/popup_messages"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,4 +47,4 @@
         android:layout_gravity="bottom"
         android:clipToPadding="false" />
 
-</com.moez.QKSMS.ui.view.QKLinearLayout>
+</com.adeebnqo.Thula.ui.view.QKLinearLayout>

@@ -9,7 +9,7 @@
     android:paddingRight="16dp"
     android:background="?android:attr/activatedBackgroundIndicator">
 
-    <com.moez.QKSMS.ui.view.QKImageView
+    <com.adeebnqo.Thula.ui.view.QKImageView
         android:id="@android:id/icon"
         android:layout_width="24dp"
         android:layout_height="24dp"
@@ -24,7 +24,7 @@
         android:paddingTop="16dip"
         android:paddingBottom="16dip">
 
-        <com.moez.QKSMS.ui.view.QKTextView
+        <com.adeebnqo.Thula.ui.view.QKTextView
             android:id="@android:id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
             android:ellipsize="marquee"
             app:type="primary" />
 
-        <com.moez.QKSMS.ui.view.QKTextView
+        <com.adeebnqo.Thula.ui.view.QKTextView
             android:id="@android:id/summary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

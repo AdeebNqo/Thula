@@ -8,14 +8,14 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp">
 
-    <com.moez.QKSMS.ui.view.QKTextView
+    <com.adeebnqo.Thula.ui.view.QKTextView
         android:id="@+id/response_index"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
         app:type="secondary" />
 
-    <com.moez.QKSMS.ui.view.QKEditText
+    <com.adeebnqo.Thula.ui.view.QKEditText
         android:id="@+id/response"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
