@@ -38,7 +38,7 @@ import com.android.mms.util.DownloadManager;
 import com.google.android.mms.MmsException;
 import com.google.android.mms.pdu_alt.PduHeaders;
 import com.google.android.mms.pdu_alt.PduPersister;
-import com.moez.QKSMS.R;
+import com.adeebnqo.Thula.R;
 
 public class RetryScheduler implements Observer {
     private static final String TAG = "RetryScheduler";
@@ -249,7 +249,7 @@ public class RetryScheduler implements Observer {
         // context.sendBroadcast(new Intent(com.moez.QKSMS.send_message.Transaction.NOTIFY_SMS_FAILURE));
 
         // broadcast that mms has failed and you can notify user from there if you would like
-        context.sendBroadcast(new Intent(com.moez.QKSMS.mmssms.Transaction.MMS_ERROR));
+        context.sendBroadcast(new Intent(com.adeebnqo.Thula.mmssms.Transaction.MMS_ERROR));
     }
 
     private void markMmsFailedToSend(Context context, Uri msgUri) {

@@ -42,7 +42,7 @@ import com.google.android.mms.util_alt.DrmConvertSession;
 import com.google.android.mms.util_alt.PduCache;
 import com.google.android.mms.util_alt.PduCacheEntry;
 import com.google.android.mms.util_alt.SqliteWrapper;
-import com.moez.QKSMS.mmssms.Utils;
+import com.adeebnqo.Thula.mmssms.Utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

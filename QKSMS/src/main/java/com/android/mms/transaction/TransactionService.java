@@ -46,8 +46,8 @@ import com.google.android.mms.pdu_alt.NotificationInd;
 import com.google.android.mms.pdu_alt.PduHeaders;
 import com.google.android.mms.pdu_alt.PduParser;
 import com.google.android.mms.pdu_alt.PduPersister;
-import com.moez.QKSMS.mmssms.Utils;
-import com.moez.QKSMS.R;
+import com.adeebnqo.Thula.mmssms.Utils;
+import com.adeebnqo.Thula.R;
 
 import java.io.IOException;
 import java.util.ArrayList;

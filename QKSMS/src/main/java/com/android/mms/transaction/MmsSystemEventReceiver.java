@@ -26,7 +26,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.util.Log;
 
-import com.moez.QKSMS.mmssms.Utils;
+import com.adeebnqo.Thula.mmssms.Utils;
 
 /**
  * MmsSystemEventReceiver receives the

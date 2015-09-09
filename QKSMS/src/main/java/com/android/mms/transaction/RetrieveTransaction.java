@@ -37,7 +37,7 @@ import com.google.android.mms.pdu_alt.PduHeaders;
 import com.google.android.mms.pdu_alt.PduParser;
 import com.google.android.mms.pdu_alt.PduPersister;
 import com.google.android.mms.pdu_alt.RetrieveConf;
-import com.moez.QKSMS.mmssms.Utils;
+import com.adeebnqo.Thula.mmssms.Utils;
 
 import java.io.IOException;
 
@@ -146,7 +146,7 @@ public class RetrieveTransaction extends Transaction implements Runnable {
                 boolean group;
 
                 try {
-                    group = com.moez.QKSMS.mmssms.Transaction.settings.getGroup();
+                    group = com.adeebnqo.Thula.mmssms.Transaction.settings.getGroup();
                 } catch (Exception e) {
                     group = PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean("pref_key_compose_group", true);
                 }
@@ -188,7 +188,7 @@ public class RetrieveTransaction extends Transaction implements Runnable {
                 mTransactionState.setContentUri(mUri);
                 Log.e(TAG, "Retrieval failed.");
             } else {
-                mContext.sendBroadcast(new Intent(com.moez.QKSMS.mmssms.Transaction.NOTIFY_OF_MMS));
+                mContext.sendBroadcast(new Intent(com.adeebnqo.Thula.mmssms.Transaction.NOTIFY_OF_MMS));
             }
             notifyObservers();
         }

@@ -14,7 +14,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp">
 
-    <com.moez.QKSMS.ui.view.AvatarView
+    <com.adeebnqo.Thula.ui.view.AvatarView
         android:id="@+id/conversation_list_avatar"
         android:layout_width="48dp"
         android:layout_height="48dp"
@@ -29,7 +29,7 @@
         android:layout_weight="1"
         android:animateLayoutChanges="true">
 
-        <com.moez.QKSMS.ui.view.QKTextView
+        <com.adeebnqo.Thula.ui.view.QKTextView
             android:id="@+id/conversation_list_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
             android:singleLine="true"
             app:type="primary" />
 
-        <com.moez.QKSMS.ui.view.QKTextView
+        <com.adeebnqo.Thula.ui.view.QKTextView
             android:id="@+id/conversation_list_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
             android:paddingLeft="16dp"
             app:type="tertiary" />
 
-        <com.moez.QKSMS.ui.view.QKTextView
+        <com.adeebnqo.Thula.ui.view.QKTextView
             android:id="@+id/conversation_list_snippet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

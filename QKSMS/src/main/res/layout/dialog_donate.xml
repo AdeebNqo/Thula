@@ -12,13 +12,13 @@
         android:orientation="vertical"
         android:padding="8dp">
 
-        <com.moez.QKSMS.ui.view.QKTextView
+        <com.adeebnqo.Thula.ui.view.QKTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/donate_google"
             app:type="dialog_title" />
 
-        <com.moez.QKSMS.ui.view.QKTextView
+        <com.adeebnqo.Thula.ui.view.QKTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/donate_google_summary"
@@ -34,13 +34,13 @@
         android:orientation="vertical"
         android:padding="8dp">
 
-        <com.moez.QKSMS.ui.view.QKTextView
+        <com.adeebnqo.Thula.ui.view.QKTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/product_name_donate_1"
             app:type="primary" />
 
-        <com.moez.QKSMS.ui.view.QKTextView
+        <com.adeebnqo.Thula.ui.view.QKTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/product_description_donate_1"
@@ -56,13 +56,13 @@
         android:orientation="vertical"
         android:padding="8dp">
 
-        <com.moez.QKSMS.ui.view.QKTextView
+        <com.adeebnqo.Thula.ui.view.QKTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/product_name_donate_5"
             app:type="primary" />
 
-        <com.moez.QKSMS.ui.view.QKTextView
+        <com.adeebnqo.Thula.ui.view.QKTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/product_description_donate_5"
@@ -78,13 +78,13 @@
         android:orientation="vertical"
         android:padding="8dp">
 
-        <com.moez.QKSMS.ui.view.QKTextView
+        <com.adeebnqo.Thula.ui.view.QKTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/product_name_donate_10"
             app:type="primary" />
 
-        <com.moez.QKSMS.ui.view.QKTextView
+        <com.adeebnqo.Thula.ui.view.QKTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/product_description_donate_10"
@@ -92,7 +92,7 @@
 
     </LinearLayout>
 
-    <com.moez.QKSMS.ui.view.QKTextView
+    <com.adeebnqo.Thula.ui.view.QKTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -108,13 +108,13 @@
         android:orientation="vertical"
         android:padding="8dp">
 
-        <com.moez.QKSMS.ui.view.QKTextView
+        <com.adeebnqo.Thula.ui.view.QKTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/donate_paypal_button"
             app:type="primary" />
 
-        <com.moez.QKSMS.ui.view.QKTextView
+        <com.adeebnqo.Thula.ui.view.QKTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/donate_paypal_button_summary"

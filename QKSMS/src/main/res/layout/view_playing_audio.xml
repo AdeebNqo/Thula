@@ -32,7 +32,7 @@
         android:layout_height="match_parent"
         android:src="@drawable/ic_attach_capture_audio_holo_light" />
 
-    <com.moez.QKSMS.ui.view.QKTextView
+    <com.adeebnqo.Thula.ui.view.QKTextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

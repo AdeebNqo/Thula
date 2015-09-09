@@ -18,8 +18,8 @@ package com.qklabs.qkms.test;
 import android.content.Context;
 import android.test.InstrumentationTestCase;
 
-import com.moez.QKSMS.mmssms.Apn;
-import com.moez.QKSMS.mmssms.ApnUtils;
+import com.adeebnqo.Thula.mmssms.Apn;
+import com.adeebnqo.Thula.mmssms.ApnUtils;
 
 import java.util.Arrays;
 import java.util.List;

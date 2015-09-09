@@ -1,4 +1,4 @@
-<com.moez.QKSMS.ui.view.StarredContactsView
+<com.adeebnqo.Thula.ui.view.StarredContactsView
     android:id="@+id/starred_contacts"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -15,7 +15,7 @@
         android:animateLayoutChanges="true"
         android:gravity="center_vertical">
 
-        <com.moez.QKSMS.ui.view.QKTextView
+        <com.adeebnqo.Thula.ui.view.QKTextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,4 +50,4 @@
 
     </HorizontalScrollView>
 
-</com.moez.QKSMS.ui.view.StarredContactsView>
+</com.adeebnqo.Thula.ui.view.StarredContactsView>

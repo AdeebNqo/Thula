@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.moez.QKSMS.ui.view.QKLinearLayout
+<com.adeebnqo.Thula.ui.view.QKLinearLayout
     android:id="@+id/popup"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.moez.QKSMS.ui.view.AutoCompleteContactView
+            <com.adeebnqo.Thula.ui.view.AutoCompleteContactView
                 android:id="@+id/compose_recipients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -43,4 +43,4 @@
 
     </ScrollView>
 
-</com.moez.QKSMS.ui.view.QKLinearLayout>
+</com.adeebnqo.Thula.ui.view.QKLinearLayout>

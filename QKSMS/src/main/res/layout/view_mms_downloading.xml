@@ -31,7 +31,7 @@
         android:text="@string/download"
         android:visibility="gone" />
 
-    <com.moez.QKSMS.ui.view.QKTextView
+    <com.adeebnqo.Thula.ui.view.QKTextView
         android:id="@+id/label_downloading"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

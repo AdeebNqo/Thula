@@ -27,7 +27,7 @@
 
         <include layout="@layout/view_toolbar" />
 
-        <com.moez.QKSMS.ui.mms.SlideView
+        <com.adeebnqo.Thula.ui.mms.SlideView
             android:id="@+id/slide_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

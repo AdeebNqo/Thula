@@ -10,7 +10,7 @@
     android:orientation="horizontal"
     android:windowSoftInputMode="adjustPan">
 
-    <com.moez.QKSMS.ui.view.MessageListRecyclerView
+    <com.adeebnqo.Thula.ui.view.MessageListRecyclerView
         android:id="@+id/conversation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

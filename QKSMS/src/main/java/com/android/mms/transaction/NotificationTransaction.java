@@ -117,7 +117,7 @@ public class NotificationTransaction extends Transaction implements Runnable {
             boolean group;
 
             try {
-                group = com.moez.QKSMS.mmssms.Transaction.settings.getGroup();
+                group = com.adeebnqo.Thula.mmssms.Transaction.settings.getGroup();
             } catch (Exception e) {
                 group = PreferenceManager.getDefaultSharedPreferences(context).getBoolean("group_message", true);
             }
@@ -199,7 +199,7 @@ public class NotificationTransaction extends Transaction implements Runnable {
                     // Save the received PDU (must be a M-RETRIEVE.CONF).
                     PduPersister p = PduPersister.getPduPersister(mContext);
                     Uri uri = p.persist(pdu, Inbox.CONTENT_URI, true,
-                            com.moez.QKSMS.mmssms.Transaction.settings.getGroup(), null);
+                            com.adeebnqo.Thula.mmssms.Transaction.settings.getGroup(), null);
 
                     // Use local time instead of PDU time
                     ContentValues values = new ContentValues(1);
@@ -220,7 +220,7 @@ public class NotificationTransaction extends Transaction implements Runnable {
                     mUri = uri;
                     status = STATUS_RETRIEVED;
 
-                    mContext.sendBroadcast(new Intent(com.moez.QKSMS.mmssms.Transaction.NOTIFY_OF_MMS));
+                    mContext.sendBroadcast(new Intent(com.adeebnqo.Thula.mmssms.Transaction.NOTIFY_OF_MMS));
                 }
             }
 
