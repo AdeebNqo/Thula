@@ -12,11 +12,5 @@
             android:layout="@layout/list_item_preference"
             android:summary="@string/pref_changelog_summary"
             android:title="@string/title_changelog" />
-        <Preference
-            android:icon="@drawable/ic_donate"
-            android:key="pref_key_donate"
-            android:layout="@layout/list_item_preference"
-            android:summary="@string/pref_donate_summary"
-            android:title="@string/pref_donate_title" />
     </PreferenceCategory>
 </PreferenceScreen>

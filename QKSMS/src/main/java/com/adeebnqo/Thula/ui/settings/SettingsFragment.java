@@ -141,6 +141,7 @@ public class SettingsFragment extends PreferenceFragment implements
     public static final String AUTOMATICALLY_CONFIGURE_MMS = "pref_key_automatically_configure_mms";
     public static final String MMS_CONTACT_SUPPORT = "pref_key_mms_contact_support";
     public static final String SIMPLE_PREFS = "pref_key_simple";
+    @Deprecated
     public static final String DONATE = "pref_key_donate";
     /**
      * @deprecated
@@ -568,9 +569,6 @@ public class SettingsFragment extends PreferenceFragment implements
                 break;
             case SIMPLE_PREFS:
                 mContext.onOptionsItemSelected(mContext.getMenu().findItem(R.id.simple_settings));
-                break;
-            case DONATE:
-                DonationManager.getInstance(mContext).showDonateDialog();
                 break;
         }
 

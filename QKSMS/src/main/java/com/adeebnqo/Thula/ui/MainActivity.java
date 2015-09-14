@@ -317,7 +317,6 @@ public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListen
     public void onDestroy() {
         super.onDestroy();
         mIsDestroyed = true;
-        DonationManager.getInstance(this).destroy();
     }
 
     @Override

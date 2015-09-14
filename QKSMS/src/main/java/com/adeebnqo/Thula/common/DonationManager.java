@@ -19,6 +19,7 @@ import java.util.Random;
 /**
  * Manages donations
  */
+@Deprecated
 public class DonationManager {
     public static final String TAG = "DonationManager";
     public static final String PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAprSfnH+TSMKWakRyf9dTiK5Z71MCvRthkvDCB62Tnyv2JnbMdeI6PePgtEWDEBPaPsNfmus+E9HNnPOvqZAH01TCKW0YOW6bIv7tVj+xHrAyaZMXOMKZMQx9Wme1oPU3IG686TkHGkbIdEJrHcYLU7JpwCqm0DgKFHC+/Ehd40uQAEZvXlESEJtft0N4anSifunjCpTCyDA56sXf2zNhYIhM5MlhjHw4gPq36RCml0S+N8xQL1hyh1doIAo82vx3Bh18KSbQMpk4t189Yjh9DyvOj8Se3iTtXSwaK1vXrZiWd9B3C/CXzIicFKLYKP1Ejigd0YInaC8mxIsrKddLVwIDAQAB";
