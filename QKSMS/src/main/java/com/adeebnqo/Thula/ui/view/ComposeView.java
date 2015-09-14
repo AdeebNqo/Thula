@@ -440,12 +440,6 @@ public class ComposeView extends LinearLayout implements View.OnClickListener, L
         if (recipients != null && recipients.length > 0) {
             mReplyText.setText("");
 
-            AnalyticsManager.getInstance().sendEvent(
-                    AnalyticsManager.CATEGORY_MESSAGES,
-                    AnalyticsManager.ACTION_SEND_MESSAGE,
-                    mLabel
-            );
-
             Transaction sendTransaction = new Transaction(mContext, SmsHelper.getSendSettings(mContext));
 
             com.adeebnqo.Thula.mmssms.Message message = new com.adeebnqo.Thula.mmssms.Message(body, recipients);
@@ -626,12 +620,6 @@ public class ComposeView extends LinearLayout implements View.OnClickListener, L
 
     private void attachFromCamera() {
 
-        AnalyticsManager.getInstance().sendEvent(
-                AnalyticsManager.CATEGORY_MESSAGES,
-                AnalyticsManager.ACTION_ATTACH_FROM_CAMERA,
-                mLabel
-        );
-
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (cameraIntent.resolveActivity(mContext.getPackageManager()) != null) {
 
@@ -656,12 +644,6 @@ public class ComposeView extends LinearLayout implements View.OnClickListener, L
     }
 
     private void chooseAttachmentFromGallery() {
-
-        AnalyticsManager.getInstance().sendEvent(
-                AnalyticsManager.CATEGORY_MESSAGES,
-                AnalyticsManager.ACTION_ATTACH_IMAGE,
-                mLabel
-        );
 
         try {
             Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
@@ -834,11 +816,6 @@ public class ComposeView extends LinearLayout implements View.OnClickListener, L
         if (imageBitmap == null) {
             clearAttachment();
         } else {
-            AnalyticsManager.getInstance().sendEvent(
-                    AnalyticsManager.CATEGORY_MESSAGES,
-                    AnalyticsManager.ACTION_ATTACH_IMAGE,
-                    mLabel
-            );
 
             mAttachment.setImageBitmap(imageBitmap);
             mAttachmentLayout.setVisibility(View.VISIBLE);

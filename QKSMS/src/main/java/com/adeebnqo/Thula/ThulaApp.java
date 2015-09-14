@@ -31,8 +31,6 @@ import android.util.Log;
 import com.android.mms.transaction.MmsSystemEventReceiver;
 import com.android.mms.util.DownloadManager;
 import com.android.mms.util.RateController;
-import com.crittercism.app.Crittercism;
-import com.adeebnqo.Thula.common.AnalyticsManager;
 import com.adeebnqo.Thula.common.LiveViewManager;
 import com.adeebnqo.Thula.common.google.DraftCache;
 import com.adeebnqo.Thula.common.google.PduLoaderManager;
@@ -74,10 +72,9 @@ public class ThulaApp extends Application {
 
         loadDefaultPreferenceValues();
 
-        // Initialize analytics, leakcanary, and crittercism
-        AnalyticsManager.getInstance().init(this);
+        // Initialize leakcanary, and crittercism
         refWatcher = LeakCanary.install(this);
-        Crittercism.initialize(getApplicationContext(), getString(R.string.crtsm_key));
+        //Crittercism.initialize(getApplicationContext(), getString(R.string.crtsm_key));
 
         // Figure out the country *before* loading contacts and formatting numbers
         Country country = new Country(Locale.getDefault().getCountry(), Country.COUNTRY_SOURCE_LOCALE);

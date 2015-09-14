@@ -245,8 +245,8 @@ public class RetryScheduler implements Observer {
         context.getContentResolver().update(msgUri, values, null, null);
          */
 
-        // context.sendBroadcast(new Intent(com.moez.QKSMS.send_message.Transaction.REFRESH));
-        // context.sendBroadcast(new Intent(com.moez.QKSMS.send_message.Transaction.NOTIFY_SMS_FAILURE));
+        // context.sendBroadcast(new Intent(con.adeebnqo.Thula.send_message.Transaction.REFRESH));
+        // context.sendBroadcast(new Intent(con.adeebnqo.Thula.send_message.Transaction.NOTIFY_SMS_FAILURE));
 
         // broadcast that mms has failed and you can notify user from there if you would like
         context.sendBroadcast(new Intent(com.adeebnqo.Thula.mmssms.Transaction.MMS_ERROR));

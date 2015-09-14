@@ -36,7 +36,7 @@ import static android.support.v4.app.NotificationCompat.WearableExtender;
 public class WearableIntentReceiver extends BroadcastReceiver {
     private static final String TAG = "WearableIntentActivity";
 
-    public static final String ACTION_REPLY = "com.moez.QKSMS.receiver.WearableIntentReceiver.REPLY";
+    public static final String ACTION_REPLY = "com.adeebnqo.Thula.receiver.WearableIntentReceiver.REPLY";
 
     public static final String EXTRA_ADDRESS = "address";
     public static final String EXTRA_THREAD_ID = "thread_id";

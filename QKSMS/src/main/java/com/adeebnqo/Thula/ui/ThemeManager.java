@@ -395,6 +395,8 @@ public class ThemeManager {
         }
     }
 
+    //This feature is useless and a waste of time
+    @Deprecated
     public static void setIcon(final QKActivity context) {
         new QKDialog()
                 .setContext(context)
@@ -418,7 +420,7 @@ public class ThemeManager {
                         String enabledComponent = null;
                         for (int i = 0; i < colors.length; i++) {
                             String componentClassName = String.format(
-                                    "com.moez.QKSMS.ui.MainActivity-%s", colors[i]
+                                    "com.adeebnqo.Thula.ui.MainActivity-%s", colors[i]
                             );
 
                             // Save the enabled component so we can kill the app with this one when
@@ -623,12 +625,6 @@ public class ThemeManager {
     }
 
     public static void setColour(int color) {
-
-        AnalyticsManager.INSTANCE.sendEvent(
-                AnalyticsManager.CATEGORY_PREFERENCE_CHANGE,
-                SettingsFragment.CATEGORY_THEME,
-                getColorString(color)
-        );
 
         int colourFrom = sColor;
         sColor = color;

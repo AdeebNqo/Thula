@@ -92,13 +92,13 @@ public class Transaction {
     public String SMS_DELIVERED = ".SMS_DELIVERED";
 
     public static String NOTIFY_SMS_FAILURE = ".NOTIFY_SMS_FAILURE";
-    public static final String MMS_ERROR = "com.moez.QKSMS.send_message.MMS_ERROR";
-    public static final String REFRESH = "com.moez.QKSMS.send_message.REFRESH";
-    public static final String MMS_PROGRESS = "com.moez.QKSMS.send_message.MMS_PROGRESS";
-    public static final String VOICE_FAILED = "com.moez.QKSMS.send_message.VOICE_FAILED";
-    public static final String VOICE_TOKEN = "com.moez.QKSMS.send_message.RNRSE";
-    public static final String NOTIFY_OF_DELIVERY = "com.moez.QKSMS.send_message.NOTIFY_DELIVERY";
-    public static final String NOTIFY_OF_MMS = "com.moez.QKSMS.messaging.NEW_MMS_DOWNLOADED";
+    public static final String MMS_ERROR = "con.adeebnqo.Thula.send_message.MMS_ERROR";
+    public static final String REFRESH = "con.adeebnqo.Thula.send_message.REFRESH";
+    public static final String MMS_PROGRESS = "con.adeebnqo.Thula.send_message.MMS_PROGRESS";
+    public static final String VOICE_FAILED = "con.adeebnqo.Thula.send_message.VOICE_FAILED";
+    public static final String VOICE_TOKEN = "con.adeebnqo.Thula.send_message.RNRSE";
+    public static final String NOTIFY_OF_DELIVERY = "con.adeebnqo.Thula.send_message.NOTIFY_DELIVERY";
+    public static final String NOTIFY_OF_MMS = "con.adeebnqo.Thula.messaging.NEW_MMS_DOWNLOADED";
 
     public static final long NO_THREAD_ID = 0;
 
