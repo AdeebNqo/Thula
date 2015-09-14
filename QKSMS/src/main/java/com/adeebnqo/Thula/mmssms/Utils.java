@@ -19,6 +19,7 @@ import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.accounts.AuthenticatorException;
 import android.accounts.OperationCanceledException;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -400,7 +401,12 @@ public class Utils {
      * @param context
      * @return true if app is default
      */
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     public static boolean isDefaultSmsApp(Context context) {
         return !hasKitKat() || context.getPackageName().equals(Telephony.Sms.getDefaultSmsPackage(context));
+    }
+
+    public void setMobileDataState(boolean mobileDataEnabled){
+        //hush
     }
 }

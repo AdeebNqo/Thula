@@ -268,16 +268,6 @@ public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListen
             case R.id.menu_search:
                 switchContent(new SearchFragment(), true);
                 break;
-            case R.id.menu_changelog:
-                new QKDialog()
-                        .setContext(this)
-                        .setTitle(R.string.title_changelog)
-                        .setTripleLineItems(R.array.versions, R.array.dates, R.array.changes, null)
-                        .show(getFragmentManager(), "Changelog");
-                break;
-            case R.id.menu_donate:
-                DonationManager.getInstance(this).showDonateDialog();
-                break;
         }
 
         return super.onOptionsItemSelected(item);

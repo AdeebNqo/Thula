@@ -9,12 +9,6 @@
             android:layout="@layout/list_item_preference"
             android:summary="@string/pref_theme_summary_alt"
             android:title="@string/pref_theme" />
-        <Preference
-            android:defaultValue="-16746133"
-            android:key="pref_key_icon"
-            android:layout="@layout/list_item_preference"
-            android:summary="@string/pref_icon_summary"
-            android:title="@string/pref_icon" />
         <ListPreference
             android:defaultValue="#FFEEEEEE"
             android:entries="@array/background_titles"
@@ -86,12 +80,6 @@
             android:key="pref_key_simple"
             android:layout="@layout/list_item_preference"
             android:title="@string/pref_show_all" />
-        <Preference
-            android:icon="@drawable/ic_donate"
-            android:key="pref_key_donate"
-            android:layout="@layout/list_item_preference"
-            android:summary="@string/pref_donate_summary"
-            android:title="@string/pref_donate_title" />
     </PreferenceCategory>
 
 </PreferenceScreen>

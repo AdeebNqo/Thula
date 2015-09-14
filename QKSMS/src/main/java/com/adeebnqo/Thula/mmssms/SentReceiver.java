@@ -93,7 +93,7 @@ public class SentReceiver extends BroadcastReceiver {
                 break;
         }
 
-        context.sendBroadcast(new Intent("com.moez.QKSMS.send_message.REFRESH"));
+        context.sendBroadcast(new Intent("con.adeebnqo.Thula.send_message.REFRESH"));
     }
 
     private void markFirstAsSent(Context context) {

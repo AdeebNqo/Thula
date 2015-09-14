@@ -53,14 +53,16 @@ public class NotificationService extends Service {
             if (conversationPrefs.getNotificationsEnabled()) {
                 // Only show QuickReply if we're outside of the app, and they have popups and
                 // QuickReply enabled.
-                if (!QKReplyActivity.sIsShowing && !MainActivity.isShowing && intent.getBooleanExtra(EXTRA_POPUP, false) &&
+
+                //TODO: Is this neccessary?
+                /*if (!QKReplyActivity.sIsShowing && !MainActivity.isShowing && intent.getBooleanExtra(EXTRA_POPUP, false) &&
                         prefs.getBoolean(SettingsFragment.QUICKREPLY, true) && !MainActivity.isShowing) {
 
                     popupIntent = new Intent(context, QKReplyActivity.class);
                     popupIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     popupIntent.putExtra(QKReplyActivity.EXTRA_THREAD_ID, message.getThreadId());
                     startActivity(popupIntent);
-                }
+                }*/
 
                 // Get the photo for the PushBullet notification.
                 Bitmap photoBitmap = message.getPhotoBitmap();

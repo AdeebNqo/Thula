@@ -53,8 +53,8 @@ public class NotificationManager {
     private static final int NOTIFICATION_ID_QUICKCOMPOSE = 4516;
     private static final int NOTIFICATION_ID_FAILED = 4295;
 
-    public static final String ACTION_MARK_READ = "com.moez.QKSMS.MARK_READ";
-    public static final String ACTION_MARK_SEEN = "com.moez.QKSMS.MARK_SEEN";
+    public static final String ACTION_MARK_READ = "con.adeebnqo.Thula.MARK_READ";
+    public static final String ACTION_MARK_SEEN = "con.adeebnqo.Thula.MARK_SEEN";
 
     private static final String DEFAULT_RINGTONE = "content://settings/system/notification_sound";
 

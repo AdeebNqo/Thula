@@ -323,7 +323,7 @@ public class TransactionService extends Service implements Observer {
                                     // If autodownload is turned off, don't process the
                                     // transaction.
                                     if (LOCAL_LOGV) Log.v(TAG, "onNewIntent: skipping - autodownload off");
-                                        //sendBroadcast(new Intent(com.moez.QKSMS.send_message.Transaction.NOTIFY_OF_MMS));
+                                        //sendBroadcast(new Intent(con.adeebnqo.Thula.send_message.Transaction.NOTIFY_OF_MMS));
                                     break;
                                 }
                                 // Logic is twisty. If there's no failure or the failure

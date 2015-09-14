@@ -400,11 +400,6 @@ public class SettingsFragment extends PreferenceFragment implements
         }
 
         Log.d(TAG, "onPreferenceChange key:" + key + " newValue: " + valueString);
-        AnalyticsManager.getInstance().sendEvent(
-                AnalyticsManager.CATEGORY_PREFERENCE_CHANGE,
-                key,
-                valueString
-        );
 
         if (key.equals(BACKGROUND)) {
             ThemeManager.setTheme(ThemeManager.Theme.fromString((String) newValue));
@@ -476,12 +471,6 @@ public class SettingsFragment extends PreferenceFragment implements
 
         String key = preference.getKey() != null ? preference.getKey() : "";
 
-        AnalyticsManager.getInstance().sendEvent(
-                AnalyticsManager.CATEGORY_PREFERENCE_CLICK,
-                key,
-                null
-        );
-
         // Categories
         int resId = 0;
         switch (key) {
@@ -524,9 +513,6 @@ public class SettingsFragment extends PreferenceFragment implements
                 break;
             case BUBBLES:
                 new BubblePreferenceDialog().setContext(mContext).show(mContext.getFragmentManager(), "bubbles");
-                break;
-            case ICON:
-                ThemeManager.setIcon(mContext);
                 break;
             case NOTIFICATION_LED_COLOR:
                 mLedColorPickerDialog.show(getActivity().getFragmentManager(), "colorpicker");
