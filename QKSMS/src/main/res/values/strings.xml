@@ -788,4 +788,9 @@
     </string-array>
 
     <string name="reply_qksms">Reply via QKSMS</string>
+
+    <string name="add_to_contacts">Add to contacts</string>
+    <string name="add_to_spam">Mark as spam</string>
+    <string name="remove_from_spam">Unmark as spam</string>
+    <string name="unsaved_contact_number">Unsaved contact</string>
 </resources>

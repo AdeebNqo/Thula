@@ -3,6 +3,7 @@ package com.adeebnqo.Thula.ui.view;
 import android.content.AsyncQueryHandler;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.database.Cursor;
@@ -15,8 +16,10 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -28,6 +31,8 @@ import com.adeebnqo.Thula.common.TypefaceManager;
 import com.adeebnqo.Thula.common.utils.ImageUtils;
 import com.adeebnqo.Thula.common.utils.PhoneNumberUtils;
 import com.adeebnqo.Thula.common.utils.Units;
+import com.adeebnqo.Thula.spam.SharedPreferenceSpamNumberStorage;
+import com.adeebnqo.Thula.spam.SpamNumberStorage;
 import com.adeebnqo.Thula.ui.ThemeManager;
 import com.adeebnqo.Thula.ui.settings.SettingsFragment;
 
@@ -305,7 +310,9 @@ public class AvatarView extends ImageView implements View.OnClickListener, LiveV
             Uri lookupUri = null;
             Uri createUri = null;
             boolean trigger = false;
-            Bundle extras = (cookie != null) ? (Bundle) cookie : new Bundle();
+            long contactId = -1;
+
+            final Bundle extras = (cookie != null) ? (Bundle) cookie : new Bundle();
             try {
                 switch (token) {
                     case TOKEN_PHONE_LOOKUP_AND_TRIGGER:
@@ -317,7 +324,7 @@ public class AvatarView extends ImageView implements View.OnClickListener, LiveV
                         //$FALL-THROUGH$
                     case TOKEN_PHONE_LOOKUP: {
                         if (cursor != null && cursor.moveToFirst()) {
-                            long contactId = cursor.getLong(PHONE_ID_COLUMN_INDEX);
+                            contactId = cursor.getLong(PHONE_ID_COLUMN_INDEX);
                             String lookupKey = cursor.getString(PHONE_LOOKUP_STRING_COLUMN_INDEX);
                             lookupUri = ContactsContract.Contacts.getLookupUri(contactId, lookupKey);
                         }
@@ -326,6 +333,9 @@ public class AvatarView extends ImageView implements View.OnClickListener, LiveV
                 }
             } finally {
                 if (cursor != null) {
+                    if (contactId == -1 && cursor.moveToFirst()) {
+                        contactId = cursor.getLong(PHONE_ID_COLUMN_INDEX);
+                    }
                     cursor.close();
                 }
             }
@@ -337,13 +347,42 @@ public class AvatarView extends ImageView implements View.OnClickListener, LiveV
                 ContactsContract.QuickContact.showQuickContact(getContext(), AvatarView.this, lookupUri,
                         ContactsContract.QuickContact.MODE_LARGE, mExcludeMimes);
             } else if (createUri != null) {
-                // Prompt user to add this person to contacts
-                final Intent intent = new Intent(ContactsContract.Intents.SHOW_OR_CREATE_CONTACT, createUri);
-                if (extras != null) {
-                    extras.remove(EXTRA_URI_CONTENT);
-                    intent.putExtras(extras);
-                }
-                getContext().startActivity(intent);
+
+                final SpamNumberStorage spamNumberStorage = new SharedPreferenceSpamNumberStorage(getContext());
+                final CharSequence contactChoices[] = new CharSequence[] {
+                        getContext().getString(R.string.add_to_contacts),
+                        (spamNumberStorage.contains(contactId) ? getContext().getString(R.string.remove_from_spam) : getContext().getString(R.string.add_to_spam))
+                };
+
+                //copies of fields
+                final Uri saveToContacts = createUri;
+                final long contactIdCopy = contactId;
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle(getContext().getString(R.string.unsaved_contact_number));
+                builder.setItems(contactChoices, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (which==0) {
+                            // Prompt user to add this person to contacts
+                            final Intent intent = new Intent(ContactsContract.Intents.SHOW_OR_CREATE_CONTACT, saveToContacts);
+                            if (extras != null) {
+                                extras.remove(EXTRA_URI_CONTENT);
+                                intent.putExtras(extras);
+                            }
+                            getContext().startActivity(intent);
+                        } else if (which < contactChoices.length) {
+                            String choice = contactChoices[which].toString();
+                            if (choice.equals(getContext().getString(R.string.remove_from_spam))){
+                                spamNumberStorage.deleteNumber(contactIdCopy);
+                            } else if (choice.equals(getContext().getString(R.string.add_to_spam))){
+                                spamNumberStorage.addNumber(contactIdCopy);
+                            }
+                        }
+                    }
+                });
+                builder.show();
+
             }
         }
     }

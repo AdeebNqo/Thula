@@ -10,6 +10,8 @@ import android.util.Log;
 import com.adeebnqo.Thula.common.ConversationPrefsHelper;
 import com.adeebnqo.Thula.data.Message;
 import com.adeebnqo.Thula.service.NotificationService;
+import com.adeebnqo.Thula.spam.SharedPreferenceSpamNumberStorage;
+import com.adeebnqo.Thula.spam.SpamNumberStorage;
 import com.adeebnqo.Thula.transaction.NotificationManager;
 import com.adeebnqo.Thula.transaction.SmsHelper;
 
@@ -54,16 +56,24 @@ public class MessagingReceiver extends BroadcastReceiver {
             Message message = new Message(context, uri);
             ConversationPrefsHelper prefs = new ConversationPrefsHelper(context, message.getThreadId());
 
-            if (prefs.getNotificationsEnabled()) {
-                Intent messageHandlerIntent = new Intent(context, NotificationService.class);
-                messageHandlerIntent.putExtra(NotificationService.EXTRA_POPUP, true);
-                messageHandlerIntent.putExtra(NotificationService.EXTRA_URI, uri.toString());
-                context.startService(messageHandlerIntent);
+            SpamNumberStorage spamStorage = new SharedPreferenceSpamNumberStorage(context);
 
-                UnreadBadgeService.update(context);
-                NotificationManager.create(context);
-            } else {
+            if (spamStorage.contains(message)){
+
                 message.markSeen();
+
+            } else {
+                if (prefs.getNotificationsEnabled()) {
+                    Intent messageHandlerIntent = new Intent(context, NotificationService.class);
+                    messageHandlerIntent.putExtra(NotificationService.EXTRA_POPUP, true);
+                    messageHandlerIntent.putExtra(NotificationService.EXTRA_URI, uri.toString());
+                    context.startService(messageHandlerIntent);
+
+                    UnreadBadgeService.update(context);
+                    NotificationManager.create(context);
+                } else {
+                    message.markSeen();
+                }
             }
 
             if (prefs.getWakePhoneEnabled()) {
