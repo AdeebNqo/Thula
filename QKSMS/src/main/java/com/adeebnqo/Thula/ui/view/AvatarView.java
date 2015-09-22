@@ -348,22 +348,22 @@ public class AvatarView extends ImageView implements View.OnClickListener, LiveV
                         ContactsContract.QuickContact.MODE_LARGE, mExcludeMimes);
             } else if (createUri != null) {
 
+                //copies of fields
+                final Uri saveToContacts = createUri;
+                final String identifier = extras.getString(EXTRA_URI_CONTENT);
+
                 final SpamNumberStorage spamNumberStorage = new SharedPreferenceSpamNumberStorage(getContext());
                 final CharSequence contactChoices[] = new CharSequence[] {
                         getContext().getString(R.string.add_to_contacts),
-                        (spamNumberStorage.contains(contactId) ? getContext().getString(R.string.remove_from_spam) : getContext().getString(R.string.add_to_spam))
+                        (spamNumberStorage.contains(identifier) ? getContext().getString(R.string.remove_from_spam) : getContext().getString(R.string.add_to_spam))
                 };
-
-                //copies of fields
-                final Uri saveToContacts = createUri;
-                final long contactIdCopy = contactId;
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle(getContext().getString(R.string.unsaved_contact_number));
                 builder.setItems(contactChoices, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (which==0) {
+                        if (which == 0) {
                             // Prompt user to add this person to contacts
                             final Intent intent = new Intent(ContactsContract.Intents.SHOW_OR_CREATE_CONTACT, saveToContacts);
                             if (extras != null) {
@@ -371,12 +371,11 @@ public class AvatarView extends ImageView implements View.OnClickListener, LiveV
                                 intent.putExtras(extras);
                             }
                             getContext().startActivity(intent);
-                        } else if (which < contactChoices.length) {
-                            String choice = contactChoices[which].toString();
-                            if (choice.equals(getContext().getString(R.string.remove_from_spam))){
-                                spamNumberStorage.deleteNumber(contactIdCopy);
-                            } else if (choice.equals(getContext().getString(R.string.add_to_spam))){
-                                spamNumberStorage.addNumber(contactIdCopy);
+                        } else {
+                            if (spamNumberStorage.contains(identifier)) {
+                                spamNumberStorage.deleteNumber(identifier);
+                            } else {
+                                spamNumberStorage.addNumber(identifier);
                             }
                         }
                     }

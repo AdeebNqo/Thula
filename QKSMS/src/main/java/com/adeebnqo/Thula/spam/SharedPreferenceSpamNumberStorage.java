@@ -10,7 +10,6 @@ import com.google.gson.GsonBuilder;
 public class SharedPreferenceSpamNumberStorage implements SpamNumberStorage {
 
     private String sharedPreferenceFileName = getClass().getName();
-    private Gson builder = new GsonBuilder().create();
     private SharedPreferences sharedPreferences;
     private Context context;
 
@@ -20,11 +19,11 @@ public class SharedPreferenceSpamNumberStorage implements SpamNumberStorage {
 
     @Override
     public void addNumber(Message msg) {
-        addNumber(msg.getId());
+        addNumber(msg.getName());
     }
 
     @Override
-    public void addNumber(long id) {
+    public void addNumber(String id) {
         sharedPreferences = context.getSharedPreferences(sharedPreferenceFileName, Context.MODE_PRIVATE);
 
         sharedPreferences.edit().putString(String.valueOf(id), "").apply();
@@ -32,11 +31,11 @@ public class SharedPreferenceSpamNumberStorage implements SpamNumberStorage {
 
     @Override
     public void deleteNumber(Message msg) {
-        deleteNumber(msg.getId());
+        deleteNumber(msg.getName());
     }
 
     @Override
-    public void deleteNumber(long id) {
+    public void deleteNumber(String id) {
         sharedPreferences = context.getSharedPreferences(sharedPreferenceFileName, Context.MODE_PRIVATE);
 
         sharedPreferences.edit().remove(String.valueOf(id)).apply();
@@ -44,11 +43,11 @@ public class SharedPreferenceSpamNumberStorage implements SpamNumberStorage {
 
     @Override
     public boolean contains(Message msg) {
-        return contains(msg.getId());
+        return contains(msg.getName());
     }
 
     @Override
-    public boolean contains(long id) {
+    public boolean contains(String id) {
         sharedPreferences = context.getSharedPreferences(sharedPreferenceFileName, Context.MODE_PRIVATE);
 
         return sharedPreferences.contains(String.valueOf(id));

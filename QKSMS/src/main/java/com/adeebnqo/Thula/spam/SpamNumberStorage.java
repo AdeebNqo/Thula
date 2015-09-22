@@ -4,9 +4,9 @@ import com.adeebnqo.Thula.data.Message;
 
 public interface SpamNumberStorage {
     void addNumber(Message msg);
-    void addNumber(long id);
+    void addNumber(String id);
     void deleteNumber(Message msg);
-    void deleteNumber(long id);
+    void deleteNumber(String id);
     boolean contains(Message msg);
-    boolean contains(long id);
+    boolean contains(String id);
 }

@@ -63,6 +63,7 @@ public class MessagingReceiver extends BroadcastReceiver {
                 message.markSeen();
 
             } else {
+
                 if (prefs.getNotificationsEnabled()) {
                     Intent messageHandlerIntent = new Intent(context, NotificationService.class);
                     messageHandlerIntent.putExtra(NotificationService.EXTRA_POPUP, true);
@@ -74,6 +75,7 @@ public class MessagingReceiver extends BroadcastReceiver {
                 } else {
                     message.markSeen();
                 }
+
             }
 
             if (prefs.getWakePhoneEnabled()) {
