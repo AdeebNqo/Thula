@@ -793,4 +793,8 @@
     <string name="add_to_spam">Mark as spam</string>
     <string name="remove_from_spam">Unmark as spam</string>
     <string name="unsaved_contact_number">Unsaved contact</string>
+    <string name="no_spam_numbers">Nobody yet</string>
+    <string name="spam_list">Spam list</string>
+    <string name="delete_item">Delete %s?</string>
+    <string name="menu_attach">Attach</string>
 </resources>

@@ -9,4 +9,5 @@ public interface SpamNumberStorage {
     void deleteNumber(String id);
     boolean contains(Message msg);
     boolean contains(String id);
+    Object[] getSpamNumbers();
 }

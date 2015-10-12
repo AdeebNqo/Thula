@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.util.Log;
+
 import com.adeebnqo.Thula.R;
 import com.adeebnqo.Thula.transaction.SmsHelper;
 import com.adeebnqo.Thula.ui.MainActivity;

@@ -1,14 +1,26 @@
 package com.adeebnqo.Thula.ui.compose;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Display;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.android.ex.chips.recipientchip.DrawableRecipientChip;
 import com.adeebnqo.Thula.mmssms.Utils;
 import com.adeebnqo.Thula.R;
@@ -106,6 +118,31 @@ public class ComposeFragment extends QKContentFragment implements ActivityLaunch
         View view = inflater.inflate(R.layout.fragment_compose, container, false);
 
         mRecipients = (AutoCompleteContactView) view.findViewById(R.id.compose_recipients);
+
+        final View activityRootView = view.findViewById(R.id.stuff);
+        activityRootView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                Activity activity = getActivity();
+                if (activity != null) {
+                    int heightDiff = activityRootView.getRootView().getHeight() - activityRootView.getHeight();
+
+                    Display display = getActivity().getWindowManager().getDefaultDisplay();
+                    Point size = new Point();
+                    display.getSize(size);
+                    int height = size.y;
+
+                    if (heightDiff > height/2) {
+                        if (mRecipients.hasFocus()) {
+                            mComposeView.setVisibility(View.INVISIBLE);
+                        }
+                    } else {
+                        mComposeView.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+        });
+
         mRecipients.setOnItemClickListener(this);
 
         view.findViewById(R.id.compose_view_stub).setVisibility(View.VISIBLE);
@@ -118,6 +155,8 @@ public class ComposeFragment extends QKContentFragment implements ActivityLaunch
         mStarredContactsView = (StarredContactsView) view.findViewById(R.id.starred_contacts);
         mStarredContactsView.setComposeScreenViews(mRecipients, mComposeView);
 
+        setHasOptionsMenu(true);
+
         return view;
     }
 
@@ -128,6 +167,17 @@ public class ComposeFragment extends QKContentFragment implements ActivityLaunch
         boolean handledByComposeView = mComposeView.onActivityResult(requestCode, resultCode, data);
         if (!handledByComposeView) {
             // ...
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.menu_attach:
+                mComposeView.showAttachPanel();
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 

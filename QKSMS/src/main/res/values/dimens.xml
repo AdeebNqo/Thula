@@ -14,4 +14,9 @@
     <dimen name="color_swatch_margins_small">4dp</dimen>
 
     <dimen name="slideshow_padding_top">0dp</dimen>
+
+    <dimen name="contact_list_height">56dp</dimen>
+
+    <dimen name="xsmal_padding">8dp</dimen>
+    <dimen name="small_padding">16dp</dimen>
 </resources>

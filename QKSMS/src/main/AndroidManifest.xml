@@ -45,7 +45,6 @@
             android:name="com.adeebnqo.Thula.ui.popup.QKComposeActivity"
             android:excludeFromRecents="true"
             android:taskAffinity=""
-            android:theme="@style/AppThemeLightDialog"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -76,7 +75,7 @@
         </activity>
         <activity
             android:name="com.adeebnqo.Thula.ui.MainActivity"
-            android:icon="@mipmap/ic_launcher_teal"
+            android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:logo="@color/transparent"

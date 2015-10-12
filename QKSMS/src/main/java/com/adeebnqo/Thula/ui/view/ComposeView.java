@@ -116,6 +116,7 @@ public class ComposeView extends LinearLayout implements View.OnClickListener, L
     private FrameLayout mAttachmentLayout;
     private AttachmentImageView mAttachment;
     private ImageButton mCancel;
+    private ImageButton closeAttachPanel;
 
     // State
     private boolean mDelayedMessagingEnabled;
@@ -176,12 +177,14 @@ public class ComposeView extends LinearLayout implements View.OnClickListener, L
         mAttachmentLayout = (FrameLayout) findViewById(R.id.attachment);
         mAttachment = (AttachmentImageView) findViewById(R.id.compose_attachment);
         mCancel = (ImageButton) findViewById(R.id.cancel);
+        closeAttachPanel = (ImageButton) findViewById(R.id.close_attach_panel);
 
         mButton.setOnClickListener(this);
         mAttach.setOnClickListener(this);
         mCamera.setOnClickListener(this);
         mCancel.setOnClickListener(this);
         mDelay.setOnClickListener(this);
+        closeAttachPanel.setOnClickListener(this);
 
         LiveViewManager.registerView(this);
         LiveViewManager.registerPreference(this, SettingsFragment.THEME);
@@ -508,7 +511,18 @@ public class ComposeView extends LinearLayout implements View.OnClickListener, L
                     toggleDelayedMessaging();
                 }
                 break;
+            case R.id.close_attach_panel:
+                hideAttachPanel();
+                break;
         }
+    }
+
+    public void showAttachPanel(){
+        mAttachmentPanel.setVisibility(VISIBLE);
+    }
+
+    public void hideAttachPanel(){
+        mAttachmentPanel.setVisibility(GONE);
     }
 
     private void toggleDelayedMessaging() {

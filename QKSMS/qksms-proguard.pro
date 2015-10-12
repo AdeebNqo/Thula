@@ -77,3 +77,7 @@
 -dontwarn org.jsoup.**				# jsoup library (for hCard parsing) not used
 -dontwarn sun.misc.Perf
 -keep class ezvcard.property.** { *; }		# keep all VCard properties (created at runtime)
+
+-dontwarn com.mixpanel.**
+-keepattributes SourceFile,LineNumberTable,*Annotation*
+-keep class com.crashlytics.android.**

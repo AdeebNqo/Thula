@@ -24,4 +24,8 @@
     <item
         android:id="@+id/menu_settings"
         android:title="@string/menu_settings" />
+
+    <item
+        android:id="@+id/menu_spam"
+        android:title="@string/spam_list" />
 </menu>

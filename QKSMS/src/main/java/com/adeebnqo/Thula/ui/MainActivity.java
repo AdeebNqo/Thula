@@ -23,7 +23,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+
+import com.adeebnqo.Thula.spam.ui.SpamItemsFragment;
 import com.google.android.mms.pdu_alt.PduHeaders;
 import com.adeebnqo.Thula.R;
 import com.adeebnqo.Thula.common.ConversationPrefsHelper;
@@ -267,6 +270,9 @@ public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListen
                 break;
             case R.id.menu_search:
                 switchContent(new SearchFragment(), true);
+                break;
+            case R.id.menu_spam:
+                switchContent(SpamItemsFragment.newInstance(), true);
                 break;
         }
 

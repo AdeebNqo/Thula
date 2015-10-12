@@ -792,7 +792,7 @@ public class Contact {
                 return getContactInfoForPhoneNumber(c.mNumber);
             } else {
                 // it's a real phone number, so strip out non-digits and look it up
-                final String strippedNumber = android.telephony.PhoneNumberUtils.stripSeparators(c.mNumber);
+                final String strippedNumber = android.telephony.PhoneNumberUtils.formatNumber(c.mNumber);
                 return getContactInfoForPhoneNumber(strippedNumber);
             }
         }
@@ -837,6 +837,7 @@ public class Contact {
          * @return a Contact containing the caller id info corresponding to the number.
          */
         private Contact getContactInfoForPhoneNumber(String number) {
+            //Log.d("foobar", "getContactInfoForPhoneNumber() "+number);
             Contact entry = new Contact(number);
             entry.mContactMethodType = CONTACT_METHOD_TYPE_PHONE;
 

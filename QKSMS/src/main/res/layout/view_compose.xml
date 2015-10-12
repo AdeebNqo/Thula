@@ -169,6 +169,15 @@
             android:background="@drawable/button_background_transparent_light"
             android:padding="16dp"
             android:src="@drawable/ic_timer" />
+
+        <ImageButton
+            android:id="@+id/close_attach_panel"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/button_background_transparent_light"
+            android:padding="16dp"
+            android:onClick="hideAttachPanel"
+            android:src="@drawable/ic_close_circle_outline_white_48dp" />
     </LinearLayout>
 
 </com.adeebnqo.Thula.ui.view.ComposeView>

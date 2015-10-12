@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.adeebnqo.Thula.ui.MainActivity;
 import com.adeebnqo.Thula.ui.ThemeManager;
 import com.adeebnqo.Thula.ui.base.RecyclerCursorAdapter;
 import com.adeebnqo.Thula.ui.settings.SettingsFragment;
+import com.google.gson.Gson;
 
 public class ConversationListAdapter extends RecyclerCursorAdapter<ConversationListViewHolder, Conversation>
         implements LiveView {

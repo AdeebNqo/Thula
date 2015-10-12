@@ -28,6 +28,8 @@ import android.preference.PreferenceManager;
 import android.provider.SearchRecentSuggestions;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+
+import com.adeebnqo.Thula.common.AnalyticsManager;
 import com.android.mms.transaction.MmsSystemEventReceiver;
 import com.android.mms.util.DownloadManager;
 import com.android.mms.util.RateController;
@@ -39,9 +41,11 @@ import com.adeebnqo.Thula.data.Contact;
 import com.adeebnqo.Thula.data.Conversation;
 import com.adeebnqo.Thula.transaction.NotificationManager;
 import com.adeebnqo.Thula.ui.mms.layout.LayoutManager;
+import com.crashlytics.android.Crashlytics;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
+import io.fabric.sdk.android.Fabric;
 import java.util.Locale;
 
 public class ThulaApp extends Application {
@@ -59,6 +63,10 @@ public class ThulaApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        if (!BuildConfig.DEBUG) {
+            Fabric.with(this, new Crashlytics());
+        }
 
         if (Log.isLoggable(LogTag.STRICT_MODE_TAG, Log.DEBUG)) {
             // Log tag for enabling/disabling StrictMode violation log. This will dump a stack
@@ -93,6 +101,7 @@ public class ThulaApp extends Application {
         LayoutManager.init(this);
         NotificationManager.init(this);
         LiveViewManager.init(this);
+        AnalyticsManager.getInstance().init(this);
         //MessagingNotification.init(this);
 
         activePendingMessages();

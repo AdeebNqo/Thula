@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.adeebnqo.Thula.ui.view.QKLinearLayout
+
+<com.adeebnqo.Thula.ui.view.QKFrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/popup"
+    app:backgroundTint="?attr/backgroundColor"
+    android:background="@drawable/dialog_background"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <include layout="@layout/view_toolbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.adeebnqo.Thula.ui.view.AutoCompleteContactView
+                android:id="@+id/compose_recipients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="@string/hint_contacts" />
+
+            <include layout="@layout/view_starred_contacts" />
+
+            <ViewStub
+                android:id="@+id/compose_view_stub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:inflatedId="@+id/compose_view"
+                android:layout="@layout/view_compose" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</com.adeebnqo.Thula.ui.view.QKFrameLayout>
+
+<!--<com.adeebnqo.Thula.ui.view.QKLinearLayout
     android:id="@+id/popup"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -14,7 +58,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,4 +87,4 @@
 
     </ScrollView>
 
-</com.adeebnqo.Thula.ui.view.QKLinearLayout>
+</com.adeebnqo.Thula.ui.view.QKLinearLayout>-->

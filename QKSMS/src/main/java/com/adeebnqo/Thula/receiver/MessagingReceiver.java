@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.os.PowerManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
+
+import com.adeebnqo.Thula.common.AnalyticsManager;
 import com.adeebnqo.Thula.common.ConversationPrefsHelper;
 import com.adeebnqo.Thula.data.Message;
 import com.adeebnqo.Thula.service.NotificationService;
@@ -14,6 +16,10 @@ import com.adeebnqo.Thula.spam.SharedPreferenceSpamNumberStorage;
 import com.adeebnqo.Thula.spam.SpamNumberStorage;
 import com.adeebnqo.Thula.transaction.NotificationManager;
 import com.adeebnqo.Thula.transaction.SmsHelper;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import org.json.JSONObject;
 
 public class MessagingReceiver extends BroadcastReceiver {
     private final String TAG = "MessagingReceiver";
@@ -58,11 +64,31 @@ public class MessagingReceiver extends BroadcastReceiver {
 
             SpamNumberStorage spamStorage = new SharedPreferenceSpamNumberStorage(context);
 
-            if (spamStorage.contains(message)){
+            if (spamStorage.contains(message)) {
+
+                try {
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("spam", true);
+                    jsonObject.put("address", message.getAddress());
+                    AnalyticsManager.getInstance().sendEvent("SPAM MSG", jsonObject);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 message.markSeen();
+                message.markRead();
+                UnreadBadgeService.update(context);
 
             } else {
+
+                try {
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("spam", false);
+
+                    AnalyticsManager.getInstance().sendEvent("NEW MSG", jsonObject);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 if (prefs.getNotificationsEnabled()) {
                     Intent messageHandlerIntent = new Intent(context, NotificationService.class);

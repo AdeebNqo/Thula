@@ -6,6 +6,9 @@ import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.adeebnqo.Thula.R;
+import com.mixpanel.android.mpmetrics.MixpanelAPI;
+
+import org.json.JSONObject;
 
 public enum AnalyticsManager {
     INSTANCE;
@@ -32,6 +35,7 @@ public enum AnalyticsManager {
     private boolean mNeedsInit = true;
     private Context mContext;
     private Tracker mTracker;
+    MixpanelAPI mixpanel;
 
     public static AnalyticsManager getInstance() {
         return INSTANCE;
@@ -44,34 +48,14 @@ public enum AnalyticsManager {
             mNeedsInit = false;
             mContext = context;
 
-            // Initialize tracker
-            GoogleAnalytics analytics = GoogleAnalytics.getInstance(mContext);
-            mTracker = analytics.newTracker(R.xml.google_analytics_tracker);
+            String projectToken = context.getString(R.string.mixpanel_key);
+            mixpanel = MixpanelAPI.getInstance(mContext, projectToken);
         }
     }
 
-    public void sendEvent(String category, String action, String label) {
-        if (LOCAL_LOGV) Log.v(TAG, "sendEvent category:" + category + ", action:" + action +
-                ", label:" + label);
-
-        HitBuilders.EventBuilder b = new HitBuilders.EventBuilder();
-        if (category != null) b.setCategory(category);
-        if (action != null)   b.setAction(action);
-        if (label != null)    b.setLabel(label);
-
-        mTracker.send(b.build());
-    }
-
-    public void sendEvent(String category, String action, String label, long value) {
-        if (LOCAL_LOGV) Log.v(TAG, "sendEvent category:" + category + ", action:" + action +
-                ", label:" + label + ", value:" + value);
-
-        HitBuilders.EventBuilder b = new HitBuilders.EventBuilder();
-        if (category != null) b.setCategory(category);
-        if (action != null)   b.setAction(action);
-        if (label != null)    b.setLabel(label);
-        b.setValue(value);
-
-        mTracker.send(b.build());
+    public void sendEvent(String eventName, JSONObject details){
+        if (mixpanel != null){
+            mixpanel.track(eventName, details);
+        }
     }
 }

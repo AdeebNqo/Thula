@@ -2,12 +2,22 @@ package com.adeebnqo.Thula.ui.popup;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.widget.AppCompatTextView;
 import android.telephony.PhoneNumberUtils;
 import android.text.Html;
+import android.view.Display;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
+
+import com.adeebnqo.Thula.ui.ThemeManager;
+import com.adeebnqo.Thula.ui.base.QKActivity;
+import com.adeebnqo.Thula.ui.view.QKFrameLayout;
+import com.adeebnqo.Thula.ui.view.QKLinearLayout;
 import com.android.ex.chips.recipientchip.DrawableRecipientChip;
 import com.adeebnqo.Thula.R;
 import com.adeebnqo.Thula.data.Contact;
@@ -22,7 +32,7 @@ import com.adeebnqo.Thula.ui.view.StarredContactsView;
 
 import java.net.URLDecoder;
 
-public class QKComposeActivity extends QKPopupActivity implements ComposeView.OnSendListener, RecipientProvider,
+public class QKComposeActivity extends QKActivity implements ComposeView.OnSendListener, RecipientProvider,
         ActivityLauncher, AdapterView.OnItemClickListener {
 
     private final String TAG = "QKComposeActivity";
@@ -35,6 +45,16 @@ public class QKComposeActivity extends QKPopupActivity implements ComposeView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setContentView(getLayoutResource());
+        ThemeManager.loadThemeProperties(this);
+
+        ((QKFrameLayout) findViewById(R.id.popup)).setBackgroundTint(ThemeManager.getBackgroundColor());
+
+        View title = findViewById(R.id.title);
+/*        if (title != null && title instanceof AppCompatTextView) {
+            title.setVisibility(View.GONE);
+        }*/
 
         setTitle(R.string.title_compose);
 
@@ -90,7 +110,7 @@ public class QKComposeActivity extends QKPopupActivity implements ComposeView.On
         }
     }
 
-    @Override
+    //@Override
     protected int getLayoutResource() {
         return R.layout.activity_qkcompose;
     }

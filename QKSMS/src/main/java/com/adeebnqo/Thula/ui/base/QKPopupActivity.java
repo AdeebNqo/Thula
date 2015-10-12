@@ -8,9 +8,12 @@ import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
+
 import com.adeebnqo.Thula.R;
 import com.adeebnqo.Thula.ui.ThemeManager;
 import com.adeebnqo.Thula.ui.settings.SettingsFragment;
+import com.adeebnqo.Thula.ui.view.QKFrameLayout;
 import com.adeebnqo.Thula.ui.view.QKLinearLayout;
 
 public abstract class QKPopupActivity extends QKActivity {
@@ -31,7 +34,7 @@ public abstract class QKPopupActivity extends QKActivity {
         setContentView(getLayoutResource());
         ThemeManager.loadThemeProperties(this);
 
-        ((QKLinearLayout) findViewById(R.id.popup)).setBackgroundTint(ThemeManager.getBackgroundColor());
+        ((QKFrameLayout) findViewById(R.id.popup)).setBackgroundTint(ThemeManager.getBackgroundColor());
 
         View title = findViewById(R.id.title);
         if (title != null && title instanceof AppCompatTextView) {
