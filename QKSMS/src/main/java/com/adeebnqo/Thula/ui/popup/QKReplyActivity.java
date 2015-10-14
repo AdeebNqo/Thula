@@ -25,6 +25,7 @@ import com.adeebnqo.Thula.common.utils.CursorUtils;
 import com.adeebnqo.Thula.common.utils.KeyboardUtils;
 import com.adeebnqo.Thula.transaction.SmsHelper;
 import com.adeebnqo.Thula.ui.MainActivity;
+import com.adeebnqo.Thula.ui.base.QKActivity;
 import com.adeebnqo.Thula.ui.base.QKPopupActivity;
 import com.adeebnqo.Thula.ui.messagelist.MessageColumns;
 import com.adeebnqo.Thula.ui.messagelist.MessageListAdapter;
@@ -33,7 +34,7 @@ import com.adeebnqo.Thula.ui.view.MessageListRecyclerView;
 import com.adeebnqo.Thula.ui.view.WrappingLinearLayoutManager;
 import com.adeebnqo.Thula.ui.welcome.DemoConversationCursorLoader;
 
-public class QKReplyActivity extends QKPopupActivity implements DialogInterface.OnDismissListener,
+public class QKReplyActivity extends QKActivity implements DialogInterface.OnDismissListener,
         LoaderManager.LoaderCallbacks<Cursor>, ActivityLauncher, ComposeView.OnSendListener {
 
     @SuppressWarnings("unused")
@@ -66,6 +67,7 @@ public class QKReplyActivity extends QKPopupActivity implements DialogInterface.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(getLayoutResource());
 
         Bundle extras = getIntent().getExtras();
 
@@ -135,7 +137,6 @@ public class QKReplyActivity extends QKPopupActivity implements DialogInterface.
         }.execute((Void[]) null);
     }
 
-    @Override
     protected int getLayoutResource() {
         return R.layout.activity_qkreply;
     }

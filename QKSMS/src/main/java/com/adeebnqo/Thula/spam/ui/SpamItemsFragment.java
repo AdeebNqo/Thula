@@ -49,16 +49,16 @@ public class SpamItemsFragment extends Fragment implements AbsListView.OnItemCli
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_spam_item, container, false);
+        View view = inflater.inflate(R.layout.fragment_spam_list, container, false);
 
         // Set the adapter
-        mListView = (AbsListView) view.findViewById(android.R.id.list);
+        mListView = (AbsListView) view.findViewById(R.id.spamList);
         ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
+        mListView.setEmptyView(view.findViewById(R.id.emptyElement));
 
         // Set OnItemClickListener so we can be notified on item clicks
         mListView.setOnItemClickListener(this);
 
-        setEmptyText(getString(R.string.no_spam_numbers));
         getActivity().setTitle(getString(R.string.spam_list));
 
         return view;

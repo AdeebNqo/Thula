@@ -44,7 +44,7 @@
         <activity
             android:name="com.adeebnqo.Thula.ui.popup.QKComposeActivity"
             android:excludeFromRecents="true"
-            android:taskAffinity=""
+            android:launchMode="singleTask"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -95,7 +95,6 @@
             android:name="com.adeebnqo.Thula.ui.popup.QKReplyActivity"
             android:excludeFromRecents="true"
             android:taskAffinity=""
-            android:theme="@style/AppThemeLightDialog"
             android:windowSoftInputMode="adjustResize" />
 
         <!-- Message picker activity -->

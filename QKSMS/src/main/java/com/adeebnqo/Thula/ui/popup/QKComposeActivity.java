@@ -45,16 +45,16 @@ public class QKComposeActivity extends QKActivity implements ComposeView.OnSendL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(getLayoutResource());
+
         ThemeManager.loadThemeProperties(this);
 
         ((QKFrameLayout) findViewById(R.id.popup)).setBackgroundTint(ThemeManager.getBackgroundColor());
 
         View title = findViewById(R.id.title);
-/*        if (title != null && title instanceof AppCompatTextView) {
+        if (title != null && title instanceof AppCompatTextView) {
             title.setVisibility(View.GONE);
-        }*/
+        }
 
         setTitle(R.string.title_compose);
 
@@ -110,7 +110,6 @@ public class QKComposeActivity extends QKActivity implements ComposeView.OnSendL
         }
     }
 
-    //@Override
     protected int getLayoutResource() {
         return R.layout.activity_qkcompose;
     }

@@ -10,70 +10,28 @@
     android:background="@drawable/dialog_background"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <include layout="@layout/view_toolbar"/>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <com.adeebnqo.Thula.ui.view.AutoCompleteContactView
-                android:id="@+id/compose_recipients"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:hint="@string/hint_contacts" />
-
-            <include layout="@layout/view_starred_contacts" />
-
-            <ViewStub
-                android:id="@+id/compose_view_stub"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clipToPadding="false"
-                android:inflatedId="@+id/compose_view"
-                android:layout="@layout/view_compose" />
-
-        </LinearLayout>
-
-    </ScrollView>
-
-</com.adeebnqo.Thula.ui.view.QKFrameLayout>
-
-<!--<com.adeebnqo.Thula.ui.view.QKLinearLayout
-    android:id="@+id/popup"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/dialog_background"
-    android:orientation="vertical"
-    app:backgroundTint="?attr/backgroundColor">
-
-    <include layout="@layout/view_toolbar" />
-
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <include layout="@layout/view_toolbar"/>
+
+        <com.adeebnqo.Thula.ui.view.AutoCompleteContactView
+            android:id="@+id/compose_recipients"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:background="@null"
+            android:hint="@string/hint_contacts"
+            android:padding="@dimen/xsmal_padding"
+            android:layout_below="@+id/toolbar"/>
 
-            <com.adeebnqo.Thula.ui.view.AutoCompleteContactView
-                android:id="@+id/compose_recipients"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:hint="@string/hint_contacts"
-                android:padding="16dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_below="@+id/compose_recipients">
 
-            <include layout="@layout/view_starred_contacts" />
+            <include layout="@layout/view_starred_contacts"/>
 
             <ViewStub
                 android:id="@+id/compose_view_stub"
@@ -81,10 +39,11 @@
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:inflatedId="@+id/compose_view"
-                android:layout="@layout/view_compose" />
+                android:layout="@layout/view_compose"
+                android:layout_alignParentBottom="true"/>
 
-        </LinearLayout>
+        </RelativeLayout>
 
-    </ScrollView>
+    </RelativeLayout>
 
-</com.adeebnqo.Thula.ui.view.QKLinearLayout>-->
+</com.adeebnqo.Thula.ui.view.QKFrameLayout>
