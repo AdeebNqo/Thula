@@ -797,4 +797,6 @@
     <string name="spam_list">Spam list</string>
     <string name="delete_item">Delete %s?</string>
     <string name="menu_attach">Attach</string>
+    <string name="showcase_attach">You can also use this button to attach media when the + is shown.</string>
+    <string name="showcase_done">GOT IT</string>
 </resources>

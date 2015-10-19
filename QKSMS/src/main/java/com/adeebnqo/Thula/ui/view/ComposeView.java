@@ -519,10 +519,12 @@ public class ComposeView extends LinearLayout implements View.OnClickListener, L
 
     public void showAttachPanel(){
         mAttachmentPanel.setVisibility(VISIBLE);
+        mButton.setVisibility(GONE);
     }
 
     public void hideAttachPanel(){
         mAttachmentPanel.setVisibility(GONE);
+        mButton.setVisibility(VISIBLE);
     }
 
     private void toggleDelayedMessaging() {

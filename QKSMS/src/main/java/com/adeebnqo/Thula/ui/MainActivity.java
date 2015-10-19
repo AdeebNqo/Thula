@@ -23,14 +23,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 
 import com.adeebnqo.Thula.spam.ui.SpamItemsFragment;
 import com.google.android.mms.pdu_alt.PduHeaders;
 import com.adeebnqo.Thula.R;
 import com.adeebnqo.Thula.common.ConversationPrefsHelper;
-import com.adeebnqo.Thula.common.DonationManager;
 import com.adeebnqo.Thula.common.google.DraftCache;
 import com.adeebnqo.Thula.common.utils.KeyboardUtils;
 import com.adeebnqo.Thula.common.utils.MessageUtils;
@@ -56,7 +54,9 @@ import com.adeebnqo.Thula.ui.welcome.WelcomeActivity;
 import com.nispok.snackbar.Snackbar;
 import com.nispok.snackbar.listeners.ActionClickListener;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListener,
         SlidingMenu.OnCloseListener, SlidingMenu.OnOpenedListener, SlidingMenu.OnClosedListener,
@@ -92,6 +92,7 @@ public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListen
 
     private boolean mIsDestroyed = false;
 
+    private OnBackPressedListener onBackPressedListener;
     /**
      * True if the mms setup fragment has been dismissed and we shouldn't show it anymore.
      */
@@ -238,6 +239,7 @@ public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListen
             } else if (content instanceof ComposeFragment) {
                 setTitle(getString(R.string.title_compose));
                 inflater.inflate(R.menu.compose, menu);
+                ((ComposeFragment) content).revealShowcaseOfAttachmentView();
             }
         }
 
@@ -325,22 +327,38 @@ public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListen
         mIsDestroyed = true;
     }
 
+    public void setOnBackPressedListener(OnBackPressedListener listener){
+        if (listener != null) {
+            onBackPressedListener = listener;
+        }
+    }
+
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (!mSlidingMenu.isMenuShowing()) {
-                Fragment category = getFragmentManager()
-                        .findFragmentByTag(SettingsFragment.CATEGORY_TAG);
-                if (category != null) {
-                    getFragmentManager().beginTransaction()
-                            .remove(category)
-                            .commit();
+            boolean isOverriden = false;
+
+            if (onBackPressedListener != null) {
+                isOverriden = onBackPressedListener.onBack();
+            }
+
+            if (!isOverriden) {
+
+                if (!mSlidingMenu.isMenuShowing()) {
+                    Fragment category = getFragmentManager()
+                            .findFragmentByTag(SettingsFragment.CATEGORY_TAG);
+                    if (category != null) {
+                        getFragmentManager().beginTransaction()
+                                .remove(category)
+                                .commit();
+                    } else {
+                        mSlidingMenu.showMenu();
+                    }
+                    return true;
                 } else {
-                    mSlidingMenu.showMenu();
+                    finish();
                 }
-                return true;
-            } else {
-                finish();
+
             }
         }
 
@@ -683,5 +701,9 @@ public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListen
             );
             dialog.dismiss();
         }
+    }
+
+    public interface OnBackPressedListener{
+        boolean onBack(); // must return true if you do not want to propagate onBack from your fragment to the activity.
     }
 }

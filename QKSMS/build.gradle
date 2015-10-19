@@ -13,6 +13,7 @@ apply plugin: 'io.fabric'
 repositories {
     mavenCentral()
     maven { url 'https://maven.fabric.io/public' }
+    maven { url "https://jitpack.io" }
 }
 
 android {
@@ -63,6 +64,7 @@ dependencies {
     compile 'com.googlecode.ez-vcard:ez-vcard:0.9.6'
     compile 'com.google.code.gson:gson:2.3'
     compile 'com.koushikdutta.ion:ion:1.1.7'
+    compile 'com.github.deano2390:MaterialShowcaseView:1.0.5'
 
     // Google libraries
     compile 'com.android.support:appcompat-v7:22.2.1'

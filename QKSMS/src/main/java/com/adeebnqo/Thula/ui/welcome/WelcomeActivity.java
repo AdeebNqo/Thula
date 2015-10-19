@@ -104,7 +104,6 @@ public class WelcomeActivity extends QKActivity implements ViewPager.OnPageChang
     public void setFinished() {
         if (mSkip != null) {
             mFinished = true;
-            mSkip.setText(R.string.welcome_finish);
             mSkip.setVisibility(View.VISIBLE);
         }
     }

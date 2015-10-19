@@ -4,21 +4,21 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import android.view.ViewTreeObserver;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.TextView;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.android.ex.chips.recipientchip.DrawableRecipientChip;
@@ -34,8 +34,10 @@ import com.adeebnqo.Thula.ui.view.AutoCompleteContactView;
 import com.adeebnqo.Thula.ui.view.ComposeView;
 import com.adeebnqo.Thula.ui.view.StarredContactsView;
 
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
+
 public class ComposeFragment extends QKContentFragment implements ActivityLauncher, RecipientProvider,
-        ComposeView.OnSendListener, AdapterView.OnItemClickListener {
+        ComposeView.OnSendListener, AdapterView.OnItemClickListener, MainActivity.OnBackPressedListener {
 
     private final String TAG = "ComposeFragment";
 
@@ -59,6 +61,12 @@ public class ComposeFragment extends QKContentFragment implements ActivityLaunch
     private AutoCompleteContactView mRecipients;
     private ComposeView mComposeView;
     private StarredContactsView mStarredContactsView;
+
+    private FrameLayout mComposeButton;
+    private MaterialShowcaseView showcaseViewAttach;
+    private View activityRootView;
+
+    public static final String ATTACH = "pref_key_attach8hasdaxasaasaddqwassadsasdaasddsaasdasdsadfasdsadasfrefasassaddsaddaasaaadaaasddaads";
 
     // True if the fragment's arguments have changed, and we need to potentially perform a focus
     // operation when the fragment opens.
@@ -119,7 +127,7 @@ public class ComposeFragment extends QKContentFragment implements ActivityLaunch
 
         mRecipients = (AutoCompleteContactView) view.findViewById(R.id.compose_recipients);
 
-        final View activityRootView = view.findViewById(R.id.stuff);
+        activityRootView = view.findViewById(R.id.compose_root_container);
         activityRootView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -132,9 +140,13 @@ public class ComposeFragment extends QKContentFragment implements ActivityLaunch
                     display.getSize(size);
                     int height = size.y;
 
-                    if (heightDiff > height/2) {
+                    if (heightDiff > height / 2) {
                         if (mRecipients.hasFocus()) {
                             mComposeView.setVisibility(View.INVISIBLE);
+                        }
+                        if (showcaseViewAttach != null && showcaseViewAttach.isShown()) {
+                            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
                         }
                     } else {
                         mComposeView.setVisibility(View.VISIBLE);
@@ -147,6 +159,7 @@ public class ComposeFragment extends QKContentFragment implements ActivityLaunch
 
         view.findViewById(R.id.compose_view_stub).setVisibility(View.VISIBLE);
         mComposeView = (ComposeView) view.findViewById(R.id.compose_view);
+        mComposeButton = (FrameLayout) view.findViewById(R.id.compose_button);
         mComposeView.setActivityLauncher(this);
         mComposeView.setRecipientProvider(this);
         mComposeView.setOnSendListener(this);
@@ -157,7 +170,43 @@ public class ComposeFragment extends QKContentFragment implements ActivityLaunch
 
         setHasOptionsMenu(true);
 
+        mRecipients.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (showcaseViewAttach != null && showcaseViewAttach != null && showcaseViewAttach.isShown()) {
+                    mRecipients.clearFocus();
+                }
+            }
+        });
+
+        Activity activity = getActivity();
+        if (activity instanceof  MainActivity) {
+            ((MainActivity) activity).setOnBackPressedListener(this);
+        }
+
         return view;
+    }
+
+    public void revealShowcaseOfAttachmentView() {
+        Activity activity = getActivity();
+        if (activity != null && mComposeButton!=null) {
+
+            showcaseViewAttach = new MaterialShowcaseView.Builder(activity)
+                    .setTarget(mComposeButton)
+                    .setDismissText(getString(R.string.showcase_done))
+                    .setContentText(getString(R.string.showcase_attach))
+                    .singleUse(ATTACH)
+                    .show();
+        }
+    }
+
+    @Override
+    public boolean onBack() {
+        if (showcaseViewAttach != null && showcaseViewAttach.isShown()){
+            showcaseViewAttach.hide();
+            return true;
+        }
+        return false;
     }
 
     @Override

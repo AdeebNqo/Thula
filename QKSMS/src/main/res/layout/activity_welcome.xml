@@ -43,6 +43,7 @@
             android:layout_height="64dp"
             android:alpha="0.6"
             android:padding="8dp"
+            android:visibility="gone"
             android:src="@drawable/ic_arrow_left" />
 
         <ImageView
@@ -75,6 +76,7 @@
             android:layout_height="64dp"
             android:alpha="1.0"
             android:padding="8dp"
+            android:visibility="gone"
             android:src="@drawable/ic_arrow_right" />
     </LinearLayout>
 </LinearLayout>

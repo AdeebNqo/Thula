@@ -1,8 +1,8 @@
 # Thula
 
 QKSMS is an open source replacement to the [stock messaging app](https://github.com/android/platform_packages_apps_mms) on Android. It is currently available on the Google Play Store. This is a clone, Thula.
-
-[![Build Status](https://travis-ci.org/AdeebNqo/qksms.svg?branch=master)](https://travis-ci.org/AdeebNqo/Thula)
+ 
+[![Build Status](https://travis-ci.org/AdeebNqo/Thula.svg?branch=master)](https://travis-ci.org/AdeebNqo/Thula)
 
 <img src="http://i.imgur.com/uwWmDv9.png" width="216" height="384" />
 <img src="http://i.imgur.com/p7063VN.png" width="216" height="384" />

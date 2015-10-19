@@ -40,6 +40,7 @@
         android:minHeight="36dp"
         android:minWidth="88dp"
         android:singleLine="true"
+        android:visibility="gone"
         android:background="@drawable/button_white"
         android:text="@string/welcome_start"
         app:type="pref_category" />
