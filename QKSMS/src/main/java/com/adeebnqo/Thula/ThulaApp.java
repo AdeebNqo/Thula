@@ -80,9 +80,8 @@ public class ThulaApp extends Application {
 
         loadDefaultPreferenceValues();
 
-        // Initialize leakcanary, and crittercism
+        // Initialize leakcanary
         refWatcher = LeakCanary.install(this);
-        //Crittercism.initialize(getApplicationContext(), getString(R.string.crtsm_key));
 
         // Figure out the country *before* loading contacts and formatting numbers
         Country country = new Country(Locale.getDefault().getCountry(), Country.COUNTRY_SOURCE_LOCALE);

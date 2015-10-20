@@ -517,7 +517,7 @@ public class ComposeView extends LinearLayout implements View.OnClickListener, L
         }
     }
 
-    public void showAttachPanel(){
+    public void showAttachPanel() {
         mAttachmentPanel.setVisibility(VISIBLE);
         mButton.setVisibility(GONE);
     }
@@ -559,8 +559,7 @@ public class ComposeView extends LinearLayout implements View.OnClickListener, L
     private void handleComposeButtonClick() {
         switch (mButtonState) {
             case ATTACH:
-                mAttachmentPanel.setVisibility(VISIBLE);
-                updateButtonState();
+                showAttachPanel();
                 break;
 
             case SEND:

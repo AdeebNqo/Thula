@@ -53,10 +53,7 @@ import com.adeebnqo.Thula.ui.view.slidingmenu.SlidingMenu;
 import com.adeebnqo.Thula.ui.welcome.WelcomeActivity;
 import com.nispok.snackbar.Snackbar;
 import com.nispok.snackbar.listeners.ActionClickListener;
-
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListener,
         SlidingMenu.OnCloseListener, SlidingMenu.OnOpenedListener, SlidingMenu.OnClosedListener,
