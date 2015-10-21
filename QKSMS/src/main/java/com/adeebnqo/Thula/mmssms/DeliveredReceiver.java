@@ -109,6 +109,6 @@ public class DeliveredReceiver extends BroadcastReceiver {
                 break;
         }
 
-        context.sendBroadcast(new Intent("con.adeebnqo.Thula.send_message.REFRESH"));
+        context.sendBroadcast(new Intent("com.adeebnqo.Thula.send_message.REFRESH"));
     }
 }

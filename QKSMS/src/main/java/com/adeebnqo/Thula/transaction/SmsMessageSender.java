@@ -102,7 +102,7 @@ public class SmsMessageSender implements MessageSender {
             }
         }
         // Notify the SmsReceiverService to send the message out
-        mContext.sendBroadcast(new Intent("con.adeebnqo.Thula.transaction.SEND_MESSAGE", null, mContext, SmsReceiver.class));
+        mContext.sendBroadcast(new Intent("com.adeebnqo.Thula.transaction.SEND_MESSAGE", null, mContext, SmsReceiver.class));
         return false;
     }
 

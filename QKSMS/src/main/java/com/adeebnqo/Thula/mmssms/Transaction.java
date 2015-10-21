@@ -92,13 +92,13 @@ public class Transaction {
     public String SMS_DELIVERED = ".SMS_DELIVERED";
 
     public static String NOTIFY_SMS_FAILURE = ".NOTIFY_SMS_FAILURE";
-    public static final String MMS_ERROR = "con.adeebnqo.Thula.send_message.MMS_ERROR";
-    public static final String REFRESH = "con.adeebnqo.Thula.send_message.REFRESH";
-    public static final String MMS_PROGRESS = "con.adeebnqo.Thula.send_message.MMS_PROGRESS";
-    public static final String VOICE_FAILED = "con.adeebnqo.Thula.send_message.VOICE_FAILED";
-    public static final String VOICE_TOKEN = "con.adeebnqo.Thula.send_message.RNRSE";
-    public static final String NOTIFY_OF_DELIVERY = "con.adeebnqo.Thula.send_message.NOTIFY_DELIVERY";
-    public static final String NOTIFY_OF_MMS = "con.adeebnqo.Thula.messaging.NEW_MMS_DOWNLOADED";
+    public static final String MMS_ERROR = "com.adeebnqo.Thula.send_message.MMS_ERROR";
+    public static final String REFRESH = "com.adeebnqo.Thula.send_message.REFRESH";
+    public static final String MMS_PROGRESS = "com.adeebnqo.Thula.send_message.MMS_PROGRESS";
+    public static final String VOICE_FAILED = "com.adeebnqo.Thula.send_message.VOICE_FAILED";
+    public static final String VOICE_TOKEN = "com.adeebnqo.Thula.send_message.RNRSE";
+    public static final String NOTIFY_OF_DELIVERY = "com.adeebnqo.Thula.send_message.NOTIFY_DELIVERY";
+    public static final String NOTIFY_OF_MMS = "com.adeebnqo.Thula.messaging.NEW_MMS_DOWNLOADED";
 
     public static final long NO_THREAD_ID = 0;
 
@@ -126,7 +126,9 @@ public class Transaction {
 
         if (NOTIFY_SMS_FAILURE.equals(".NOTIFY_SMS_FAILURE")) {
             NOTIFY_SMS_FAILURE = context.getPackageName() + NOTIFY_SMS_FAILURE;
+            Log.d("foobar", "notif sms fail : "+NOTIFY_SMS_FAILURE);
         }
+        Log.d("foobar", "notif sms sent : "+SMS_SENT);
     }
 
     /**

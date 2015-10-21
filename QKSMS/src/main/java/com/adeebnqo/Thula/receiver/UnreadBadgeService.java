@@ -9,7 +9,7 @@ import me.leolin.shortcutbadger.ShortcutBadger;
 
 public class UnreadBadgeService extends IntentService {
 
-    public static final String UNREAD_COUNT_UPDATED = "con.adeebnqo.Thula.intent.action.UNREAD_COUNT_UPDATED";
+    public static final String UNREAD_COUNT_UPDATED = "com.adeebnqo.Thula.intent.action.UNREAD_COUNT_UPDATED";
 
     public UnreadBadgeService() {
         super("UnreadBadgeService");

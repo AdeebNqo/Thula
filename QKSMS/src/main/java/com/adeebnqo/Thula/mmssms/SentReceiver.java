@@ -32,6 +32,7 @@ public class SentReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        Log.d("foobar", "sent receiver ajshdj");
         if (LOCAL_LOGV) Log.v(TAG, "marking message as sent");
         Uri uri;
 
@@ -93,7 +94,7 @@ public class SentReceiver extends BroadcastReceiver {
                 break;
         }
 
-        context.sendBroadcast(new Intent("con.adeebnqo.Thula.send_message.REFRESH"));
+        context.sendBroadcast(new Intent("com.adeebnqo.Thula.send_message.REFRESH"));
     }
 
     private void markFirstAsSent(Context context) {

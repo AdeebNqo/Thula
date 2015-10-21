@@ -111,7 +111,7 @@
             android:name="com.adeebnqo.Thula.receiver.WearableIntentReceiver"
             android:exported="false">
             <intent-filter>
-                <action android:name="con.adeebnqo.Thula.receiver.WearableIntentReceiver.REPLY" />
+                <action android:name="com.adeebnqo.Thula.receiver.WearableIntentReceiver.REPLY" />
             </intent-filter>
         </receiver>
 
@@ -134,7 +134,7 @@
                 <data android:scheme="package" />
             </intent-filter>
             <intent-filter>
-                <action android:name="con.adeebnqo.Thula.action.PENDING_PACKAGE_CHANGE" />
+                <action android:name="com.adeebnqo.Thula.action.PENDING_PACKAGE_CHANGE" />
             </intent-filter>
         </receiver>
 
@@ -165,27 +165,27 @@
         </receiver>
         <receiver android:name="com.adeebnqo.Thula.mmssms.SentReceiver">
             <intent-filter>
-                <action android:name="con.adeebnqo.Thula.SMS_SENT" />
+                <action android:name="com.adeebnqo.Thula.SMS_SENT" />
             </intent-filter>
         </receiver>
         <receiver android:name="com.adeebnqo.Thula.receiver.DeliveredReceiver">
             <intent-filter>
-                <action android:name="con.adeebnqo.Thula.SMS_DELIVERED" />
+                <action android:name="com.adeebnqo.Thula.SMS_DELIVERED" />
             </intent-filter>
         </receiver>
         <receiver android:name="com.adeebnqo.Thula.receiver.MessageFailedReceiver">
             <intent-filter>
-                <action android:name="con.adeebnqo.Thula.NOTIFY_SMS_FAILURE" />
+                <action android:name="com.adeebnqo.Thula.NOTIFY_SMS_FAILURE" />
             </intent-filter>
         </receiver>
         <receiver android:name="com.adeebnqo.Thula.receiver.MarkReadReceiver">
             <intent-filter>
-                <action android:name="con.adeebnqo.Thula.MARK_READ" />
+                <action android:name="com.adeebnqo.Thula.MARK_READ" />
             </intent-filter>
         </receiver>
         <receiver android:name="com.adeebnqo.Thula.receiver.MarkSeenReceiver">
             <intent-filter>
-                <action android:name="con.adeebnqo.Thula.MARK_SEEN" />
+                <action android:name="com.adeebnqo.Thula.MARK_SEEN" />
             </intent-filter>
         </receiver>
 
@@ -194,7 +194,7 @@
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
             <intent-filter>
-                <action android:name="con.adeebnqo.Thula.intent.action.ACTION_NOTIFY_DATASET_CHANGED" />
+                <action android:name="com.adeebnqo.Thula.intent.action.ACTION_NOTIFY_DATASET_CHANGED" />
             </intent-filter>
 
             <meta-data

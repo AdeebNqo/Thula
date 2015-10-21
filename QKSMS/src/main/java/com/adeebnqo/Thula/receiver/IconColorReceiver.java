@@ -20,14 +20,14 @@ public class IconColorReceiver extends BroadcastReceiver {
      * Broadcast this intent when the user has changed the icon.
      */
     public static final String ACTION_ICON_COLOR_CHANGED =
-            "con.adeebnqo.Thula.action.PENDING_PACKAGE_CHANGE";
+            "com.adeebnqo.Thula.action.PENDING_PACKAGE_CHANGE";
 
     /**
      * When ACTION_ICON_COLOR_CHANGED is broadcast, make sure to add the component name to the
      * intent so that we can restart the app here.
      */
     public static final String EXTRA_COMPONENT_NAME =
-            "con.adeebnqo.Thula.extra.EXTRA_COMPONENT_NAME";
+            "com.adeebnqo.Thula.extra.EXTRA_COMPONENT_NAME";
 
     /**
      * Non-null to specify the activity we need to start when we next receive an
@@ -43,7 +43,7 @@ public class IconColorReceiver extends BroadcastReceiver {
      * icon!"
      */
     public static final String EXTRA_ICON_COLOR_CHANGED =
-            "con.adeebnqo.Thula.extra.EXTRA_ICON_COLOR_CHANGED";
+            "com.adeebnqo.Thula.extra.EXTRA_ICON_COLOR_CHANGED";
 
     @Override
     public void onReceive(Context context, Intent intent) {

@@ -31,7 +31,7 @@ import com.adeebnqo.Thula.ui.ThemeManager;
 import com.adeebnqo.Thula.ui.popup.QKComposeActivity;
 
 public class WidgetProvider extends AppWidgetProvider {
-    public static final String ACTION_NOTIFY_DATASET_CHANGED = "con.adeebnqo.Thula.intent.action.ACTION_NOTIFY_DATASET_CHANGED";
+    public static final String ACTION_NOTIFY_DATASET_CHANGED = "com.adeebnqo.Thula.intent.action.ACTION_NOTIFY_DATASET_CHANGED";
 
     private static final String TAG = "WidgetProvider";
 

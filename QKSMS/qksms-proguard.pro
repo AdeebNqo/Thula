@@ -5,10 +5,10 @@
 -keep class android.location.** { *; }
 
 #
-# See con.adeebnqo.Thula.ui.mms.PresenterFactory---it uses reflect
+# See com.adeebnqo.Thula.ui.mms.PresenterFactory---it uses reflect
 #
--keep class con.adeebnqo.Thula.ui.mms.MmsThumbnailPresenter { *; }
--keep class con.adeebnqo.Thula.ui.mms.SlideshowPresenter { *; }
+-keep class com.adeebnqo.Thula.ui.mms.MmsThumbnailPresenter { *; }
+-keep class com.adeebnqo.Thula.ui.mms.SlideshowPresenter { *; }
 -keep class com.android.internal.util.ArrayUtils { *; }
 
 #
@@ -81,3 +81,6 @@
 -dontwarn com.mixpanel.**
 -keepattributes SourceFile,LineNumberTable,*Annotation*
 -keep class com.crashlytics.android.**
+-keep class **.R$* {
+    <fields>;
+}
