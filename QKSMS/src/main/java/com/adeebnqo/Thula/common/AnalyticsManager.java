@@ -2,9 +2,6 @@ package com.adeebnqo.Thula.common;
 
 import android.content.Context;
 import android.util.Log;
-import com.google.android.gms.analytics.GoogleAnalytics;
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 import com.adeebnqo.Thula.R;
 import com.mixpanel.android.mpmetrics.MixpanelAPI;
 
@@ -25,16 +22,24 @@ public enum AnalyticsManager {
     public final static String CATEGORY_PREFERENCE_CLICK = "preference_click";
     public final static String CATEGORY_REPORT = "report";
 
+    /*
+
+    Event fields
+
+     */
+    public final static String FIELD_ADDRESS = "address";
+
     /**
      * Event actions
      */
     public final static String ACTION_SEND_MESSAGE = "send_message";
     public final static String ACTION_ATTACH_IMAGE = "attach_image";
     public final static String ACTION_ATTACH_FROM_CAMERA = "attach_from_camera";
+    public final static String ACTION_RECEIVED_SPAM = "recieved_spam";
+    public final static String ACTION_RECEIVED_MSG = "recieved_new_msg";
 
     private boolean mNeedsInit = true;
     private Context mContext;
-    private Tracker mTracker;
     MixpanelAPI mixpanel;
 
     public static AnalyticsManager getInstance() {

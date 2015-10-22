@@ -70,10 +70,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.2.1'
     compile 'com.android.support:support-v13:22.2.1'
     compile 'com.android.support:recyclerview-v7:22.2.1'
-    compile 'com.google.android.gms:play-services-analytics:7.5.0'
 
     // External services
-    compile 'com.crittercism:crittercism-android-agent:5.0.3'
     compile 'com.mixpanel.android:mixpanel-android:4.6.4'
     compile('com.crashlytics.sdk.android:crashlytics:2.5.2@aar') {
         transitive = true;

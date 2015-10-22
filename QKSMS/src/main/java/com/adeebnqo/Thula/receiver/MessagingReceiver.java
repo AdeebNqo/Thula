@@ -68,9 +68,8 @@ public class MessagingReceiver extends BroadcastReceiver {
 
                 try {
                     JSONObject jsonObject = new JSONObject();
-                    jsonObject.put("spam", true);
-                    jsonObject.put("address", message.getAddress());
-                    AnalyticsManager.getInstance().sendEvent("SPAM MSG", jsonObject);
+                    jsonObject.put(AnalyticsManager.FIELD_ADDRESS, message.getAddress());
+                    AnalyticsManager.getInstance().sendEvent(AnalyticsManager.ACTION_RECEIVED_SPAM, jsonObject);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -83,9 +82,7 @@ public class MessagingReceiver extends BroadcastReceiver {
 
                 try {
                     JSONObject jsonObject = new JSONObject();
-                    jsonObject.put("spam", false);
-
-                    AnalyticsManager.getInstance().sendEvent("NEW MSG", jsonObject);
+                    AnalyticsManager.getInstance().sendEvent(AnalyticsManager.ACTION_RECEIVED_MSG, jsonObject);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
