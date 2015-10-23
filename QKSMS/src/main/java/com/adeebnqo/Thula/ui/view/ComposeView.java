@@ -490,16 +490,14 @@ public class ComposeView extends LinearLayout implements View.OnClickListener, L
 
             case R.id.attach:
                 if (hasSetupMms()) {
-                    mAttachmentPanel.setVisibility(GONE);
-                    updateButtonState();
+                    hideAttachPanel();
                     chooseAttachmentFromGallery();
                 }
                 break;
 
             case R.id.camera:
                 if (hasSetupMms()) {
-                    mAttachmentPanel.setVisibility(GONE);
-                    updateButtonState();
+                    hideAttachPanel();
                     attachFromCamera();
                 }
                 break;

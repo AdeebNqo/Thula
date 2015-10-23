@@ -203,7 +203,7 @@ public class ComposeFragment extends QKContentFragment implements ActivityLaunch
     @Override
     public boolean onBack() {
         if (showcaseViewAttach != null && showcaseViewAttach.isShown()){
-            showcaseViewAttach.hide();
+            mComposeView.showAttachPanel();
             return true;
         }
         return false;
@@ -260,7 +260,8 @@ public class ComposeFragment extends QKContentFragment implements ActivityLaunch
             if (FOCUS_RECIPIENTS.equals(focus)) {
                 mRecipients.requestFocus();
             } else if (FOCUS_REPLY.equals(focus)) {
-                mComposeView.requestReplyTextFocus();
+                //mComposeView.requestReplyTextFocus();
+                mComposeView.hideAttachPanel();
             }
         }
     }
@@ -292,6 +293,7 @@ public class ComposeFragment extends QKContentFragment implements ActivityLaunch
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         mRecipients.onItemClick(parent, view, position, id);
         mStarredContactsView.collapse();
-        mComposeView.requestReplyTextFocus();
+        //mComposeView.requestReplyTextFocus();
+        mComposeView.hideAttachPanel();
     }
 }
