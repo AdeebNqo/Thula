@@ -39,7 +39,6 @@ import com.github.lzyzsd.circleprogress.DonutProgress;
 import com.adeebnqo.Thula.mmssms.Transaction;
 import com.adeebnqo.Thula.mmssms.Utils;
 import com.adeebnqo.Thula.R;
-import com.adeebnqo.Thula.common.AnalyticsManager;
 import com.adeebnqo.Thula.data.Conversation;
 import com.adeebnqo.Thula.data.ConversationLegacy;
 import com.adeebnqo.Thula.interfaces.ActivityLauncher;

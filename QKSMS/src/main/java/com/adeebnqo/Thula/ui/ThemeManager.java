@@ -21,7 +21,6 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 import com.adeebnqo.Thula.R;
-import com.adeebnqo.Thula.common.AnalyticsManager;
 import com.adeebnqo.Thula.common.LiveViewManager;
 import com.adeebnqo.Thula.interfaces.LiveView;
 import com.adeebnqo.Thula.receiver.IconColorReceiver;

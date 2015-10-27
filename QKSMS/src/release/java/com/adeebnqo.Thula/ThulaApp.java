@@ -64,9 +64,7 @@ public class ThulaApp extends Application {
     public void onCreate() {
         super.onCreate();
 
-        if (!BuildConfig.DEBUG) {
-            Fabric.with(this, new Crashlytics());
-        }
+        Fabric.with(this, new Crashlytics());
 
         if (Log.isLoggable(LogTag.STRICT_MODE_TAG, Log.DEBUG)) {
             // Log tag for enabling/disabling StrictMode violation log. This will dump a stack

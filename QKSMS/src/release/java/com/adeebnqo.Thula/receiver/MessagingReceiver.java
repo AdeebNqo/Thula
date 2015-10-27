@@ -16,8 +16,6 @@ import com.adeebnqo.Thula.spam.SharedPreferenceSpamNumberStorage;
 import com.adeebnqo.Thula.spam.SpamNumberStorage;
 import com.adeebnqo.Thula.transaction.NotificationManager;
 import com.adeebnqo.Thula.transaction.SmsHelper;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import org.json.JSONObject;
 
