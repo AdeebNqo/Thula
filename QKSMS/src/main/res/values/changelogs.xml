@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="versions">
+        <item>1.0.0</item>
         <item>2.0.1</item>
         <item>1.13.1</item>
         <item>1.13.0</item>
@@ -109,6 +110,7 @@
     </string-array>
 
     <string-array name="dates">
+        <item>October 27, 2015</item>
         <item>August 16, 2015</item>
         <item>August 16, 2015</item>
         <item>August 16, 2015</item>
@@ -217,6 +219,7 @@
     </string-array>
 
     <string-array name="changes">
+        <item>" • Thula is cloned from QKSMS. Added spam list feature to prevent notifications for spam."</item>
         <item>" • QKSMS is now open source. View the source code at https://github.com/qklabs/qksms"</item>
         <item>" • Multiple crash fixes"</item>
         <item>" • Updated messaging UI\n • Fixed phone number showing up instead of name for contacts\n • Fixed delete conversation option\n • Crash fixes"</item>
