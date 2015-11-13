@@ -14,7 +14,7 @@
 -->
 
 <!-- Layout used for PreferenceCategory in a PreferenceActivity. -->
-<com.moez.QKSMS.ui.view.QKTextView
+<com.adeebnqo.Thula.ui.view.QKTextView
     android:id="@+android:id/title"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"

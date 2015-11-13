@@ -174,7 +174,7 @@ public class MmsMessageSender implements MessageSender {
             boolean group;
 
             try {
-                group = com.moez.QKSMS.mmssms.Transaction.settings.getGroup();
+                group = com.adeebnqo.Thula.mmssms.Transaction.settings.getGroup();
             } catch (Exception e) {
                 group = PreferenceManager.getDefaultSharedPreferences(context).getBoolean("pref_key_compose_group", true);
             }

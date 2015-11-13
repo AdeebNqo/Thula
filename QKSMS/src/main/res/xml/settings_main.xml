@@ -44,18 +44,6 @@
             android:summary="@string/pref_category_summary_mms"
             android:title="@string/pref_category_mms" />
         <Preference
-            android:icon="@drawable/ic_reply"
-            android:key="pref_key_category_quickreply"
-            android:layout="@layout/list_item_preference"
-            android:summary="@string/pref_category_summary_quickreply"
-            android:title="@string/pref_category_quickreply" />
-        <Preference
-            android:icon="@drawable/ic_compose"
-            android:key="pref_key_category_quickcompose"
-            android:layout="@layout/list_item_preference"
-            android:summary="@string/pref_category_summary_quickcompose"
-            android:title="@string/pref_category_quickcompose" />
-        <Preference
             android:icon="@drawable/ic_more"
             android:key="pref_key_category_advanced"
             android:layout="@layout/list_item_preference"
@@ -72,11 +60,5 @@
             android:key="pref_key_simple"
             android:layout="@layout/list_item_preference"
             android:title="@string/pref_show_fewer" />
-        <Preference
-            android:icon="@drawable/ic_donate"
-            android:key="pref_key_donate"
-            android:layout="@layout/list_item_preference"
-            android:summary="@string/pref_donate_summary"
-            android:title="@string/pref_donate_title" />
     </PreferenceCategory>
 </PreferenceScreen>

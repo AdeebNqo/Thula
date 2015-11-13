@@ -46,8 +46,8 @@ import com.google.android.mms.pdu_alt.NotificationInd;
 import com.google.android.mms.pdu_alt.PduHeaders;
 import com.google.android.mms.pdu_alt.PduParser;
 import com.google.android.mms.pdu_alt.PduPersister;
-import com.moez.QKSMS.mmssms.Utils;
-import com.moez.QKSMS.R;
+import com.adeebnqo.Thula.mmssms.Utils;
+import com.adeebnqo.Thula.R;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -323,7 +323,7 @@ public class TransactionService extends Service implements Observer {
                                     // If autodownload is turned off, don't process the
                                     // transaction.
                                     if (LOCAL_LOGV) Log.v(TAG, "onNewIntent: skipping - autodownload off");
-                                        //sendBroadcast(new Intent(com.moez.QKSMS.send_message.Transaction.NOTIFY_OF_MMS));
+                                        //sendBroadcast(new Intent(com.adeebnqo.Thula.send_message.Transaction.NOTIFY_OF_MMS));
                                     break;
                                 }
                                 // Logic is twisty. If there's no failure or the failure

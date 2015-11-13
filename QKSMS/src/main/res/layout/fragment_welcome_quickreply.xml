@@ -9,7 +9,7 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <com.moez.QKSMS.ui.view.RobotoTextView
+    <com.adeebnqo.Thula.ui.view.RobotoTextView
         android:id="@+id/welcome_quickreply_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
         android:textSize="54sp"
         app:typeface="roboto_thin" />
 
-    <com.moez.QKSMS.ui.view.RobotoTextView
+    <com.adeebnqo.Thula.ui.view.RobotoTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="64dp" />
 
-    <com.moez.QKSMS.ui.view.QKTextView
+    <com.adeebnqo.Thula.ui.view.QKTextView
         android:id="@+id/welcome_quickreply_hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -18,7 +18,7 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <com.moez.QKSMS.ui.view.RobotoTextView
+    <com.adeebnqo.Thula.ui.view.RobotoTextView
         android:id="@+id/welcome_skip"
         android:layout_width="wrap_content"
         android:layout_height="36dp"
@@ -43,6 +43,7 @@
             android:layout_height="64dp"
             android:alpha="0.6"
             android:padding="8dp"
+            android:visibility="gone"
             android:src="@drawable/ic_arrow_left" />
 
         <ImageView
@@ -75,6 +76,7 @@
             android:layout_height="64dp"
             android:alpha="1.0"
             android:padding="8dp"
+            android:visibility="gone"
             android:src="@drawable/ic_arrow_right" />
     </LinearLayout>
 </LinearLayout>

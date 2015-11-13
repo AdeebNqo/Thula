@@ -26,7 +26,7 @@
     android:clipToPadding="false"
     android:minWidth="@dimen/mms_inline_attachment_size">
 
-    <com.moez.QKSMS.ui.view.MmsImageView
+    <com.adeebnqo.Thula.ui.view.MmsImageView
         android:id="@+id/image_view"
         android:layout_width="@dimen/mms_inline_attachment_size"
         android:layout_height="wrap_content"

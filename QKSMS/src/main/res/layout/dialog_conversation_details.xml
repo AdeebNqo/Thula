@@ -7,13 +7,13 @@
     android:paddingLeft="24dp"
     android:paddingRight="24dp">
 
-    <com.moez.QKSMS.ui.view.QKTextView
+    <com.adeebnqo.Thula.ui.view.QKTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/dialog_conversation_details_last_message_date"
         app:type="dialog_button" />
 
-    <com.moez.QKSMS.ui.view.QKTextView
+    <com.adeebnqo.Thula.ui.view.QKTextView
         android:id="@+id/date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,13 +23,13 @@
         android:layout_width="match_parent"
         android:layout_height="16dp" />
 
-    <com.moez.QKSMS.ui.view.QKTextView
+    <com.adeebnqo.Thula.ui.view.QKTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/dialog_conversation_details_message_count"
         app:type="dialog_button" />
 
-    <com.moez.QKSMS.ui.view.QKTextView
+    <com.adeebnqo.Thula.ui.view.QKTextView
         android:id="@+id/message_count"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="16dp" />
 
-    <com.moez.QKSMS.ui.view.QKTextView
+    <com.adeebnqo.Thula.ui.view.QKTextView
         android:id="@+id/recipients"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

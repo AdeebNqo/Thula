@@ -38,7 +38,7 @@ import com.google.android.mms.pdu_alt.PduParser;
 import com.google.android.mms.pdu_alt.PduPersister;
 import com.google.android.mms.pdu_alt.SendConf;
 import com.google.android.mms.pdu_alt.SendReq;
-import com.moez.QKSMS.mmssms.Utils;
+import com.adeebnqo.Thula.mmssms.Utils;
 
 /**
  * The SendTransaction is responsible for sending multimedia messages

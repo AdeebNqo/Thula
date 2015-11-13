@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.moez.QKSMS.ui.view.QKLinearLayout
+<com.adeebnqo.Thula.ui.view.QKLinearLayout
     android:id="@+id/popup"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -19,4 +19,4 @@
         android:divider="@null"
         android:orientation="vertical" />
 
-</com.moez.QKSMS.ui.view.QKLinearLayout>
+</com.adeebnqo.Thula.ui.view.QKLinearLayout>

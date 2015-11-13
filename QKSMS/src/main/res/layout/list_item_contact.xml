@@ -7,7 +7,7 @@
     android:layout_width="wrap_content"
     android:layout_height="72dp">
 
-    <com.moez.QKSMS.ui.view.AvatarView
+    <com.adeebnqo.Thula.ui.view.AvatarView
         android:id="@+id/contact_list_contact"
         android:layout_width="48dp"
         android:layout_height="48dp"
@@ -16,7 +16,7 @@
         android:layout_margin="12dp"
         android:padding="4dp" />
 
-    <com.moez.QKSMS.ui.view.RobotoTextView
+    <com.adeebnqo.Thula.ui.view.RobotoTextView
         android:id="@+id/contact_list_contact_initial"
         android:layout_width="48dp"
         android:layout_height="48dp"
@@ -36,7 +36,7 @@
         android:layout_toRightOf="@+id/contact_list_contact"
         android:paddingRight="16dp">
 
-        <com.moez.QKSMS.ui.view.QKTextView
+        <com.adeebnqo.Thula.ui.view.QKTextView
             android:id="@+id/contact_list_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             android:singleLine="true"
             app:type="primary" />
 
-        <com.moez.QKSMS.ui.view.QKTextView
+        <com.adeebnqo.Thula.ui.view.QKTextView
             android:id="@+id/contact_list_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
             android:paddingLeft="16dp"
             app:type="tertiary" />
 
-        <com.moez.QKSMS.ui.view.QKTextView
+        <com.adeebnqo.Thula.ui.view.QKTextView
             android:id="@+id/contact_list_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
