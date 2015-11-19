@@ -6,6 +6,6 @@
         android:id="@+id/menu_sync"
         android:title="@string/sync"
         app:showAsAction="always"
-        android:icon="@drawable/ic_audio"/>
+        android:icon="@drawable/ic_sync"/>
 
 </menu>

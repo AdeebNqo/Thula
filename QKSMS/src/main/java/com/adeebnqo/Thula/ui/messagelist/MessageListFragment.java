@@ -285,7 +285,6 @@ public class MessageListFragment extends QKContentFragment implements ActivityLa
         mComposeView.setLabel("MessageList");
 
         mRecyclerView.setComposeView(mComposeView);
-
         return view;
     }
 
