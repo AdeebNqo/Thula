@@ -1,5 +1,6 @@
 package com.adeebnqo.Thula.ui.conversationlist;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
@@ -23,6 +24,8 @@ import com.adeebnqo.Thula.ui.base.RecyclerCursorAdapter;
 import com.adeebnqo.Thula.ui.settings.SettingsFragment;
 import com.google.gson.Gson;
 
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
+
 public class ConversationListAdapter extends RecyclerCursorAdapter<ConversationListViewHolder, Conversation>
         implements LiveView {
 
@@ -32,6 +35,10 @@ public class ConversationListAdapter extends RecyclerCursorAdapter<ConversationL
     private final Drawable mMuted;
     private final Drawable mUnread;
     private final Drawable mError;
+
+    private Activity activity;
+    public static final String SPAM = "pref_key_SPAM";
+    private MaterialShowcaseView showcaseAddToSpamList;
 
     public ConversationListAdapter(Context context) {
         mContext = context;
@@ -44,6 +51,12 @@ public class ConversationListAdapter extends RecyclerCursorAdapter<ConversationL
         LiveViewManager.registerView(this);
         LiveViewManager.registerPreference(this, SettingsFragment.THEME);
         refresh();
+    }
+
+    protected void setActivity(Activity activity) {
+        if (activity != null) {
+            this.activity = activity;
+        }
     }
 
     protected Conversation getItem(int position) {
@@ -124,6 +137,15 @@ public class ConversationListAdapter extends RecyclerCursorAdapter<ConversationL
 
         // Update the avatar and name
         holder.onUpdate(conversation.getRecipients().size() == 1 ? conversation.getRecipients().get(0) : null);
+
+        if (activity != null && position == 0) {
+            showcaseAddToSpamList  = new MaterialShowcaseView.Builder(activity)
+                    .setTarget(holder.mAvatarView)
+                    .setDismissText(activity.getString(R.string.showcase_done))
+                    .setContentText(activity.getString(R.string.showcase_add_spam))
+                    .singleUse(SPAM)
+                    .show();
+        }
     }
 
     @Override

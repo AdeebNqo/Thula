@@ -70,6 +70,7 @@ public class ConversationListFragment extends QKFragment implements LoaderManage
         setHasOptionsMenu(true);
 
         mAdapter = new ConversationListAdapter(mContext);
+        mAdapter.setActivity(getActivity());
         mAdapter.setItemClickListener(this);
         mAdapter.setMultiSelectListener(this);
         mLayoutManager = new LinearLayoutManager(mContext);

@@ -151,9 +151,6 @@ public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListen
                     .setPositiveButton(R.string.okay, null)
                     .show(getFragmentManager(), null);
 
-            // Only show the MMS setup fragment if it hasn't already been dismissed
-        } else if (!wasMmsSetupFragmentDismissed(savedInstanceState)) {
-            beginMmsSetup();
         }
     }
 
@@ -251,11 +248,10 @@ public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListen
 
             } else if (content instanceof SpamItemsFragment) {
                 setTitle(getString(R.string.spam_list));
-                inflater.inflate(R.menu.spam_list, menu);
+                //inflater.inflate(R.menu.spam_list, menu);
 
             } else if (content instanceof  VerifyCellNumberFragment) {
                 setTitle(getString(R.string.verify_phone_number));
-
             }
         }
 
