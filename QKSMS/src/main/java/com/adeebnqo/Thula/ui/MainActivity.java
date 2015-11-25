@@ -25,8 +25,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import com.adeebnqo.Thula.spam.ui.SpamItemsFragment;
-import com.adeebnqo.Thula.spam.ui.VerifyCellNumberFragment;
-import com.digits.sdk.android.Digits;
 import com.google.android.mms.pdu_alt.PduHeaders;
 import com.adeebnqo.Thula.R;
 import com.adeebnqo.Thula.common.ConversationPrefsHelper;
@@ -54,18 +52,12 @@ import com.adeebnqo.Thula.ui.view.slidingmenu.SlidingMenu;
 import com.adeebnqo.Thula.ui.welcome.WelcomeActivity;
 import com.nispok.snackbar.Snackbar;
 import com.nispok.snackbar.listeners.ActionClickListener;
-import com.twitter.sdk.android.core.TwitterAuthConfig;
-import com.twitter.sdk.android.core.TwitterCore;
-import io.fabric.sdk.android.Fabric;
+
 import java.util.Collection;
 
 public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListener,
         SlidingMenu.OnCloseListener, SlidingMenu.OnOpenedListener, SlidingMenu.OnClosedListener,
-        ActionClickListener, VerifyCellNumberFragment.CellPhoneVerifyListener {
-
-    // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
-    private static final String TWITTER_KEY = "0";
-    private static final String TWITTER_SECRET = "0";
+        ActionClickListener {
 
 
     private final String TAG = "MainActivity";
@@ -107,8 +99,6 @@ public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListen
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
-        Fabric.with(this, new TwitterCore(authConfig), new Digits());
         getPrefs(this);
         getRes(this);
 
@@ -249,9 +239,6 @@ public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListen
             } else if (content instanceof SpamItemsFragment) {
                 setTitle(getString(R.string.spam_list));
                 //inflater.inflate(R.menu.spam_list, menu);
-
-            } else if (content instanceof  VerifyCellNumberFragment) {
-                setTitle(getString(R.string.verify_phone_number));
             }
         }
 
@@ -288,14 +275,6 @@ public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListen
             case R.id.menu_spam:
                 switchContent(SpamItemsFragment.newInstance(), true);
                 break;
-            case R.id.menu_sync:
-                String phoneNumber = prefs.getString(VerifyCellNumberFragment.PHONE_NUMBER, "");
-                boolean isPhoneNumberSaved = prefs.getBoolean(VerifyCellNumberFragment.IS_PHONE_NUMBER_SAVED, false);
-                if (!isPhoneNumberSaved || TextUtils.isEmpty(phoneNumber)) {
-                    switchContent(VerifyCellNumberFragment.newInstance(), true);
-                } else {
-                    onVerified(phoneNumber);
-                }
         }
 
         return super.onOptionsItemSelected(item);
@@ -721,18 +700,6 @@ public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListen
             );
             dialog.dismiss();
         }
-    }
-
-    @Override
-    public void onVerified(String cellnumber) {
-        switchContent(SpamItemsFragment.newInstance(), true);
-        ((SpamItemsFragment) content).synchronizeSpamList(cellnumber);
-    }
-
-    @Override
-    public void onFailed() {
-        switchContent(SpamItemsFragment.newInstance(), true);
-        ((SpamItemsFragment) content).notifyCannotSync();
     }
 
     public interface OnBackPressedListener{
