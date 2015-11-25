@@ -2,10 +2,8 @@ package com.adeebnqo.Thula.spam.ui;
 
 import android.app.Activity;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.provider.ContactsContract;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,12 +14,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-
 import com.adeebnqo.Thula.R;
 import com.adeebnqo.Thula.spam.SharedPreferenceSpamNumberStorage;
 import com.adeebnqo.Thula.spam.SpamNumberStorage;
 import com.adeebnqo.Thula.spam.ui.dummy.SpamContent;
-import com.android.internal.util.Objects;
 
 public class SpamItemsFragment extends Fragment implements AbsListView.OnItemClickListener {
 
@@ -40,7 +36,7 @@ public class SpamItemsFragment extends Fragment implements AbsListView.OnItemCli
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mAdapter = new ArrayAdapter<SpamContent.Message>(getActivity(),
+        mAdapter = new ArrayAdapter<>(getActivity(),
                 R.layout.spam_list_item, android.R.id.text1, SpamContent.ITEMS);
 
         SpamContent.loadContent(getActivity());
@@ -53,13 +49,11 @@ public class SpamItemsFragment extends Fragment implements AbsListView.OnItemCli
 
         // Set the adapter
         mListView = (AbsListView) view.findViewById(R.id.spamList);
-        ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
+        mListView.setAdapter(mAdapter);
         mListView.setEmptyView(view.findViewById(R.id.emptyElement));
 
         // Set OnItemClickListener so we can be notified on item clicks
         mListView.setOnItemClickListener(this);
-
-        getActivity().setTitle(getString(R.string.spam_list));
 
         return view;
     }
@@ -101,5 +95,13 @@ public class SpamItemsFragment extends Fragment implements AbsListView.OnItemCli
         if (emptyView instanceof TextView) {
             ((TextView) emptyView).setText(emptyText);
         }
+    }
+
+    public void synchronizeSpamList(String phoneNumber){
+        Log.d("foobar", "Updating with id = "+phoneNumber);
+    }
+
+    public void notifyCannotSync(){
+        Log.d("foobar", "Cannot identify you");
     }
 }

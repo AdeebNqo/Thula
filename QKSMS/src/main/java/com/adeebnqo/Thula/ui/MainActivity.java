@@ -24,7 +24,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-
 import com.adeebnqo.Thula.spam.ui.SpamItemsFragment;
 import com.google.android.mms.pdu_alt.PduHeaders;
 import com.adeebnqo.Thula.R;
@@ -53,11 +52,13 @@ import com.adeebnqo.Thula.ui.view.slidingmenu.SlidingMenu;
 import com.adeebnqo.Thula.ui.welcome.WelcomeActivity;
 import com.nispok.snackbar.Snackbar;
 import com.nispok.snackbar.listeners.ActionClickListener;
+
 import java.util.Collection;
 
 public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListener,
         SlidingMenu.OnCloseListener, SlidingMenu.OnOpenedListener, SlidingMenu.OnClosedListener,
         ActionClickListener {
+
 
     private final String TAG = "MainActivity";
 
@@ -140,9 +141,6 @@ public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListen
                     .setPositiveButton(R.string.okay, null)
                     .show(getFragmentManager(), null);
 
-            // Only show the MMS setup fragment if it hasn't already been dismissed
-        } else if (!wasMmsSetupFragmentDismissed(savedInstanceState)) {
-            beginMmsSetup();
         }
     }
 
@@ -237,6 +235,10 @@ public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListen
                 setTitle(getString(R.string.title_compose));
                 inflater.inflate(R.menu.compose, menu);
                 ((ComposeFragment) content).revealShowcaseOfAttachmentView();
+
+            } else if (content instanceof SpamItemsFragment) {
+                setTitle(getString(R.string.spam_list));
+                //inflater.inflate(R.menu.spam_list, menu);
             }
         }
 

@@ -1282,8 +1282,17 @@ public class Conversation {
     }
 
     private boolean loadFromThreadId(long threadId, boolean allowQuery) {
+        if (mContext == null) {
+            return false;
+        }
+
         Cursor c = mContext.getContentResolver().query(sAllThreadsUri, ALL_THREADS_PROJECTION,
                 "_id=" + Long.toString(threadId), null, null);
+
+        if (c == null) {
+            return false;
+        }
+
         try {
             if (c.moveToFirst()) {
                 fillFromCursor(mContext, this, c, allowQuery);

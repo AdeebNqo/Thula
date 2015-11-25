@@ -42,7 +42,6 @@ import com.adeebnqo.Thula.ui.settings.SettingsFragment;
 import com.adeebnqo.Thula.ui.view.AvatarView;
 import ezvcard.Ezvcard;
 import ezvcard.VCard;
-
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

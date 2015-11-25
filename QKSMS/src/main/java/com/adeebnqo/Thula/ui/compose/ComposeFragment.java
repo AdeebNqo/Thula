@@ -66,7 +66,7 @@ public class ComposeFragment extends QKContentFragment implements ActivityLaunch
     private MaterialShowcaseView showcaseViewAttach;
     private View activityRootView;
 
-    public static final String ATTACH = "pref_key_attach8hasdaxasaasaddqwassadsasdaasddsaasdasdsadfasdsadasfrefasassaddsaddaasaaadaaasddaads";
+    public static final String ATTACH = "pref_key_attach";
 
     // True if the fragment's arguments have changed, and we need to potentially perform a focus
     // operation when the fragment opens.
@@ -203,7 +203,10 @@ public class ComposeFragment extends QKContentFragment implements ActivityLaunch
     @Override
     public boolean onBack() {
         if (showcaseViewAttach != null && showcaseViewAttach.isShown()){
-            mComposeView.showAttachPanel();
+            showcaseViewAttach.hide();
+            return true;
+        } else if (mComposeView.isAttachmentPanelOpen()) {
+            mComposeView.hideAttachPanel();
             return true;
         }
         return false;
