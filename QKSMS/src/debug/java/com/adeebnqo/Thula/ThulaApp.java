@@ -28,6 +28,7 @@ import android.preference.PreferenceManager;
 import android.provider.SearchRecentSuggestions;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import com.adeebnqo.Thula.spam.SDCardStorage;
 import com.android.mms.transaction.MmsSystemEventReceiver;
 import com.android.mms.util.DownloadManager;
 import com.android.mms.util.RateController;
@@ -94,6 +95,11 @@ public class ThulaApp extends Application {
         //MessagingNotification.init(this);
 
         activePendingMessages();
+
+        SDCardStorage sdCardStorage = new SDCardStorage(this);
+        if (sdCardStorage.hasSDCard()) {
+            sdCardStorage.loadSpamList();
+        }
     }
 
     public static RefWatcher getRefWatcher(Context context) {

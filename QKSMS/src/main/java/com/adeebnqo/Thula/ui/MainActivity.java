@@ -24,6 +24,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import com.adeebnqo.Thula.spam.SDCardStorage;
 import com.adeebnqo.Thula.spam.ui.SpamItemsFragment;
 import com.google.android.mms.pdu_alt.PduHeaders;
 import com.adeebnqo.Thula.R;
@@ -371,6 +372,14 @@ public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListen
         if (!mSlidingMenu.isMenuShowing()) {
             QKContentFragment.notifyOnContentClosed(content);
         }
+
+        if (isTaskRoot()) {
+            SDCardStorage sdCardStorage = new SDCardStorage(this);
+            if (sdCardStorage.hasSDCard()) {
+                sdCardStorage.saveSpamList();
+            }
+        }
+
     }
 
     @Override

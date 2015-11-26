@@ -10,4 +10,6 @@ public interface SpamNumberStorage {
     boolean contains(Message msg);
     boolean contains(String id);
     Object[] getSpamNumbers();
+    boolean isEmpty();
+    void clean();
 }

@@ -21,16 +21,29 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
-
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
-
     defaultConfig {
+        applicationId "com.adeebnqo.Thula"
         versionCode 110
-        versionName "1.0"
+        versionName "1.0.2"
         minSdkVersion 15
         targetSdkVersion 22
     }
+
+    productFlavors {
+        production {
+            applicationId = "com.adeebnqo.Thula"
+            resValue "string", "app_name", "Thula"
+        }
+
+        development {
+            applicationId = "com.adeebnqo.Thula.developer"
+            versionName = defaultConfig.versionName + ".DEVELOPMENT"
+            resValue "string", "app_name", "Thula Dev. Prev."
+        }
+    }
+
 
     buildTypes {
         release {
@@ -48,7 +61,7 @@ android {
 
 dependencies {
     // Open source libraries
-    compile ('com.readystatesoftware.systembartint:systembartint:1.0.4')
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.4'
     compile 'com.melnykov:floatingactionbutton:1.3.0'
     compile 'com.pushbullet:android-extensions:1.0.4'
     compile 'com.klinkerapps:android-chips:1.0.0'
@@ -65,12 +78,11 @@ dependencies {
     compile 'com.google.code.gson:gson:2.3'
     compile 'com.koushikdutta.ion:ion:1.1.7'
     compile 'com.github.deano2390:MaterialShowcaseView:1.0.5'
-
     // Google libraries
     compile 'com.android.support:appcompat-v7:22.2.1'
     compile 'com.android.support:support-v13:22.2.1'
     compile 'com.android.support:recyclerview-v7:22.2.1'
-
+    compile 'com.google.code.gson:gson:2.2.+'
     // External services
     releaseCompile 'com.mixpanel.android:mixpanel-android:4.6.4'
     releaseCompile('com.crashlytics.sdk.android:crashlytics:2.5.2@aar') {
