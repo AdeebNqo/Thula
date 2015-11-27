@@ -39,8 +39,8 @@ android {
 
         development {
             applicationId = "com.adeebnqo.Thula.developer"
-            versionName = defaultConfig.versionName + ".DEVELOPMENT"
-            resValue "string", "app_name", "Thula Dev. Prev."
+            versionName = defaultConfig.versionName + ".DEVELOPER"
+            resValue "string", "app_name", "Thula Dev"
         }
     }
 

@@ -375,7 +375,7 @@ public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListen
 
         if (isTaskRoot()) {
             SDCardStorage sdCardStorage = new SDCardStorage(this);
-            if (sdCardStorage.hasSDCard()) {
+            if (sdCardStorage.hasExternalStorage()) {
                 sdCardStorage.saveSpamList();
             }
         }

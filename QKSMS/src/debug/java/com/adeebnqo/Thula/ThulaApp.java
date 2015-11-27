@@ -97,7 +97,7 @@ public class ThulaApp extends Application {
         activePendingMessages();
 
         SDCardStorage sdCardStorage = new SDCardStorage(this);
-        if (sdCardStorage.hasSDCard()) {
+        if (sdCardStorage.hasExternalStorage()) {
             sdCardStorage.loadSpamList();
         }
     }

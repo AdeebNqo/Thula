@@ -3,9 +3,6 @@ package com.adeebnqo.Thula.spam;
 import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
-
-import com.adeebnqo.Thula.data.Contact;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,22 +17,35 @@ public class SDCardStorage {
     private final String TAG = "Thula SDCardStorage";
 
     private Context mContext;
-    private final String folderName = "ThulaSpamList";
-    private final String fileName = "list.txt";
+    private final String folderName = "/Thula";
+    private final String fileName = "spam_list.txt";
     File sdCard = Environment.getExternalStorageDirectory();
-    boolean isSDPresent;
+    boolean isExternalStorageFine;
 
     public SDCardStorage(Context context) {
         mContext = context;
-        isSDPresent = android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
+        isExternalStorageFine = isExternalStorageWritable();
     }
 
-    public boolean hasSDCard() {
-        return isSDPresent;
+    /* Checks if external storage is available for read and write */
+    private boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        return Environment.MEDIA_MOUNTED.equals(state);
+    }
+
+    /* Checks if external storage is available to at least read */
+    private boolean isExternalStorageReadable() {
+        String state = Environment.getExternalStorageState();
+        return (Environment.MEDIA_MOUNTED.equals(state) ||
+                Environment.MEDIA_MOUNTED_READ_ONLY.equals(state));
+    }
+
+    public boolean hasExternalStorage() {
+        return isExternalStorageFine;
     }
 
     public void saveSpamList() {
-        if (isSDPresent) {
+        if (isExternalStorageFine) {
 
             try{
                 File dir = new File (sdCard.getAbsolutePath() + folderName);
@@ -43,6 +53,9 @@ public class SDCardStorage {
                     dir.mkdirs();
                 }
                 File file = new File(dir, fileName);
+                if (!file.exists()) {
+                    file.createNewFile();
+                }
 
                 FileOutputStream fileStream = new FileOutputStream(file);
 
@@ -51,6 +64,7 @@ public class SDCardStorage {
 
                 for (Object item : items) {
                     fileStream.write(((String) item).getBytes());
+                    fileStream.write("\n".getBytes());
                 }
 
             } catch (IOException e) {
@@ -59,7 +73,7 @@ public class SDCardStorage {
         }
     }
     public void loadSpamList() {
-        if (isSDPresent) {
+        if (isExternalStorageFine) {
 
             SpamNumberStorage spamNumberStorage = new SharedPreferenceSpamNumberStorage(mContext);
 
