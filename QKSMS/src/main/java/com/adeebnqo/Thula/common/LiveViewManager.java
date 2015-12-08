@@ -3,12 +3,11 @@ package com.adeebnqo.Thula.common;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
-
 import com.adeebnqo.Thula.interfaces.LiveView;
 import com.adeebnqo.Thula.ui.MainActivity;
-
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.WeakHashMap;
 
@@ -153,7 +152,9 @@ public class LiveViewManager implements SharedPreferences.OnSharedPreferenceChan
         // Get all the views that have at least one of the changed preferences.
         Set<LiveView> result = new HashSet<>();
         synchronized (sPrefsMap) {
-            for (LiveView view : sPrefsMap.keySet()) {
+            Iterator<LiveView> it = sPrefsMap.keySet().iterator();
+            while (it.hasNext()) {
+                LiveView view = it.next();
                 Set<String> viewPrefs = sPrefsMap.get(view);
                 if (viewPrefs != null && !Collections.disjoint(querySet, viewPrefs)) {
                     result.add(view);

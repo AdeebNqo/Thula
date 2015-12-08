@@ -1,14 +1,17 @@
 package com.adeebnqo.Thula.ui.base;
 
+import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
+import android.hardware.display.DisplayManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -184,12 +187,25 @@ public class QKActivity extends ActionBarActivity {
         return mToolbar;
     }
 
+    /**
+     * Is the screen of the device on.
+     * @return true when (at least one) screen is on
+     * Method by userM1433372, taken from http://stackoverflow.com/a/28747907/1984350
+     */
     public boolean isScreenOn() {
-        PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-            return powerManager.isInteractive();
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
+            DisplayManager dm = (DisplayManager) getSystemService(Context.DISPLAY_SERVICE);
+            boolean screenOn = false;
+            for (Display display : dm.getDisplays()) {
+                if (display.getState() != Display.STATE_OFF) {
+                    screenOn = true;
+                }
+            }
+            return screenOn;
         } else {
-            return powerManager.isScreenOn();
+            PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+            //noinspection deprecation
+            return pm.isScreenOn();
         }
     }
 }
