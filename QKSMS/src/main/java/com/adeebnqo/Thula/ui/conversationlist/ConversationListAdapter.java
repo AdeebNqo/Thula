@@ -138,7 +138,7 @@ public class ConversationListAdapter extends RecyclerCursorAdapter<ConversationL
         // Update the avatar and name
         holder.onUpdate(conversation.getRecipients().size() == 1 ? conversation.getRecipients().get(0) : null);
 
-        if (activity != null && position == 0) {
+        if (!conversation.hasError() && activity != null && position == 0) {
             showcaseAddToSpamList  = new MaterialShowcaseView.Builder(activity)
                     .setTarget(holder.mAvatarView)
                     .setDismissText(activity.getString(R.string.showcase_done))

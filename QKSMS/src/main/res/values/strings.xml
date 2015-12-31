@@ -803,4 +803,5 @@
     <string name="sync">Sync</string>
     <string name="explain_cellnumber_requirement">We need to verify that this is really your number in order to sync your spam list.</string>
     <string name="verify_phone_number">Verify phone number</string>
+    <string name="loading_conversation">Loading details. Please wait.</string>
 </resources>

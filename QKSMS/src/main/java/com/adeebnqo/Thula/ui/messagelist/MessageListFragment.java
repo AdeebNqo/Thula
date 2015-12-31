@@ -630,9 +630,13 @@ public class MessageListFragment extends QKContentFragment implements ActivityLa
     }
 
     private void makeCall() {
-        Intent openDialerIntent = new Intent(Intent.ACTION_CALL);
-        openDialerIntent.setData(Uri.parse("tel:" + mConversationLegacy.getAddress()));
-        startActivity(openDialerIntent);
+        if (mConversationLegacy != null) {
+            Intent openDialerIntent = new Intent(Intent.ACTION_CALL);
+            openDialerIntent.setData(Uri.parse("tel:" + mConversationLegacy.getAddress()));
+            startActivity(openDialerIntent);
+        } else {
+            Toast.makeText(getActivity(), getString(R.string.loading_conversation), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

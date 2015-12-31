@@ -31,7 +31,7 @@ public class SharedPreferenceSpamNumberStorage implements SpamNumberStorage {
     public void addNumber(String id) {
         sharedPreferences = context.getSharedPreferences(sharedPreferenceFileName, Context.MODE_PRIVATE);
 
-        sharedPreferences.edit().putString(String.valueOf(id), "").apply();
+        sharedPreferences.edit().putString(id.trim(), "").apply();
     }
 
 
@@ -44,7 +44,7 @@ public class SharedPreferenceSpamNumberStorage implements SpamNumberStorage {
     public void deleteNumber(String id) {
         sharedPreferences = context.getSharedPreferences(sharedPreferenceFileName, Context.MODE_PRIVATE);
 
-        sharedPreferences.edit().remove(String.valueOf(id)).apply();
+        sharedPreferences.edit().remove(id.trim()).apply();
     }
 
     @Override
@@ -56,7 +56,7 @@ public class SharedPreferenceSpamNumberStorage implements SpamNumberStorage {
     public boolean contains(String id) {
         sharedPreferences = context.getSharedPreferences(sharedPreferenceFileName, Context.MODE_PRIVATE);
 
-        return sharedPreferences.contains(String.valueOf(id));
+        return sharedPreferences.contains(id.trim());
     }
 
     @Override

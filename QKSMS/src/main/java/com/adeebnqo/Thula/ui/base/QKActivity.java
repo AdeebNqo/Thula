@@ -18,6 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.adeebnqo.Thula.R;
 import com.adeebnqo.Thula.ui.ThemeManager;
 import com.adeebnqo.Thula.ui.view.QKTextView;
@@ -76,9 +78,12 @@ public class QKActivity extends ActionBarActivity {
         View decor = getWindow().getDecorView();
         decor.findViewsWithText(views, getString(R.string.menu_show_all_prefs), View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
         decor.findViewsWithText(views, getString(R.string.menu_show_fewer_prefs), View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
-        android.widget.TextView connected = !views.isEmpty() ? (android.widget.TextView) views.get(0) : null;
-        if (connected != null) {
-            connected.setTextColor(color);
+        View firstView = views.get(0);
+        if (firstView instanceof TextView) {
+            android.widget.TextView connected = !views.isEmpty() ? (android.widget.TextView) views.get(0) : null;
+            if (connected != null) {
+                connected.setTextColor(color);
+            }
         }
 
         // Other icons
