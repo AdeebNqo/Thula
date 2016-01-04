@@ -178,12 +178,6 @@ public class ComposeFragment extends QKContentFragment implements ActivityLaunch
                 }
             }
         });
-
-        Activity activity = getActivity();
-        if (activity instanceof  MainActivity) {
-            ((MainActivity) activity).setOnBackPressedListener(this);
-        }
-
         return view;
     }
 

@@ -148,6 +148,10 @@ public class ConversationListAdapter extends RecyclerCursorAdapter<ConversationL
         }
     }
 
+    public MaterialShowcaseView getShowCase() {
+        return showcaseAddToSpamList;
+    }
+
     @Override
     public void refresh() {
         mMuted.setColorFilter(ThemeManager.getColor(), PorterDuff.Mode.MULTIPLY);

@@ -1,5 +1,6 @@
 package com.adeebnqo.Thula.ui.conversationlist;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.content.CursorLoader;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.provider.Telephony;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -39,9 +41,11 @@ import com.adeebnqo.Thula.ui.dialog.ConversationNotificationSettingsDialog;
 import com.adeebnqo.Thula.ui.dialog.QKDialog;
 import com.adeebnqo.Thula.ui.settings.SettingsFragment;
 
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
+
 
 public class ConversationListFragment extends QKFragment implements LoaderManager.LoaderCallbacks<Cursor>, LiveView,
-        RecyclerCursorAdapter.ItemClickListener<Conversation>, RecyclerCursorAdapter.MultiSelectListener {
+        RecyclerCursorAdapter.ItemClickListener<Conversation>, RecyclerCursorAdapter.MultiSelectListener, MainActivity.OnBackPressedListener {
 
     private final String TAG = "ConversationList";
 
@@ -103,7 +107,7 @@ public class ConversationListFragment extends QKFragment implements LoaderManage
             public void onClick(View v) {
                 // Show the compose fragment, showing the keyboard and focusing on the recipients edittext.
                 Bundle args = new Bundle();
-                args.putBoolean(ComposeFragment.ARG_SHOW_KEYBOARD, true);
+                args.putBoolean(ComposeFragment.ARG_SHOW_KEYBOARD, false);
                 args.putString(ComposeFragment.ARG_FOCUS, ComposeFragment.FOCUS_RECIPIENTS);
 
                 Fragment content = getFragmentManager().findFragmentById(R.id.content_frame);
@@ -249,6 +253,17 @@ public class ConversationListFragment extends QKFragment implements LoaderManage
                 }
             }
         }).show(mContext.getFragmentManager(), "conversation options");
+    }
+
+
+    @Override
+    public boolean onBack() {
+        MaterialShowcaseView showcaseViewHowAddSpam = mAdapter.getShowCase();
+        if (showcaseViewHowAddSpam != null && showcaseViewHowAddSpam.isShown()){
+            showcaseViewHowAddSpam.hide();
+            return true;
+        }
+        return false;
     }
 
     public void setPosition(int position) {

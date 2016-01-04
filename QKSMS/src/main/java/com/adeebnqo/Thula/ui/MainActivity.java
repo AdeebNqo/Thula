@@ -430,9 +430,18 @@ public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListen
 
         if (!mSlidingMenu.isMenuShowing()) {
             QKContentFragment.notifyOnContentOpened(content);
+            setupOnBackListener(content);
+        } else {
+            setupOnBackListener(menuFragment);
         }
 
         NotificationManager.initQuickCompose(this, false, false);
+    }
+
+    private void setupOnBackListener(Fragment fragment) {
+        if (fragment !=null && fragment instanceof  OnBackPressedListener) {
+            setOnBackPressedListener((OnBackPressedListener) fragment);
+        }
     }
 
     @Override
@@ -517,7 +526,10 @@ public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListen
     public void switchContent(Fragment fragment, boolean animate) {
         // Make sure that the activity isn't destroyed before making fragment transactions.
         if (fragment != null && !mIsDestroyed) {
+
             KeyboardUtils.hide(this);
+
+            setupOnBackListener(fragment);
 
             content = fragment;
             FragmentManager m = getFragmentManager();
