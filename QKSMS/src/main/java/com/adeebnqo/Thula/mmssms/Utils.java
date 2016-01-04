@@ -282,8 +282,7 @@ public class Utils {
      * @return the thread_id to use in the database
      */
     public static long getOrCreateThreadId(Context context, String recipient) {
-        Set<String> recipients = new HashSet<String>();
-
+        Set<String> recipients = new HashSet<>();
         recipients.add(recipient);
         return getOrCreateThreadId(context, recipients);
     }
@@ -294,8 +293,31 @@ public class Utils {
      * @param recipients is the set of people message is being sent to
      * @return the thread_id to use in the database
      */
-    public static long getOrCreateThreadId(
-            Context context, Set<String> recipients) {
+    public static long getOrCreateThreadId(Context context, Set<String> recipients) {
+        long threadId = getThreadId(context, recipients);
+        Random random = new Random();
+        return threadId == -1 ? random.nextLong() : threadId;
+    }
+
+    /**
+     * Gets the current thread_id or -1 if none found
+     * @param context is the context of the activity or service
+     * @param recipient is the person message is being sent to
+     * @return the thread_id to use in the database, -1 if none found
+     */
+    public static long getThreadId(Context context, String recipient) {
+        Set<String> recipients = new HashSet<>();
+        recipients.add(recipient);
+        return getThreadId(context, recipients);
+    }
+
+    /**
+     * Gets the current thread_id or -1 if none found
+     * @param context is the context of the activity or service
+     * @param recipients is the set of people message is being sent to
+     * @return the thread_id to use in the database, -1 if none found
+     */
+    public static long getThreadId(Context context, Set<String> recipients) {
         Uri.Builder uriBuilder = Uri.parse("content://mms-sms/threadID").buildUpon();
 
         for (String recipient : recipients) {
@@ -321,9 +343,7 @@ public class Utils {
             }
         }
 
-        Random random = new Random();
-        return random.nextLong();
-        //throw new IllegalArgumentException("Unable to find or allocate a thread ID.");
+        return -1;
     }
 
     private static boolean isEmailAddress(String address) {

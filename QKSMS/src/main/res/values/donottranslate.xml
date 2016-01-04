@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string-array name="background_values" >
         <item>white</item>
         <item>offwhite</item>
@@ -22,6 +21,7 @@
     </string-array>
 
     <string-array name="versions">
+        <item>1.0.2</item>
         <item>1.0.1</item>
         <item>1.0.0</item>
         <item>2.0.1</item>
@@ -132,6 +132,7 @@
     </string-array>
 
     <string-array name="dates">
+        <item>January 04, 2016</item>
         <item>November 25, 2015</item>
         <item>October 27, 2015</item>
         <item>August 16, 2015</item>
@@ -242,6 +243,7 @@
     </string-array>
 
     <string-array name="changes">
+        <item>" • Crash fixes, persistence and usability improvements"</item>
         <item>" • Added showcase for informing user on how to add number to spam list."</item>
         <item>" • Thula is cloned from QKSMS. Added spam list feature to prevent notifications for spam."</item>
         <item>" • QKSMS is now open source. View the source code at https://github.com/qklabs/qksms"</item>
