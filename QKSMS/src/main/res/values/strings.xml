@@ -128,7 +128,9 @@
     <string name="pref_background">Background color</string>
     <string name="pref_background_summary">Tap to change background color</string>
     <string name="pref_bubbles">Message bubbles</string>
+    <string name="pref_avatar_style">Avatar styles</string>
     <string name="pref_bubbles_summary">Tap to change message bubble preferences</string>
+    <string name="pref_avatar_style_summary">Tap to change styling of contact avatars</string>
     <string name="pref_night">Night mode</string>
     <string name="pref_night_summary">Save battery and reduce eye strain</string>
     <string name="pref_night_amoled">Pure black background</string>
@@ -730,6 +732,11 @@
         <item>Off-white</item>
         <item>Dark grey</item>
         <item>Black</item>
+    </string-array>
+
+    <string-array name="avatar_style_titles">
+        <item>Default</item>
+        <item>Micopi</item>
     </string-array>
 
     <string-array name="font_sizes">
