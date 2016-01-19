@@ -22,8 +22,6 @@ import android.provider.ContactsContract.Presence;
 import android.provider.ContactsContract.Profile;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
-
 import com.adeebnqo.Thula.LogTag;
 import com.adeebnqo.Thula.ThulaApp;
 import com.adeebnqo.Thula.R;
@@ -32,7 +30,6 @@ import com.adeebnqo.Thula.transaction.SmsHelper;
 import com.adeebnqo.Thula.ui.settings.SettingsFragment;
 import com.easytarget.micopi.engine.DeviceHelper;
 import com.easytarget.micopi.engine.ImageFactory;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.CharBuffer;
@@ -98,7 +95,7 @@ public class Contact {
     private boolean mIsMe;          // true if this contact is me!
     private boolean mSendToVoicemail;   // true if this contact should not put up notification
 
-    private private BitmapDrawable micopiAvatar;
+    private BitmapDrawable micopiAvatar;
     private SharedPreferences prefs;
 
     public interface UpdateListener {
