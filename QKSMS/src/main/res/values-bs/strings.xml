@@ -36,7 +36,6 @@
   <string name="pref_category_appearance">Appearance</string>
   <string name="pref_category_general">General</string>
   <string name="pref_category_notifications">Notifications</string>
-  <string name="pref_category_premium">QKSMS+</string>
   <string name="pref_category_quickreply">QuickReply</string>
   <string name="pref_category_quickcompose">QuickCompose</string>
   <string name="pref_category_advanced">Advanced</string>

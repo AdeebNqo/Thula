@@ -98,6 +98,7 @@ public class AvatarView extends ImageView implements View.OnClickListener, LiveV
             // Register this view for live updates.
             LiveViewManager.registerView(this);
             LiveViewManager.registerPreference(this, SettingsFragment.THEME);
+            LiveViewManager.registerPreference(this, SettingsFragment.AVATAR_STYLE);
         }
     }
 

@@ -35,7 +35,7 @@ import com.google.android.mms.MmsException;
 import com.google.android.mms.smil.SmilHelper;
 import com.adeebnqo.Thula.ContentRestrictionException;
 import com.adeebnqo.Thula.LogTag;
-import com.adeebnqo.Thula.ThulaApp;
+import com.ThulaApp;
 import com.adeebnqo.Thula.common.google.ItemLoadedCallback;
 import com.adeebnqo.Thula.common.google.ItemLoadedFuture;
 import com.adeebnqo.Thula.common.google.ThumbnailManager;

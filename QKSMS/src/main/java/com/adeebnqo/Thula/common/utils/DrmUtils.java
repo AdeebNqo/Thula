@@ -22,7 +22,7 @@ import android.drm.DrmStore;
 import android.net.Uri;
 import android.util.Log;
 
-import com.adeebnqo.Thula.ThulaApp;
+import com.ThulaApp;
 
 public class DrmUtils {
     private static final String TAG = "DrmUtils";

@@ -811,4 +811,14 @@
     <string name="explain_cellnumber_requirement">We need to verify that this is really your number in order to sync your spam list.</string>
     <string name="verify_phone_number">Verify phone number</string>
     <string name="loading_conversation">Loading details. Please wait.</string>
+    <string name="pref_quickreply_desktop">Desktop QuickReply</string>
+    <string name="pref_quickreply_desktop_summary">Reply to messages from your computer using PushBullet</string>
+    <string name="pref_theme_custom">Custom colour scheme</string>
+    <string name="pref_theme_custom_description">Define your own colour scheme</string>
+    <string name="pref_theme_summary">Purchase QKSMS+ to unlock over 170 additional colours! Trust me, they\'re beautiful.</string>
+    <string name="pref_upgrade">Upgrade to QKSMS+</string>
+    <string name="pref_upgrade_summary">Unlock some awesome extra features. 50% off for all alpha testers!</string>
+    <string name="product_description_remove_ads">Unlock some awesome extra features. 50% off for all alpha testers!</string>
+    <string name="product_name_remove_ads">QKSMS+</string>
+    <string name="thanks">Thank you for upgrading! You won\'t regret it.</string>
 </resources>

@@ -24,6 +24,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import com.adeebnqo.Thula.BuildConfig;
+import com.adeebnqo.Thula.common.AnalyticsManager;
 import com.adeebnqo.Thula.spam.SDCardStorage;
 import com.adeebnqo.Thula.spam.ui.SpamItemsFragment;
 import com.google.android.mms.pdu_alt.PduHeaders;
@@ -53,7 +55,7 @@ import com.adeebnqo.Thula.ui.view.slidingmenu.SlidingMenu;
 import com.adeebnqo.Thula.ui.welcome.WelcomeActivity;
 import com.nispok.snackbar.Snackbar;
 import com.nispok.snackbar.listeners.ActionClickListener;
-
+import org.json.JSONObject;
 import java.util.Collection;
 
 public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListener,
@@ -103,6 +105,7 @@ public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListen
         getPrefs(this);
         getRes(this);
 
+        AnalyticsManager.getInstance().init(this);
         launchWelcomeActivity();
 
         setContentView(R.layout.activity_main);
@@ -112,6 +115,16 @@ public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListen
         setupSlidingMenu();
 
         showDialogIfNeeded(savedInstanceState);
+
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("VersionCode", BuildConfig.VERSION_CODE);
+            jsonObject.put("VersionName", BuildConfig.VERSION_NAME);
+            AnalyticsManager.getInstance().sendEvent(AnalyticsManager.ACTION_USING_VERSION, jsonObject);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d(TAG, "exception throwng while trying to send event" );
+        }
     }
 
     /**
@@ -235,7 +248,6 @@ public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListen
             } else if (content instanceof ComposeFragment) {
                 setTitle(getString(R.string.title_compose));
                 inflater.inflate(R.menu.compose, menu);
-                ((ComposeFragment) content).revealShowcaseOfAttachmentView();
 
             } else if (content instanceof SpamItemsFragment) {
                 setTitle(getString(R.string.spam_list));
@@ -325,6 +337,7 @@ public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListen
     public void onDestroy() {
         super.onDestroy();
         mIsDestroyed = true;
+        AnalyticsManager.getInstance().cleanUp();
     }
 
     public void setOnBackPressedListener(OnBackPressedListener listener){

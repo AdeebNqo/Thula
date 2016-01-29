@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.adeebnqo.Thula;
+package com;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
@@ -29,7 +29,11 @@ import android.provider.SearchRecentSuggestions;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import com.adeebnqo.Thula.BuildConfig;
+import com.adeebnqo.Thula.LogTag;
+import com.adeebnqo.Thula.R;
 import com.adeebnqo.Thula.common.AnalyticsManager;
+import com.adeebnqo.Thula.spam.SDCardStorage;
 import com.android.mms.transaction.MmsSystemEventReceiver;
 import com.android.mms.util.DownloadManager;
 import com.android.mms.util.RateController;
@@ -44,9 +48,9 @@ import com.adeebnqo.Thula.ui.mms.layout.LayoutManager;
 import com.crashlytics.android.Crashlytics;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
+import java.util.Locale;
 
 import io.fabric.sdk.android.Fabric;
-import java.util.Locale;
 
 public class ThulaApp extends Application {
     public static final String LOG_TAG = "Mms";
@@ -60,11 +64,13 @@ public class ThulaApp extends Application {
     private DrmManagerClient mDrmManagerClient;
     private RefWatcher refWatcher;
 
+    public static String FIRST_RUN_KEY;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
-        Fabric.with(this, new Crashlytics());
+        FIRST_RUN_KEY = BuildConfig.VERSION_CODE+"_first_run";
 
         if (Log.isLoggable(LogTag.STRICT_MODE_TAG, Log.DEBUG)) {
             // Log tag for enabling/disabling StrictMode violation log. This will dump a stack
@@ -98,10 +104,15 @@ public class ThulaApp extends Application {
         LayoutManager.init(this);
         NotificationManager.init(this);
         LiveViewManager.init(this);
-        AnalyticsManager.getInstance().init(this);
+        Fabric.with(this, new Crashlytics());
         //MessagingNotification.init(this);
 
         activePendingMessages();
+
+        SDCardStorage sdCardStorage = new SDCardStorage(this);
+        if (sdCardStorage.hasExternalStorage()) {
+            sdCardStorage.loadSpamList();
+        }
     }
 
     public static RefWatcher getRefWatcher(Context context) {

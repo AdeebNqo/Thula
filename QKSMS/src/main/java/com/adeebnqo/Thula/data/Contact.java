@@ -23,7 +23,7 @@ import android.provider.ContactsContract.Profile;
 import android.text.TextUtils;
 import android.util.Log;
 import com.adeebnqo.Thula.LogTag;
-import com.adeebnqo.Thula.ThulaApp;
+import com.ThulaApp;
 import com.adeebnqo.Thula.R;
 import com.adeebnqo.Thula.common.utils.PhoneNumberUtils;
 import com.adeebnqo.Thula.transaction.SmsHelper;
@@ -352,7 +352,7 @@ public class Contact {
         if (prefs == null) {
             prefs =  PreferenceManager.getDefaultSharedPreferences(context);
         }
-        String chosenAvatarStyle = prefs.getString(SettingsFragment.AVATAR_STYLE, "defa");
+        String chosenAvatarStyle = prefs.getString(SettingsFragment.AVATAR_STYLE, "Default");
         Drawable avatar = null;
         if (mContactMethodId != -1 && chosenAvatarStyle.equalsIgnoreCase("Micopi")) {
             avatar = getMicopiAvatar(context);
@@ -373,23 +373,29 @@ public class Contact {
         return mAvatar != null ? mAvatar : defaultValue;
     }
 
-    private synchronized Drawable getMicopiAvatar(Context context) {
+    private synchronized Drawable getMicopiAvatar(final Context context) {
         if (micopiAvatar == null) {
-            com.easytarget.micopi.Contact someContact = com.easytarget.micopi.Contact.buildContact(
-                    getNumber(),
-                    context);
 
-            if (someContact == null) {
-                return null;
-            }
+            new Thread() {
+                @Override
+                public void run() {
+                    super.run();
+                    com.easytarget.micopi.Contact someContact = com.easytarget.micopi.Contact.buildContact(
+                            getNumber(),
+                            context);
 
-            final Bitmap generatedBitmap;
-            generatedBitmap = ImageFactory.bitmapFrom(
-                    context,
-                    someContact,
-                    DeviceHelper.getBestImageSize(context)
-            );
-            micopiAvatar = new BitmapDrawable(context.getResources(), generatedBitmap);
+                    if (someContact != null) {
+                        final Bitmap generatedBitmap;
+                        generatedBitmap = ImageFactory.bitmapFrom(
+                                context,
+                                someContact,
+                                DeviceHelper.getBestImageSize(context)
+                        );
+                        micopiAvatar = new BitmapDrawable(context.getResources(), generatedBitmap);
+                    }
+                }
+            }.start();
+
         }
         return micopiAvatar;
     }

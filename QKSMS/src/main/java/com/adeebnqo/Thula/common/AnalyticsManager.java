@@ -1,10 +1,11 @@
 package com.adeebnqo.Thula.common;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 import com.adeebnqo.Thula.R;
 import com.mixpanel.android.mpmetrics.MixpanelAPI;
-
+import android.provider.Settings.Secure;
 import org.json.JSONObject;
 
 public enum AnalyticsManager {
@@ -37,6 +38,7 @@ public enum AnalyticsManager {
     public final static String ACTION_ATTACH_FROM_CAMERA = "attach_from_camera";
     public final static String ACTION_RECEIVED_SPAM = "recieved_spam";
     public final static String ACTION_RECEIVED_MSG = "recieved_new_msg";
+    public final static String ACTION_USING_VERSION = "using_version";
 
     private boolean mNeedsInit = true;
     private Context mContext;
@@ -58,9 +60,27 @@ public enum AnalyticsManager {
         }
     }
 
-    public void sendEvent(String eventName, JSONObject details){
-        if (mixpanel != null){
+    public void sendEvent(String eventName, JSONObject details) {
+        if (mixpanel != null) {
+            if (eventName.equals(ACTION_USING_VERSION)) {
+                String phoneId = Secure.getString(mContext.getContentResolver(), Secure.ANDROID_ID);
+                if (!TextUtils.isEmpty(phoneId)) {
+                    mixpanel.identify(phoneId);
+                    mixpanel.getPeople().identify(phoneId);
+                    mixpanel.getPeople().set(details);
+                } else {
+                    if (LOCAL_LOGV) Log.d(TAG, "Phone id cannot be retrieved.");
+                }
+            }
             mixpanel.track(eventName, details);
+        } else {
+            if (LOCAL_LOGV) Log.d(TAG, "Sending event failed because mixpanel is null. Please initialize.");
+        }
+    }
+
+    public void cleanUp(){
+        if (mixpanel != null) {
+            mixpanel.flush();
         }
     }
 }

@@ -27,7 +27,7 @@ import com.android.mms.transaction.TransactionService;
 import com.android.mms.util.DownloadManager;
 import com.google.android.mms.ContentType;
 import com.google.android.mms.pdu_alt.PduHeaders;
-import com.adeebnqo.Thula.ThulaApp;
+import com.ThulaApp;
 import com.adeebnqo.Thula.R;
 import com.adeebnqo.Thula.data.Contact;
 import com.adeebnqo.Thula.common.emoji.EmojiRegistry;
