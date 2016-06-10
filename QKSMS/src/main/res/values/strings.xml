@@ -821,4 +821,5 @@
     <string name="product_description_remove_ads">Unlock some awesome extra features. 50% off for all alpha testers!</string>
     <string name="product_name_remove_ads">QKSMS+</string>
     <string name="thanks">Thank you for upgrading! You won\'t regret it.</string>
+    <string name="sms_address_invalid">Invalid sms recipient.</string>
 </resources>

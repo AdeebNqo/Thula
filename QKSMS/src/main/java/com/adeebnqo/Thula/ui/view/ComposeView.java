@@ -418,6 +418,7 @@ public class ComposeView extends LinearLayout implements View.OnClickListener, L
     }
 
     public void sendSms() {
+        mReplyText.requestFocus();
         String body = mReplyText.getText().toString();
 
         final Drawable attachment;
@@ -440,34 +441,49 @@ public class ComposeView extends LinearLayout implements View.OnClickListener, L
 
         // If we have some recipients, send the message!
         if (recipients != null && recipients.length > 0) {
-            mReplyText.setText("");
 
-            Transaction sendTransaction = new Transaction(mContext, SmsHelper.getSendSettings(mContext));
-
-            com.adeebnqo.Thula.mmssms.Message message = new com.adeebnqo.Thula.mmssms.Message(body, recipients);
-            message.setType(com.adeebnqo.Thula.mmssms.Message.TYPE_SMSMMS);
-            if (attachment != null) {
-                message.setImage(ImageUtils.drawableToBitmap(attachment));
+            boolean isNumberWellFormed = true;
+            for (String recipient : recipients) {
+                isNumberWellFormed = PhoneNumberUtils.isReallyWellFormedSmsAddress(recipient);
+                if (!isNumberWellFormed) {
+                    Toast.makeText(
+                            mContext,
+                            mRes.getString(R.string.sms_address_invalid),
+                            Toast.LENGTH_SHORT
+                    ).show();
+                    break;
+                }
             }
 
-            // Notify the listener about the new text message
-            if (mOnSendListener != null) {
-                mOnSendListener.onSend(recipients, message.getSubject());
+            if (isNumberWellFormed) {
+                mReplyText.setText("");
+
+                Transaction sendTransaction = new Transaction(mContext, SmsHelper.getSendSettings(mContext));
+
+                com.adeebnqo.Thula.mmssms.Message message = new com.adeebnqo.Thula.mmssms.Message(body, recipients);
+                message.setType(com.adeebnqo.Thula.mmssms.Message.TYPE_SMSMMS);
+                if (attachment != null) {
+                    message.setImage(ImageUtils.drawableToBitmap(attachment));
+                }
+
+                // Notify the listener about the new text message
+                if (mOnSendListener != null) {
+                    mOnSendListener.onSend(recipients, message.getSubject());
+                }
+
+                long threadId = mConversation != null ? mConversation.getThreadId() : 0;
+                sendTransaction.sendNewMessage(message, threadId);
+                NotificationManager.update(mContext);
+
+                if (mConversationLegacy != null) {
+                    mConversationLegacy.markRead();
+                }
+
+                // Reset the image button state
+                updateButtonState();
             }
-
-            long threadId = mConversation != null ? mConversation.getThreadId() : 0;
-            sendTransaction.sendNewMessage(message, threadId);
-            NotificationManager.update(mContext);
-
-            if (mConversationLegacy != null) {
-                mConversationLegacy.markRead();
-            }
-
-            // Reset the image button state
-            updateButtonState();
-
-            // Otherwise, show a toast to the user to prompt them to add recipients.
         } else {
+            // Otherwise, show a toast to the user to prompt them to add recipients.
             Toast.makeText(
                     mContext,
                     mRes.getString(R.string.error_no_recipients),
