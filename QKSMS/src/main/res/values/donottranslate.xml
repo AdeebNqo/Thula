@@ -140,7 +140,7 @@
     </string-array>
 
     <string-array name="dates">
-        <item>TBA</item>
+        <item>June 10, 2016</item>
         <item>January 04, 2016</item>
         <item>November 25, 2015</item>
         <item>October 27, 2015</item>
@@ -252,7 +252,7 @@
     </string-array>
 
     <string-array name="changes">
-        <item>" • work in progress"</item>
+        <item>" • Crash fixes, micopi avatars and other improvements"</item>
         <item>" • Crash fixes, persistence and usability improvements"</item>
         <item>" • Added showcase for informing user on how to add number to spam list."</item>
         <item>" • Thula is cloned from QKSMS. Added spam list feature to prevent notifications for spam."</item>
