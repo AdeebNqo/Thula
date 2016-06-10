@@ -5,12 +5,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.adeebnqo.Thula.R;
+import com.ThulaApp;
 import com.adeebnqo.Thula.common.ConversationPrefsHelper;
 import com.adeebnqo.Thula.common.LiveViewManager;
 import com.adeebnqo.Thula.common.emoji.EmojiRegistry;
@@ -22,7 +23,6 @@ import com.adeebnqo.Thula.ui.MainActivity;
 import com.adeebnqo.Thula.ui.ThemeManager;
 import com.adeebnqo.Thula.ui.base.RecyclerCursorAdapter;
 import com.adeebnqo.Thula.ui.settings.SettingsFragment;
-import com.google.gson.Gson;
 
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
 
@@ -39,6 +39,7 @@ public class ConversationListAdapter extends RecyclerCursorAdapter<ConversationL
     private Activity activity;
     public static final String SPAM = "pref_key_SPAM";
     private MaterialShowcaseView showcaseAddToSpamList;
+    private SharedPreferences prefs;
 
     public ConversationListAdapter(Context context) {
         mContext = context;
@@ -138,13 +139,23 @@ public class ConversationListAdapter extends RecyclerCursorAdapter<ConversationL
         // Update the avatar and name
         holder.onUpdate(conversation.getRecipients().size() == 1 ? conversation.getRecipients().get(0) : null);
 
-        if (!conversation.hasError() && activity != null && position == 0) {
-            showcaseAddToSpamList  = new MaterialShowcaseView.Builder(activity)
-                    .setTarget(holder.mAvatarView)
-                    .setDismissText(activity.getString(R.string.showcase_done))
-                    .setContentText(activity.getString(R.string.showcase_add_spam))
-                    .singleUse(SPAM)
-                    .show();
+        if (prefs == null) {
+            prefs =  PreferenceManager.getDefaultSharedPreferences(mContext);
+        }
+        if (prefs.getBoolean(ThulaApp.FIRST_RUN_KEY, true)) {
+
+            prefs.edit().putBoolean(ThulaApp.FIRST_RUN_KEY, false).commit();
+
+        } else {
+
+            if (!conversation.hasError() && activity != null && position == 0) {
+                showcaseAddToSpamList = new MaterialShowcaseView.Builder(activity)
+                        .setTarget(holder.mAvatarView)
+                        .setDismissText(activity.getString(R.string.showcase_done))
+                        .setContentText(activity.getString(R.string.showcase_add_spam))
+                        .singleUse(SPAM)
+                        .show();
+            }
         }
     }
 

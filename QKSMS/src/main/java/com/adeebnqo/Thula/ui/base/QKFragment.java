@@ -1,7 +1,7 @@
 package com.adeebnqo.Thula.ui.base;
 
 import android.app.Fragment;
-import com.adeebnqo.Thula.ThulaApp;
+import com.ThulaApp;
 import com.squareup.leakcanary.RefWatcher;
 
 public class QKFragment extends Fragment {

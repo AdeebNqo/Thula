@@ -1,6 +1,5 @@
 package com.adeebnqo.Thula.ui.conversationlist;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.content.CursorLoader;
@@ -40,7 +39,6 @@ import com.adeebnqo.Thula.ui.compose.ComposeFragment;
 import com.adeebnqo.Thula.ui.dialog.ConversationNotificationSettingsDialog;
 import com.adeebnqo.Thula.ui.dialog.QKDialog;
 import com.adeebnqo.Thula.ui.settings.SettingsFragment;
-
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
 
 

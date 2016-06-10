@@ -2,6 +2,7 @@ package com.adeebnqo.Thula.data;
 
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.database.sqlite.SqliteWrapper;
@@ -12,6 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Parcelable;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts;
@@ -20,13 +22,14 @@ import android.provider.ContactsContract.Presence;
 import android.provider.ContactsContract.Profile;
 import android.text.TextUtils;
 import android.util.Log;
-
 import com.adeebnqo.Thula.LogTag;
-import com.adeebnqo.Thula.ThulaApp;
+import com.ThulaApp;
 import com.adeebnqo.Thula.R;
 import com.adeebnqo.Thula.common.utils.PhoneNumberUtils;
 import com.adeebnqo.Thula.transaction.SmsHelper;
-
+import com.adeebnqo.Thula.ui.settings.SettingsFragment;
+import com.easytarget.micopi.engine.DeviceHelper;
+import com.easytarget.micopi.engine.ImageFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.CharBuffer;
@@ -91,6 +94,9 @@ public class Contact {
     private boolean mQueryPending;
     private boolean mIsMe;          // true if this contact is me!
     private boolean mSendToVoicemail;   // true if this contact should not put up notification
+
+    private BitmapDrawable micopiAvatar;
+    private SharedPreferences prefs;
 
     public interface UpdateListener {
         public void onUpdate(Contact updated);
@@ -342,6 +348,22 @@ public class Contact {
     }
 
     public synchronized Drawable getAvatar(Context context, Drawable defaultValue) {
+
+        if (prefs == null) {
+            prefs =  PreferenceManager.getDefaultSharedPreferences(context);
+        }
+        String chosenAvatarStyle = prefs.getString(SettingsFragment.AVATAR_STYLE, "Default");
+        Drawable avatar = null;
+        if (mContactMethodId != -1 && chosenAvatarStyle.equalsIgnoreCase("Micopi")) {
+            avatar = getMicopiAvatar(context);
+        } else {
+            avatar = getQKSMSAvatar(context, defaultValue);
+        }
+
+        return avatar;
+    }
+
+    private synchronized Drawable getQKSMSAvatar(Context context, Drawable defaultValue){
         if (mAvatar == null) {
             if (mAvatarData != null) {
                 Bitmap b = BitmapFactory.decodeByteArray(mAvatarData, 0, mAvatarData.length);
@@ -349,6 +371,33 @@ public class Contact {
             }
         }
         return mAvatar != null ? mAvatar : defaultValue;
+    }
+
+    private synchronized Drawable getMicopiAvatar(final Context context) {
+        if (micopiAvatar == null) {
+
+            new Thread() {
+                @Override
+                public void run() {
+                    super.run();
+                    com.easytarget.micopi.Contact someContact = com.easytarget.micopi.Contact.buildContact(
+                            getNumber(),
+                            context);
+
+                    if (someContact != null) {
+                        final Bitmap generatedBitmap;
+                        generatedBitmap = ImageFactory.bitmapFrom(
+                                context,
+                                someContact,
+                                DeviceHelper.getBestImageSize(context)
+                        );
+                        micopiAvatar = new BitmapDrawable(context.getResources(), generatedBitmap);
+                    }
+                }
+            }.start();
+
+        }
+        return micopiAvatar;
     }
 
     public static void init(final Context context) {

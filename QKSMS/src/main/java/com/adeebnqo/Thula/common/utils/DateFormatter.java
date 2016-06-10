@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.text.format.DateUtils;
 import android.text.format.DateFormat;
 
-import com.adeebnqo.Thula.ThulaApp;
+import com.ThulaApp;
 import com.adeebnqo.Thula.R;
 import com.adeebnqo.Thula.ui.MainActivity;
 import com.adeebnqo.Thula.ui.settings.SettingsFragment;

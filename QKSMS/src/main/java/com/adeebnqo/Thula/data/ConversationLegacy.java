@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
 import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -42,7 +43,7 @@ public class ConversationLegacy {
 
     private Cursor cursor;
 
-    public ConversationLegacy(Context context, long threadId) {
+    public ConversationLegacy(@NonNull Context context, long threadId) {
         this.context = context;
         this.threadId = threadId;
         contactHelper = new ContactHelper();

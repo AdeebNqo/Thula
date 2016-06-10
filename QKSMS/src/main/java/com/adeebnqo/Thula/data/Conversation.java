@@ -24,7 +24,7 @@ import com.android.mms.transaction.MmsMessageSender;
 import com.google.android.mms.pdu_alt.PduHeaders;
 import com.adeebnqo.Thula.mmssms.Utils;
 import com.adeebnqo.Thula.LogTag;
-import com.adeebnqo.Thula.ThulaApp;
+import com.ThulaApp;
 import com.adeebnqo.Thula.R;
 import com.adeebnqo.Thula.common.google.DraftCache;
 import com.adeebnqo.Thula.receiver.UnreadBadgeService;

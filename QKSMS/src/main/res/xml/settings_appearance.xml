@@ -23,6 +23,16 @@
             android:layout="@layout/list_item_preference"
             android:summary="@string/pref_bubbles_summary"
             android:title="@string/pref_bubbles" />
+
+        <ListPreference
+            android:defaultValue="Default"
+            android:key="pref_key_avatar_style"
+            android:entries="@array/avatar_style_titles"
+            android:entryValues="@array/avatar_style_values"
+            android:layout="@layout/list_item_preference"
+            android:summary="@string/pref_avatar_style_summary"
+            android:title="@string/pref_avatar_style" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

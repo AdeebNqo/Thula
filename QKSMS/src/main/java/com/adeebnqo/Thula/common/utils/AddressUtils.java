@@ -28,7 +28,7 @@ import com.google.android.mms.pdu_alt.EncodedStringValue;
 import com.google.android.mms.pdu_alt.PduHeaders;
 import com.google.android.mms.pdu_alt.PduPersister;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import com.adeebnqo.Thula.ThulaApp;
+import com.ThulaApp;
 import com.adeebnqo.Thula.R;
 
 public class AddressUtils {

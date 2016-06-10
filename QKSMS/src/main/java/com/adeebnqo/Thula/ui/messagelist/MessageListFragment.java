@@ -50,7 +50,7 @@ import com.google.android.mms.pdu_alt.PduBody;
 import com.google.android.mms.pdu_alt.PduPart;
 import com.adeebnqo.Thula.LogTag;
 import com.adeebnqo.Thula.MmsConfig;
-import com.adeebnqo.Thula.ThulaApp;
+import com.ThulaApp;
 import com.adeebnqo.Thula.R;
 import com.adeebnqo.Thula.data.Contact;
 import com.adeebnqo.Thula.data.ContactList;
