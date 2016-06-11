@@ -822,4 +822,5 @@
     <string name="product_name_remove_ads">QKSMS+</string>
     <string name="thanks">Thank you for upgrading! You won\'t regret it.</string>
     <string name="sms_address_invalid">Invalid sms recipient.</string>
+    <string name="no_messages">No messages</string>
 </resources>

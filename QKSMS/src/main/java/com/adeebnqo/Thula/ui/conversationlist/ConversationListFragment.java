@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.RelativeLayout;
 import com.melnykov.fab.FloatingActionButton;
 import com.adeebnqo.Thula.R;
 import com.adeebnqo.Thula.common.ConversationPrefsHelper;
@@ -57,6 +58,7 @@ public class ConversationListFragment extends QKFragment implements LoaderManage
     private final int MENU_DELETE_CONVERSATION = 7;
     private final int MENU_MULTI_SELECT = 8;
 
+    private RelativeLayout emptyStateView;
     private RecyclerView mRecyclerView;
     private FloatingActionButton mFab;
     private ConversationListAdapter mAdapter;
@@ -94,6 +96,18 @@ public class ConversationListFragment extends QKFragment implements LoaderManage
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
         //TODO ListviewHelper.applyCustomScrollbar(mContext, mRecyclerView);
+
+        emptyStateView = (RelativeLayout) view.findViewById(R.id.empty_state_view);
+        mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onChanged() {
+                if (mAdapter.getItemCount() < 1) {
+                    emptyStateView.setVisibility(View.VISIBLE);
+                } else {
+                    emptyStateView.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
 
         mFab = (FloatingActionButton) view.findViewById(R.id.fab);
         mFab.setColorNormal(ThemeManager.getColor());
