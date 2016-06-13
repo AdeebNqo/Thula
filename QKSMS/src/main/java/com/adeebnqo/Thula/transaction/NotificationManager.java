@@ -656,16 +656,21 @@ public class NotificationManager {
      * crop their avatar to a circle
      */
     private static Bitmap getLargeIcon(Context context, Contact contact) {
-        Drawable avatarDrawable = contact.getAvatar(context, new BitmapDrawable(sRes, ContactHelper.blankContact(context, contact.getName())));
-        int idealIconWidth = sRes.getDimensionPixelSize(android.R.dimen.notification_large_icon_width);
-        int idealIconHeight = sRes.getDimensionPixelSize(android.R.dimen.notification_large_icon_height);
+        try {
+            Drawable avatarDrawable = contact.getAvatar(context, new BitmapDrawable(sRes, ContactHelper.blankContact(context, contact.getName())));
+            int idealIconWidth = sRes.getDimensionPixelSize(android.R.dimen.notification_large_icon_width);
+            int idealIconHeight = sRes.getDimensionPixelSize(android.R.dimen.notification_large_icon_height);
 
-        Bitmap bitmap = Bitmap.createScaledBitmap(((BitmapDrawable) avatarDrawable).getBitmap(), idealIconWidth, idealIconHeight, true);
+            Bitmap bitmap = Bitmap.createScaledBitmap(((BitmapDrawable) avatarDrawable).getBitmap(), idealIconWidth, idealIconHeight, true);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            return ImageUtils.getCircleBitmap(bitmap, idealIconWidth);
-        } else {
-            return bitmap;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                return ImageUtils.getCircleBitmap(bitmap, idealIconWidth);
+            } else {
+                return bitmap;
+            }
+        } catch(NullPointerException e) {
+            //could not find icon
+            return null;
         }
     }
 
