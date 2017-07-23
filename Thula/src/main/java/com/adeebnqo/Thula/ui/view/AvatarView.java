@@ -24,7 +24,10 @@ import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.ImageView;
+
+import com.adeebnqo.Thula.ExceedMessageSizeException;
 import com.adeebnqo.Thula.R;
+import com.adeebnqo.Thula.common.AnalyticsManager;
 import com.adeebnqo.Thula.interfaces.LiveView;
 import com.adeebnqo.Thula.common.LiveViewManager;
 import com.adeebnqo.Thula.common.TypefaceManager;
@@ -35,6 +38,8 @@ import com.adeebnqo.Thula.spam.SharedPreferenceSpamNumberStorage;
 import com.adeebnqo.Thula.spam.SpamNumberStorage;
 import com.adeebnqo.Thula.ui.ThemeManager;
 import com.adeebnqo.Thula.ui.settings.SettingsFragment;
+
+import org.json.JSONObject;
 
 public class AvatarView extends ImageView implements View.OnClickListener, LiveView {
     private final String TAG = "AvatarView";
@@ -373,10 +378,19 @@ public class AvatarView extends ImageView implements View.OnClickListener, LiveV
                             }
                             getContext().startActivity(intent);
                         } else {
+                            JSONObject eventData = null;
+                            try {
+                                eventData = new JSONObject();
+                                eventData.put("number", identifier);
+                            }catch (Exception e){
+                                //do nothing
+                            }
                             if (spamNumberStorage.contains(identifier)) {
                                 spamNumberStorage.deleteNumber(identifier);
+                                AnalyticsManager.getInstance().sendEvent(AnalyticsManager.ACTION_REMOVE_SPAM, eventData);
                             } else {
                                 spamNumberStorage.addNumber(identifier);
+                                AnalyticsManager.getInstance().sendEvent(AnalyticsManager.ACTION_ADD_SPAM, eventData);
                             }
                         }
                     }

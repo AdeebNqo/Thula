@@ -33,6 +33,8 @@ public enum AnalyticsManager {
     public final static String ACTION_RECEIVED_MSG = "recieved_new_msg";
     public final static String ACTION_USING_VERSION = "using_version";
     public final static String ACTION_USING_NIGHTMODE = "using_night_mode";
+    public final static String ACTION_ADD_SPAM= "mark_spam_number";
+    public final static String ACTION_REMOVE_SPAM= "unmark_spam_number";
 
     private boolean mNeedsInit = true;
     private Context mContext;
@@ -53,6 +55,9 @@ public enum AnalyticsManager {
     }
 
     public void sendEvent(String eventName, JSONObject details) {
+        if (details == null){
+            details = new JSONObject();
+        }
         try {
             CustomEvent event = new CustomEvent(eventName);
             Iterator<String> keyIt = details.keys();
