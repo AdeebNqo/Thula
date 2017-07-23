@@ -17,6 +17,14 @@ repositories {
 }
 
 android {
+    signingConfigs {
+        androidpot {
+            keyAlias 'AndroidPot Inc Key'
+            keyPassword ''
+            storeFile file('/home/zola/Documents/code/androidkeys/switchringer.jks')
+            storePassword ''
+        }
+    }
     lintOptions {
         checkReleaseBuilds false
         abortOnError false
@@ -30,7 +38,6 @@ android {
         minSdkVersion 15
         targetSdkVersion 22
     }
-
     productFlavors {
         production {
             applicationId = "com.adeebnqo.Thula"
@@ -43,13 +50,12 @@ android {
             resValue "string", "app_name", "Thula Dev"
         }
     }
-
-
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'qksms-proguard.pro'
+            signingConfig signingConfigs.androidpot
         }
         debug {
             debuggable true
@@ -84,8 +90,7 @@ dependencies {
     compile 'com.android.support:support-v13:25.3.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'
     // External services
-    compile 'com.mixpanel.android:mixpanel-android:4.6.4'
-    compile('com.crashlytics.sdk.android:crashlytics:2.5.2@aar') {
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
         transitive = true;
     }
 }
