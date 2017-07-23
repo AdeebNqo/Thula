@@ -20,13 +20,10 @@ package com.android.mms.transaction;
 
 import android.content.Context;
 import android.content.Intent;
-
-import org.apache.http.entity.ByteArrayEntity;
-
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class ProgressCallbackEntity extends ByteArrayEntity {
+public class ProgressCallbackEntity {
     private static final int DEFAULT_PIECE_SIZE = 4096;
 
     public static final String PROGRESS_STATUS_ACTION = "com.android.mms.PROGRESS_STATUS";
@@ -37,16 +34,14 @@ public class ProgressCallbackEntity extends ByteArrayEntity {
     private final Context mContext;
     private final byte[] mContent;
     private final long mToken;
+    private String mContentType;
 
     public ProgressCallbackEntity(Context context, long token, byte[] b) {
-        super(b);
-
         mContext = context;
         mContent = b;
         mToken = token;
     }
 
-    @Override
     public void writeTo(final OutputStream outstream) throws IOException {
         if (outstream == null) {
             throw new IllegalArgumentException("Output stream may not be null");
@@ -86,5 +81,13 @@ public class ProgressCallbackEntity extends ByteArrayEntity {
             intent.putExtra("token", mToken);
             mContext.sendBroadcast(intent);
         }
+    }
+
+    public void setContentType(String contentType){
+        this.mContentType = contentType;
+    }
+
+    public String getContentType() {
+        return mContentType;
     }
 }

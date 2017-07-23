@@ -19,25 +19,19 @@
 package com.android.mms.transaction;
 
 import android.content.Context;
-import android.net.http.AndroidHttpClient;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.adeebnqo.Thula.mmssms.httpclient.HttpHost;
+import com.adeebnqo.Thula.mmssms.httpclient.IHttpClient;
+import com.adeebnqo.Thula.mmssms.httpclient.IHttpEntity;
+import com.adeebnqo.Thula.mmssms.httpclient.IHttpRequest;
+import com.adeebnqo.Thula.mmssms.httpclient.IHttpResponse;
+import com.adeebnqo.Thula.mmssms.httpclient.IHttpStatusLine;
+import com.adeebnqo.Thula.mmssms.okhttpimpl.OkHttpClientImpl;
+import com.adeebnqo.Thula.mmssms.okhttpimpl.OkHttpRequestImpl;
 import com.android.mms.MmsConfig;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpHost;
-import org.apache.http.HttpRequest;
-import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.conn.params.ConnRouteParams;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
-import org.apache.http.params.HttpProtocolParams;
-
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.SocketException;
@@ -108,7 +102,7 @@ public class HttpUtils {
                                    // TODO Print out binary data more readable.
                                    //"\tpdu\t\t= " + Arrays.toString(pdu));
 
-        AndroidHttpClient client = null;
+        IHttpClient client = null;
 
         try {
             // Make sure to use a proxy which supports CONNECT.
@@ -118,7 +112,7 @@ public class HttpUtils {
                     HttpHost.DEFAULT_SCHEME_NAME);
 
             client = createHttpClient(context);
-            HttpRequest req = null;
+            IHttpRequest req = new OkHttpRequestImpl(url);
             switch(method) {
                 case HTTP_POST_METHOD:
                     ProgressCallbackEntity entity = new ProgressCallbackEntity(
@@ -126,12 +120,11 @@ public class HttpUtils {
                     // Set request content type.
                     entity.setContentType("application/vnd.wap.mms-message");
 
-                    HttpPost post = new HttpPost(url);
-                    post.setEntity(entity);
-                    req = post;
+                    req.setMethodType("POST");
+                    req.setProgressCallbackEntity(entity);
                     break;
                 case HTTP_GET_METHOD:
-                    req = new HttpGet(url);
+                    req.setMethodType("GET");
                     break;
                 default:
                     Log.e(TAG, "Unknown HTTP method: " + method
@@ -141,12 +134,9 @@ public class HttpUtils {
             }
 
             // Set route parameters for the request.
-            HttpParams params = client.getParams();
             if (isProxySet) {
-                ConnRouteParams.setDefaultProxy(
-                        params, new HttpHost(proxyHost, proxyPort));
+                req.setProxyDetails(proxyHost, proxyPort);
             }
-            req.setParams(params);
 
             // Set necessary HTTP headers for MMS transmission.
             req.addHeader(HDR_KEY_ACCEPT, HDR_VALUE_ACCEPT);
@@ -192,13 +182,17 @@ public class HttpUtils {
             }
             req.addHeader(HDR_KEY_ACCEPT_LANGUAGE, HDR_VALUE_ACCEPT_LANGUAGE);
 
-            HttpResponse response = client.execute(target, req);
-            StatusLine status = response.getStatusLine();
+            //adding user agent
+            String userAgent = MmsConfig.getUserAgent();
+            req.addHeader("User-Agent", userAgent);
+
+            IHttpResponse response = client.execute(target, req);
+            IHttpStatusLine status = response.getStatusLine();
             if (status.getStatusCode() != 200) { // HTTP 200 is success.
                 throw new IOException("HTTP error: " + status.getReasonPhrase());
             }
 
-            HttpEntity entity = response.getEntity();
+            IHttpEntity entity = response.getEntity();
             byte[] body = null;
             if (entity != null) {
                 try {
@@ -291,18 +285,12 @@ public class HttpUtils {
         throw e;
     }
 
-    private static AndroidHttpClient createHttpClient(Context context) {
-        String userAgent = MmsConfig.getUserAgent();
-        AndroidHttpClient client = AndroidHttpClient.newInstance(userAgent, context);
-        HttpParams params = client.getParams();
-        HttpProtocolParams.setContentCharset(params, "UTF-8");
+    private static IHttpClient createHttpClient(Context context) {
 
         // set the socket timeout
         int soTimeout = MmsConfig.getHttpSocketTimeout();
+        IHttpClient client = new OkHttpClientImpl(soTimeout);
 
-        if (LOCAL_LOGV)  Log.d(TAG, "[HttpUtils] createHttpClient w/ socket timeout " + soTimeout
-                + " ms, " + ", UA=" + userAgent);
-        HttpConnectionParams.setSoTimeout(params, soTimeout);
         return client;
     }
 

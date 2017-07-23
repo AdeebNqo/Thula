@@ -62,7 +62,6 @@ public class MessagingReceiver extends BroadcastReceiver {
                 message.markSeen();
                 message.markRead();
                 UnreadBadgeService.update(context);
-
             } else {
                 if (prefs.getNotificationsEnabled()) {
                     Intent messageHandlerIntent = new Intent(context, NotificationService.class);
