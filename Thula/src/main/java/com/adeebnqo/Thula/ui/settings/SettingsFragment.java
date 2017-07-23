@@ -28,10 +28,11 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import com.adeebnqo.Thula.common.AnalyticsManager;
 import com.mariussoft.endlessjabber.sdk.EndlessJabberInterface;
 import com.adeebnqo.Thula.R;
 import com.adeebnqo.Thula.ui.dialog.BubblePreferenceDialog;
@@ -50,8 +51,7 @@ import com.adeebnqo.Thula.ui.dialog.QKDialog;
 import com.adeebnqo.Thula.ui.dialog.mms.MMSSetupFragment;
 import com.adeebnqo.Thula.ui.view.colorpicker.ColorPickerDialog;
 import com.adeebnqo.Thula.ui.view.colorpicker.ColorPickerSwatch;
-import com.adeebnqo.Thula.ui.view.QKTextView;
-
+import org.json.JSONObject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -62,6 +62,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
+
+import static com.adeebnqo.Thula.common.AnalyticsManager.ACTION_USING_NIGHTMODE;
 
 public class SettingsFragment extends PreferenceFragment implements
         Preference.OnPreferenceChangeListener, Preference.OnPreferenceClickListener, LiveView {
@@ -424,9 +426,18 @@ public class SettingsFragment extends PreferenceFragment implements
             case COLOUR_RECEIVED:
                 ThemeManager.setReceivedBubbleColored((Boolean) newValue);
                 break;
-            case NIGHT_AUTO:
+            case NIGHT_AUTO: {
                 updateAlarmManager(mContext, (Boolean) newValue);
+                //sending event notifying that the night mode feature is being used.
+                try {
+                    JSONObject eventData = new JSONObject();
+                    eventData.put("status", ((Boolean) newValue).booleanValue());
+                    AnalyticsManager.getInstance().sendEvent(ACTION_USING_NIGHTMODE, eventData);
+                } catch (Exception e){
+                    //do nothing
+                }
                 break;
+                }
             case DAY_START:
             case NIGHT_START:
                 updateAlarmManager(mContext, true);

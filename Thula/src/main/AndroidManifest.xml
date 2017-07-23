@@ -106,8 +106,6 @@
             android:theme="@style/AppThemeLightDialog" />
 
         <activity android:name="com.adeebnqo.Thula.ui.mms.SlideshowActivity" />
-        <activity android:name="com.mixpanel.android.surveys.SurveyActivity"
-            android:theme="@style/com_mixpanel_android_SurveyActivityTheme"/>
 
 
     <receiver

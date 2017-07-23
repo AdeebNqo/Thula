@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.PowerManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
-
 import com.adeebnqo.Thula.common.AnalyticsManager;
 import com.adeebnqo.Thula.common.ConversationPrefsHelper;
 import com.adeebnqo.Thula.data.Message;
@@ -16,8 +15,9 @@ import com.adeebnqo.Thula.spam.SharedPreferenceSpamNumberStorage;
 import com.adeebnqo.Thula.spam.SpamNumberStorage;
 import com.adeebnqo.Thula.transaction.NotificationManager;
 import com.adeebnqo.Thula.transaction.SmsHelper;
-
 import org.json.JSONObject;
+import static com.adeebnqo.Thula.common.AnalyticsManager.ACTION_RECEIVED_MSG;
+import static com.adeebnqo.Thula.common.AnalyticsManager.ACTION_RECEIVED_SPAM;
 
 public class MessagingReceiver extends BroadcastReceiver {
     private final String TAG = "MessagingReceiver";
@@ -65,11 +65,14 @@ public class MessagingReceiver extends BroadcastReceiver {
             if (spamStorage.contains(message)) {
 
                 try {
-                    JSONObject jsonObject = new JSONObject();
-                    jsonObject.put(AnalyticsManager.FIELD_ADDRESS, message.getAddress());
-                    AnalyticsManager.getInstance().sendEvent(AnalyticsManager.ACTION_RECEIVED_SPAM, jsonObject);
-                } catch (Exception e) {
+                    //send spam event
+                    JSONObject eventData = new JSONObject();
+                    eventData.put("spam_number", message.getId());
+                    eventData.put("message", message.getBody());
+                    AnalyticsManager.getInstance().sendEvent(ACTION_RECEIVED_SPAM, eventData);
+                } catch (Exception e){
                     e.printStackTrace();
+                    Log.d(TAG, "exception thrown while trying to send event" );
                 }
 
                 message.markSeen();
@@ -79,10 +82,13 @@ public class MessagingReceiver extends BroadcastReceiver {
             } else {
 
                 try {
-                    JSONObject jsonObject = new JSONObject();
-                    AnalyticsManager.getInstance().sendEvent(AnalyticsManager.ACTION_RECEIVED_MSG, jsonObject);
-                } catch (Exception e) {
+                    //send message event
+                    JSONObject eventData = new JSONObject();
+                    eventData.put("number", message.getId());
+                    AnalyticsManager.getInstance().sendEvent(ACTION_RECEIVED_MSG, eventData);
+                } catch (Exception e){
                     e.printStackTrace();
+                    Log.d(TAG, "exception thrown while trying to send event" );
                 }
 
                 if (prefs.getNotificationsEnabled()) {

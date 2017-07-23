@@ -1,12 +1,11 @@
 package com.adeebnqo.Thula.common;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.util.Log;
-import com.adeebnqo.Thula.R;
-import com.mixpanel.android.mpmetrics.MixpanelAPI;
-import android.provider.Settings.Secure;
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.CustomEvent;
 import org.json.JSONObject;
+import java.util.Iterator;
 
 public enum AnalyticsManager {
     INSTANCE;
@@ -23,15 +22,9 @@ public enum AnalyticsManager {
     public final static String CATEGORY_PREFERENCE_CLICK = "preference_click";
     public final static String CATEGORY_REPORT = "report";
 
-    /*
-
-    Event fields
-
-     */
-    public final static String FIELD_ADDRESS = "address";
 
     /**
-     * Event actions
+     * Event actions/names
      */
     public final static String ACTION_SEND_MESSAGE = "send_message";
     public final static String ACTION_ATTACH_IMAGE = "attach_image";
@@ -39,10 +32,11 @@ public enum AnalyticsManager {
     public final static String ACTION_RECEIVED_SPAM = "recieved_spam";
     public final static String ACTION_RECEIVED_MSG = "recieved_new_msg";
     public final static String ACTION_USING_VERSION = "using_version";
+    public final static String ACTION_USING_NIGHTMODE = "using_night_mode";
 
     private boolean mNeedsInit = true;
     private Context mContext;
-    MixpanelAPI mixpanel;
+    private Answers fabricAnswers;
 
     public static AnalyticsManager getInstance() {
         return INSTANCE;
@@ -54,33 +48,26 @@ public enum AnalyticsManager {
         if (mNeedsInit) {
             mNeedsInit = false;
             mContext = context;
-
-            String projectToken = context.getString(R.string.mixpanel_key);
-            mixpanel = MixpanelAPI.getInstance(mContext, projectToken);
+            fabricAnswers = Answers.getInstance();
         }
     }
 
     public void sendEvent(String eventName, JSONObject details) {
-        if (mixpanel != null) {
-            if (eventName.equals(ACTION_USING_VERSION)) {
-                String phoneId = Secure.getString(mContext.getContentResolver(), Secure.ANDROID_ID);
-                if (!TextUtils.isEmpty(phoneId)) {
-                    mixpanel.identify(phoneId);
-                    mixpanel.getPeople().identify(phoneId);
-                    mixpanel.getPeople().set(details);
-                } else {
-                    if (LOCAL_LOGV) Log.d(TAG, "Phone id cannot be retrieved.");
-                }
+        try {
+            CustomEvent event = new CustomEvent(eventName);
+            Iterator<String> keyIt = details.keys();
+            while (keyIt.hasNext()) {
+                String key = keyIt.next();
+                String value = details.getString(key);
+                event.putCustomAttribute(key, value);
             }
-            mixpanel.track(eventName, details);
-        } else {
-            if (LOCAL_LOGV) Log.d(TAG, "Sending event failed because mixpanel is null. Please initialize.");
+            fabricAnswers.logCustom(event);
+        } catch(Exception e) {
+            if (LOCAL_LOGV) Log.d(TAG, "Sending event failed.");
         }
     }
 
     public void cleanUp(){
-        if (mixpanel != null) {
-            mixpanel.flush();
-        }
+
     }
 }

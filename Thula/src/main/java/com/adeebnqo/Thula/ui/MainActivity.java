@@ -123,7 +123,7 @@ public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListen
             AnalyticsManager.getInstance().sendEvent(AnalyticsManager.ACTION_USING_VERSION, jsonObject);
         } catch (Exception e) {
             e.printStackTrace();
-            Log.d(TAG, "exception throwng while trying to send event" );
+            Log.d(TAG, "exception thrown while trying to send event" );
         }
     }
 
