@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    package="com.adeebnqo.Thula"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.adeebnqo.Thula">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -38,11 +37,12 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:theme="@style/AppThemeDark">
-
-        <meta-data android:name="com.mixpanel.android.MPConfig.ResourcePackageName" android:value="com.adeebnqo.Thula" />
+        <meta-data
+            android:name="com.mixpanel.android.MPConfig.ResourcePackageName"
+            android:value="com.adeebnqo.Thula" />
 
         <activity
-            android:name="com.adeebnqo.Thula.ui.popup.QKComposeActivity"
+            android:name=".ui.popup.QKComposeActivity"
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustPan">
@@ -74,7 +74,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.adeebnqo.Thula.ui.MainActivity"
+            android:name=".ui.MainActivity"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:launchMode="singleTask"
@@ -82,34 +82,32 @@
             android:windowSoftInputMode="stateUnchanged|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.adeebnqo.Thula.ui.welcome.WelcomeActivity"
+            android:name=".ui.welcome.WelcomeActivity"
             android:theme="@style/AppThemeLight" />
 
         <!-- Popup activity -->
         <activity
-            android:name="com.adeebnqo.Thula.ui.popup.QKReplyActivity"
+            android:name=".ui.popup.QKReplyActivity"
             android:excludeFromRecents="true"
             android:taskAffinity=""
             android:windowSoftInputMode="adjustResize" />
 
         <!-- Message picker activity -->
         <activity
-            android:name="com.adeebnqo.Thula.ui.popup.MessagePickerActivity"
+            android:name=".ui.popup.MessagePickerActivity"
             android:excludeFromRecents="true"
             android:noHistory="true"
             android:taskAffinity=""
             android:theme="@style/AppThemeLightDialog" />
+        <activity android:name=".ui.mms.SlideshowActivity" />
 
-        <activity android:name="com.adeebnqo.Thula.ui.mms.SlideshowActivity" />
-
-
-    <receiver
-            android:name="com.adeebnqo.Thula.receiver.WearableIntentReceiver"
+        <receiver
+            android:name=".receiver.WearableIntentReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.adeebnqo.Thula.receiver.WearableIntentReceiver.REPLY" />
@@ -118,7 +116,7 @@
 
         <!-- Broadcast receiver for SMS -->
         <receiver
-            android:name="com.adeebnqo.Thula.receiver.SmsReceiver"
+            android:name=".receiver.SmsReceiver"
             android:enabled="@bool/hasKitKat"
             android:permission="android.permission.BROADCAST_SMS">
             <intent-filter>
@@ -126,7 +124,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name="com.adeebnqo.Thula.receiver.IconColorReceiver"
+            android:name=".receiver.IconColorReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -141,7 +139,7 @@
 
         <!-- Legacy broadcast receiver for SMS -->
         <receiver
-            android:name="com.adeebnqo.Thula.receiver.SmsReceiverLegacy"
+            android:name=".receiver.SmsReceiverLegacy"
             android:enabled="@bool/preKitKat">
             <intent-filter android:priority="2147483647">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
@@ -150,7 +148,7 @@
 
         <!-- Broadcast receiver for MMS -->
         <receiver
-            android:name="com.adeebnqo.Thula.receiver.PushReceiver"
+            android:name=".receiver.PushReceiver"
             android:permission="android.permission.BROADCAST_WAP_PUSH">
             <intent-filter>
                 <action android:name="android.provider.Telephony.WAP_PUSH_RECEIVED" />
@@ -159,38 +157,37 @@
                 <data android:mimeType="application/vnd.wap.mms-message" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.adeebnqo.Thula.receiver.BootReceiver">
+        <receiver android:name=".receiver.BootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.adeebnqo.Thula.mmssms.SentReceiver">
+        <receiver android:name=".mmssms.SentReceiver">
             <intent-filter>
                 <action android:name="com.adeebnqo.Thula.SMS_SENT" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.adeebnqo.Thula.receiver.DeliveredReceiver">
+        <receiver android:name=".receiver.DeliveredReceiver">
             <intent-filter>
                 <action android:name="com.adeebnqo.Thula.SMS_DELIVERED" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.adeebnqo.Thula.receiver.MessageFailedReceiver">
+        <receiver android:name=".receiver.MessageFailedReceiver">
             <intent-filter>
                 <action android:name="com.adeebnqo.Thula.NOTIFY_SMS_FAILURE" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.adeebnqo.Thula.receiver.MarkReadReceiver">
+        <receiver android:name=".receiver.MarkReadReceiver">
             <intent-filter>
                 <action android:name="com.adeebnqo.Thula.MARK_READ" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.adeebnqo.Thula.receiver.MarkSeenReceiver">
+        <receiver android:name=".receiver.MarkSeenReceiver">
             <intent-filter>
                 <action android:name="com.adeebnqo.Thula.MARK_SEEN" />
             </intent-filter>
         </receiver>
-
-        <receiver android:name="com.adeebnqo.Thula.ui.widget.WidgetProvider">
+        <receiver android:name=".ui.widget.WidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -202,8 +199,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_info" />
         </receiver>
-
-        <receiver android:name="com.adeebnqo.Thula.receiver.NightModeAutoReceiver" />
+        <receiver android:name=".receiver.NightModeAutoReceiver" />
         <receiver
             android:name="com.mariussoft.endlessjabber.sdk.EndlessJabberReceiver"
             android:enabled="true">
@@ -213,14 +209,13 @@
         </receiver>
 
         <service android:name="com.mariussoft.endlessjabber.sdk.EndlessJabberWakefulService" />
-
         <service
-            android:name="com.adeebnqo.Thula.receiver.UnreadBadgeService"
+            android:name=".receiver.UnreadBadgeService"
             android:exported="false" />
 
         <!-- Service that delivers messages from the phone "quick response" -->
         <service
-            android:name="com.adeebnqo.Thula.service.HeadlessSmsSendService"
+            android:name=".service.HeadlessSmsSendService"
             android:exported="true"
             android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE">
             <intent-filter>
@@ -235,7 +230,7 @@
             </intent-filter>
         </service>
         <service
-            android:name="com.adeebnqo.Thula.service.PushbulletService"
+            android:name=".service.PushbulletService"
             android:permission="com.pushbullet.android.permission.READ_MESSAGING_EXTENSION_DATA">
             <intent-filter>
                 <action android:name="com.pushbullet.android.extension.MessagingExtension" />
@@ -246,13 +241,13 @@
                 android:value="1" />
         </service>
         <service android:name="com.android.mms.transaction.TransactionService" />
-        <service android:name="com.adeebnqo.Thula.service.NotificationService" />
-        <service android:name="com.adeebnqo.Thula.service.MarkReadService" />
-        <service android:name="com.adeebnqo.Thula.service.MarkSeenService" />
-        <service android:name="com.adeebnqo.Thula.service.DeleteUnreadMessageService" />
-        <service android:name="com.adeebnqo.Thula.service.CopyUnreadMessageTextService" />
+        <service android:name=".service.NotificationService" />
+        <service android:name=".service.MarkReadService" />
+        <service android:name=".service.MarkSeenService" />
+        <service android:name=".service.DeleteUnreadMessageService" />
+        <service android:name=".service.CopyUnreadMessageTextService" />
         <service
-            android:name="com.adeebnqo.Thula.ui.widget.WidgetService"
+            android:name=".ui.widget.WidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>
 
