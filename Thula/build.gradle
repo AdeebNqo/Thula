@@ -93,4 +93,8 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
         transitive = true;
     }
+    compile 'com.google.firebase:firebase-messaging:11.0.4'
 }
+
+
+apply plugin: 'com.google.gms.google-services'
