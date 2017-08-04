@@ -31,7 +31,7 @@ public enum AnalyticsManager {
     public final static String ACTION_ATTACH_FROM_CAMERA = "attach_from_camera";
     public final static String ACTION_RECEIVED_SPAM = "recieved_spam";
     public final static String ACTION_RECEIVED_MSG = "recieved_new_msg";
-    public final static String ACTION_USING_VERSION = "using_version";
+    public final static String ACTION_START_SESSION = "start_session";
     public final static String ACTION_USING_NIGHTMODE = "using_night_mode";
     public final static String ACTION_ADD_SPAM= "mark_spam_number";
     public final static String ACTION_REMOVE_SPAM= "unmark_spam_number";

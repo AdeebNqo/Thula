@@ -120,7 +120,7 @@ public class MainActivity extends QKActivity implements SlidingMenu.OnOpenListen
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("VersionCode", BuildConfig.VERSION_CODE);
             jsonObject.put("VersionName", BuildConfig.VERSION_NAME);
-            AnalyticsManager.getInstance().sendEvent(AnalyticsManager.ACTION_USING_VERSION, jsonObject);
+            AnalyticsManager.getInstance().sendEvent(AnalyticsManager.ACTION_START_SESSION, jsonObject);
         } catch (Exception e) {
             e.printStackTrace();
             Log.d(TAG, "exception thrown while trying to send event" );
