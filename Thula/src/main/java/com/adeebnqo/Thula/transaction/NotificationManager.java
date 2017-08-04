@@ -93,33 +93,39 @@ public class NotificationManager {
 
     private static BroadcastReceiver sBroadcastReceiver = new BroadcastReceiver() {
         @Override
-        public void onReceive(Context context, Intent intent) {
-            // TODO this should happen on a background thread because it requires a DB query
-            int result = intent.getIntExtra(TransactionService.STATE, TransactionState.FAILED);
-            Uri uri = intent.getParcelableExtra(TransactionService.STATE_URI);
+        public void onReceive(final Context context, final Intent intent) {
+            Thread worker = new Thread(){
+                @Override
+                public void run() {
+                    super.run();
+                    int result = intent.getIntExtra(TransactionService.STATE, TransactionState.FAILED);
+                    Uri uri = intent.getParcelableExtra(TransactionService.STATE_URI);
 
-            if (uri != null) {
-                // Get the message type
-                int msgType = -1;
-                Cursor c = null;
-                try {
-                    c = SqliteWrapper.query(context, context.getContentResolver(), uri,
-                            new String[]{Telephony.Mms.MESSAGE_TYPE}, null, null, null
-                    );
-                    if (c.moveToFirst()) {
-                        msgType = c.getInt(c.getColumnIndex(Telephony.Mms.MESSAGE_TYPE));
+                    if (uri != null) {
+                        // Get the message type
+                        int msgType = -1;
+                        Cursor c = null;
+                        try {
+                            c = SqliteWrapper.query(context, context.getContentResolver(), uri,
+                                    new String[]{Telephony.Mms.MESSAGE_TYPE}, null, null, null
+                            );
+                            if (c.moveToFirst()) {
+                                msgType = c.getInt(c.getColumnIndex(Telephony.Mms.MESSAGE_TYPE));
+                            }
+                        } finally {
+                            if (c != null) c.close();
+                        }
+
+                        // For successful retrieve messages, show a notification!
+                        if (result == TransactionState.SUCCESS && msgType == PduHeaders.MESSAGE_TYPE_RETRIEVE_CONF) {
+                            create(context);
+                        } else {
+                            update(context);
+                        }
                     }
-                } finally {
-                    if (c != null) c.close();
                 }
-
-                // For successful retrieve messages, show a notification!
-                if (result == TransactionState.SUCCESS && msgType == PduHeaders.MESSAGE_TYPE_RETRIEVE_CONF) {
-                    create(context);
-                } else {
-                    update(context);
-                }
-            }
+            };
+            worker.start();
         }
     };
 
