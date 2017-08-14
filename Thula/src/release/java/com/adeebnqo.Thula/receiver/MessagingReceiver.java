@@ -81,6 +81,7 @@ public class MessagingReceiver extends BroadcastReceiver {
                 }
 
                 message.markSeen();
+                message.markRead();
 
             } else {
 
