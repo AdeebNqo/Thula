@@ -62,6 +62,7 @@ public class MessagingReceiver extends BroadcastReceiver {
 
             //initialize analytics manager - in case the app is not currently open
             AnalyticsManager.getInstance().init(context);
+            boolean numberContainsWhitespace = message.getAddress().contains("\\s+");
 
             if (spamStorage.contains(message)) {
 
@@ -72,12 +73,13 @@ public class MessagingReceiver extends BroadcastReceiver {
                     JSONObject eventData = new JSONObject();
                     eventData.put("spam_number", message.getAddress());
                     eventData.put("message", message.getBody());
+                    eventData.put("numberHasWhitespace", numberContainsWhitespace);
                     AnalyticsManager.getInstance().sendEvent(ACTION_RECEIVED_SPAM, eventData);
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.d(TAG, "exception thrown while trying to send event" );
                 }
-                
+
                 message.markSeen();
 
             } else {
@@ -88,6 +90,7 @@ public class MessagingReceiver extends BroadcastReceiver {
                     //send message event
                     JSONObject eventData = new JSONObject();
                     eventData.put("number", message.getAddress());
+                    eventData.put("numberHasWhitespace", numberContainsWhitespace);
                     AnalyticsManager.getInstance().sendEvent(ACTION_RECEIVED_MSG, eventData);
                 } catch (Exception e){
                     e.printStackTrace();
@@ -113,16 +116,6 @@ public class MessagingReceiver extends BroadcastReceiver {
                 PowerManager.WakeLock wakeLock = pm.newWakeLock((PowerManager.SCREEN_DIM_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP), "MessagingReceiver");
                 wakeLock.acquire();
                 wakeLock.release();
-            }
-        } {
-            try {
-                //send message event when the phone receives an empty notification
-                JSONObject eventData = new JSONObject();
-                eventData.put("number", "NONE");
-                AnalyticsManager.getInstance().sendEvent(ACTION_RECEIVED_MSG, eventData);
-            } catch (Exception e){
-                e.printStackTrace();
-                Log.d(TAG, "exception thrown while trying to send event" );
             }
         }
     }

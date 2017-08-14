@@ -2,14 +2,9 @@ package com.adeebnqo.Thula.spam;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
-
 import com.adeebnqo.Thula.data.Message;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class SharedPreferenceSpamNumberStorage implements SpamNumberStorage {
@@ -30,8 +25,8 @@ public class SharedPreferenceSpamNumberStorage implements SpamNumberStorage {
     @Override
     public void addNumber(String id) {
         sharedPreferences = context.getSharedPreferences(sharedPreferenceFileName, Context.MODE_PRIVATE);
-
-        sharedPreferences.edit().putString(id.trim(), "").apply();
+        id = id.replaceAll("\\s+",""); //removing whitespace from number
+        sharedPreferences.edit().putString(id, "").apply();
     }
 
 
@@ -43,8 +38,8 @@ public class SharedPreferenceSpamNumberStorage implements SpamNumberStorage {
     @Override
     public void deleteNumber(String id) {
         sharedPreferences = context.getSharedPreferences(sharedPreferenceFileName, Context.MODE_PRIVATE);
-
-        sharedPreferences.edit().remove(id.trim()).apply();
+        id = id.replaceAll("\\s+",""); //removing whitespace from number
+        sharedPreferences.edit().remove(id).apply();
     }
 
     @Override
@@ -55,8 +50,8 @@ public class SharedPreferenceSpamNumberStorage implements SpamNumberStorage {
     @Override
     public boolean contains(String id) {
         sharedPreferences = context.getSharedPreferences(sharedPreferenceFileName, Context.MODE_PRIVATE);
-
-        return sharedPreferences.contains(id.trim());
+        id = id.replaceAll("\\s+",""); //removing whitespace from number
+        return sharedPreferences.contains(id);
     }
 
     @Override

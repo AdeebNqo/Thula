@@ -32,7 +32,6 @@ import android.util.Log;
 import com.adeebnqo.Thula.BuildConfig;
 import com.adeebnqo.Thula.LogTag;
 import com.adeebnqo.Thula.R;
-import com.adeebnqo.Thula.common.AnalyticsManager;
 import com.adeebnqo.Thula.spam.SDCardStorage;
 import com.android.mms.transaction.MmsSystemEventReceiver;
 import com.android.mms.util.DownloadManager;
