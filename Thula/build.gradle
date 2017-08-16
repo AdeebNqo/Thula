@@ -55,7 +55,7 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'qksms-proguard.pro'
-            signingConfig signingConfigs.androidpot
+            //signingConfig signingConfigs.androidpot
         }
         debug {
             debuggable true
