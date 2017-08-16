@@ -37,9 +37,10 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:theme="@style/AppThemeDark">
+
         <meta-data
-            android:name="com.mixpanel.android.MPConfig.ResourcePackageName"
-            android:value="com.adeebnqo.Thula" />
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_message_text_outline_white_18dp" />
 
         <activity
             android:name=".ui.popup.QKComposeActivity"

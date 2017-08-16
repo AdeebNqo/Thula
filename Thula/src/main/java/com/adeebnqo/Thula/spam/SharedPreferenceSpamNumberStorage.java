@@ -59,7 +59,6 @@ public class SharedPreferenceSpamNumberStorage implements SpamNumberStorage {
         sharedPreferences = context.getSharedPreferences(sharedPreferenceFileName, Context.MODE_PRIVATE);
 
         Map<String, ?> items = sharedPreferences.getAll();
-        Gson gson = new GsonBuilder().create();
         return items.keySet().toArray();
     }
 
