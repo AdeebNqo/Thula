@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "305835467550",
+    "firebase_url": "https://thula-dev.firebaseio.com",
+    "project_id": "thula-dev",
+    "storage_bucket": "thula-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:305835467550:android:bdba40038a749c31",
+        "android_client_info": {
+          "package_name": "com.adeebnqo.Thula.developer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "305835467550-kmr2b97q6p5moh18brvep74r7ki0nh06.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpEg0l8OG1TrYS4yotDDWrS2P9m0MkOGM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
